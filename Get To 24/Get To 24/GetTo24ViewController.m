@@ -9,7 +9,8 @@
 #import "GetTo24ViewController.h"
 
 @interface GetTo24ViewController ()
-
+@property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
+@property (nonatomic) int flipCount;
 @end
 
 @implementation GetTo24ViewController
@@ -26,4 +27,28 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void) setFlipCount:(int)flipCount
+{
+    _flipCount = flipCount;
+    [self.flipsLabel setText:[NSString stringWithFormat:@"Flips %d", self.flipCount]];
+    
+}
+
+- (IBAction)touchCardButton:(UIButton *)sender
+{
+    if ([sender.currentTitle length]) {
+        UIImage *cardImage = [UIImage imageNamed:@"cardback"];
+        [sender setBackgroundImage:cardImage
+                          forState:UIControlStateNormal ];
+        [sender setTitle:@""
+                forState:UIControlStateNormal];
+    } else {
+        UIImage *cardImage = [UIImage imageNamed:@"cardfront"];
+        [sender setBackgroundImage:cardImage
+                          forState:UIControlStateNormal ];
+        [sender setTitle:@"A ♣︎"
+                forState:UIControlStateNormal];
+    }
+    self.flipCount++;
+}
 @end

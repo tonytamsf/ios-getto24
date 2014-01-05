@@ -16,12 +16,16 @@
 		D8D369A5187933400092E0F4 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8D369A3187933400092E0F4 /* Main_iPhone.storyboard */; };
 		D8D369A8187933400092E0F4 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8D369A6187933400092E0F4 /* Main_iPad.storyboard */; };
 		D8D369AB187933400092E0F4 /* GetTo24ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D369AA187933400092E0F4 /* GetTo24ViewController.m */; };
-		D8D369AD187933400092E0F4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8D369AC187933400092E0F4 /* Images.xcassets */; };
 		D8D369B4187933400092E0F4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D369B3187933400092E0F4 /* XCTest.framework */; };
 		D8D369B5187933400092E0F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D36991187933400092E0F4 /* Foundation.framework */; };
 		D8D369B6187933400092E0F4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D36995187933400092E0F4 /* UIKit.framework */; };
 		D8D369BE187933400092E0F4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8D369BC187933400092E0F4 /* InfoPlist.strings */; };
 		D8D369C0187933400092E0F4 /* Get_To_24Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D369BF187933400092E0F4 /* Get_To_24Tests.m */; };
+		D8E5A4F5187937EF0002BAEE /* cardback in Resources */ = {isa = PBXBuildFile; fileRef = D8E5A4F4187937EF0002BAEE /* cardback */; };
+		D8E5A4FE18793DCB0002BAEE /* PlayingCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E5A4F718793DCB0002BAEE /* PlayingCardDeck.m */; };
+		D8E5A4FF18793DCB0002BAEE /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E5A4F918793DCB0002BAEE /* Card.m */; };
+		D8E5A50018793DCB0002BAEE /* Deck.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E5A4FB18793DCB0002BAEE /* Deck.m */; };
+		D8E5A50118793DCB0002BAEE /* PlayingCard.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E5A4FD18793DCB0002BAEE /* PlayingCard.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,12 +53,20 @@
 		D8D369A7187933400092E0F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		D8D369A9187933400092E0F4 /* GetTo24ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetTo24ViewController.h; sourceTree = "<group>"; };
 		D8D369AA187933400092E0F4 /* GetTo24ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetTo24ViewController.m; sourceTree = "<group>"; };
-		D8D369AC187933400092E0F4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D8D369B2187933400092E0F4 /* Get To 24Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Get To 24Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8D369B3187933400092E0F4 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		D8D369BB187933400092E0F4 /* Get To 24Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Get To 24Tests-Info.plist"; sourceTree = "<group>"; };
 		D8D369BD187933400092E0F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D8D369BF187933400092E0F4 /* Get_To_24Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Get_To_24Tests.m; sourceTree = "<group>"; };
+		D8E5A4F4187937EF0002BAEE /* cardback */ = {isa = PBXFileReference; lastKnownFileType = file; path = cardback; sourceTree = "<group>"; };
+		D8E5A4F618793DCB0002BAEE /* PlayingCardDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayingCardDeck.h; path = "Get To 24/PlayingCardDeck.h"; sourceTree = "<group>"; };
+		D8E5A4F718793DCB0002BAEE /* PlayingCardDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayingCardDeck.m; path = "Get To 24/PlayingCardDeck.m"; sourceTree = "<group>"; };
+		D8E5A4F818793DCB0002BAEE /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Card.h; path = "Get To 24/Card.h"; sourceTree = "<group>"; };
+		D8E5A4F918793DCB0002BAEE /* Card.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Card.m; path = "Get To 24/Card.m"; sourceTree = "<group>"; };
+		D8E5A4FA18793DCB0002BAEE /* Deck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Deck.h; path = "Get To 24/Deck.h"; sourceTree = "<group>"; };
+		D8E5A4FB18793DCB0002BAEE /* Deck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Deck.m; path = "Get To 24/Deck.m"; sourceTree = "<group>"; };
+		D8E5A4FC18793DCB0002BAEE /* PlayingCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayingCard.h; path = "Get To 24/PlayingCard.h"; sourceTree = "<group>"; };
+		D8E5A4FD18793DCB0002BAEE /* PlayingCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayingCard.m; path = "Get To 24/PlayingCard.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +96,7 @@
 		D8D36985187933400092E0F4 = {
 			isa = PBXGroup;
 			children = (
+				D8E5A50218793DD40002BAEE /* Model */,
 				D8D36997187933400092E0F4 /* Get To 24 */,
 				D8D369B9187933400092E0F4 /* Get To 24Tests */,
 				D8D36990187933400092E0F4 /* Frameworks */,
@@ -114,11 +127,11 @@
 		D8D36997187933400092E0F4 /* Get To 24 */ = {
 			isa = PBXGroup;
 			children = (
+				D8E5A4F4187937EF0002BAEE /* cardback */,
 				D8D369A3187933400092E0F4 /* Main_iPhone.storyboard */,
 				D8D369A6187933400092E0F4 /* Main_iPad.storyboard */,
 				D8D369A9187933400092E0F4 /* GetTo24ViewController.h */,
 				D8D369AA187933400092E0F4 /* GetTo24ViewController.m */,
-				D8D369AC187933400092E0F4 /* Images.xcassets */,
 				D8D36998187933400092E0F4 /* Supporting Files */,
 			);
 			path = "Get To 24";
@@ -153,6 +166,21 @@
 				D8D369BC187933400092E0F4 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D8E5A50218793DD40002BAEE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D8E5A4F618793DCB0002BAEE /* PlayingCardDeck.h */,
+				D8E5A4F718793DCB0002BAEE /* PlayingCardDeck.m */,
+				D8E5A4F818793DCB0002BAEE /* Card.h */,
+				D8E5A4F918793DCB0002BAEE /* Card.m */,
+				D8E5A4FA18793DCB0002BAEE /* Deck.h */,
+				D8E5A4FB18793DCB0002BAEE /* Deck.m */,
+				D8E5A4FC18793DCB0002BAEE /* PlayingCard.h */,
+				D8E5A4FD18793DCB0002BAEE /* PlayingCard.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,8 +260,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8E5A4F5187937EF0002BAEE /* cardback in Resources */,
 				D8D369A8187933400092E0F4 /* Main_iPad.storyboard in Resources */,
-				D8D369AD187933400092E0F4 /* Images.xcassets in Resources */,
 				D8D369A5187933400092E0F4 /* Main_iPhone.storyboard in Resources */,
 				D8D3699C187933400092E0F4 /* InfoPlist.strings in Resources */,
 			);
@@ -254,8 +282,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8E5A4FF18793DCB0002BAEE /* Card.m in Sources */,
 				D8D369AB187933400092E0F4 /* GetTo24ViewController.m in Sources */,
+				D8E5A50118793DCB0002BAEE /* PlayingCard.m in Sources */,
+				D8E5A4FE18793DCB0002BAEE /* PlayingCardDeck.m in Sources */,
 				D8D369A2187933400092E0F4 /* GetTo24AppDelegate.m in Sources */,
+				D8E5A50018793DCB0002BAEE /* Deck.m in Sources */,
 				D8D3699E187933400092E0F4 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -477,6 +509,7 @@
 				D8D369C5187933400092E0F4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D8D369C6187933400092E0F4 /* Build configuration list for PBXNativeTarget "Get To 24Tests" */ = {
 			isa = XCConfigurationList;
@@ -485,6 +518,7 @@
 				D8D369C8187933400092E0F4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
