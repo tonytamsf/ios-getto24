@@ -20,6 +20,7 @@
     if (!_cards) {
         _cards = [[NSMutableArray alloc]init];
     }
+    NSLog(@"Drawing cards");
     return _cards;
 }
 
@@ -40,10 +41,11 @@
     if ([self.cards count]) {
         unsigned index = arc4random() % [self.cards count];
         randomCard = self.cards[index];
+        NSLog(@"drawRandomCard %@", randomCard);
         [self.cards removeObjectAtIndex:index];
     }
 
-    return nil;
+    return randomCard;
 }
 
 @end

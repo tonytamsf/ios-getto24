@@ -11,10 +11,13 @@
 @implementation PlayingCard
 
 @synthesize suit = _suit; // because we provide settings and getters
+@synthesize contents = _contents;
 
 - (NSString *) contents
 {
     NSArray *rankStrings = [PlayingCard rankStrings];
+    
+    NSLog(@"getting contents %@ %@", rankStrings[self.rank], self.suit);
     return [rankStrings[self.rank] stringByAppendingString:self.suit];
 
                               
