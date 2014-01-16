@@ -7,6 +7,7 @@
 //
 
 #import "Deck.h"
+#import "Debug.h"
 
 @interface Deck()
 @property (strong, nonatomic) NSMutableArray *cards; // of card
@@ -20,7 +21,7 @@
     if (!_cards) {
         _cards = [[NSMutableArray alloc]init];
     }
-    NSLog(@"Drawing cards");
+    DLog(@"Drawing cards");
     return _cards;
 }
 
@@ -41,7 +42,7 @@
     if ([self.cards count]) {
         unsigned index = arc4random() % [self.cards count];
         randomCard = self.cards[index];
-        NSLog(@"drawRandomCard %@", randomCard);
+        DLog(@"drawRandomCard %@", randomCard);
         [self.cards removeObjectAtIndex:index];
     }
 
