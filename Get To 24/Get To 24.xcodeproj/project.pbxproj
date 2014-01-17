@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D8599D3E187B1A7B0033E51C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8599D3D187B1A7B0033E51C /* Images.xcassets */; };
+		D8599D41187B1AE30033E51C /* 24app.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D8599D40187B1AE30033E51C /* 24app.pdf */; };
+		D8599D45187B1AF00033E51C /* getto24-icon-58.png in Resources */ = {isa = PBXBuildFile; fileRef = D8599D42187B1AF00033E51C /* getto24-icon-58.png */; };
+		D8599D46187B1AF00033E51C /* getto24-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D8599D43187B1AF00033E51C /* getto24-icon.png */; };
+		D8599D47187B1AF00033E51C /* getto24-icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = D8599D44187B1AF00033E51C /* getto24-icon-29.png */; };
 		D8D36992187933400092E0F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D36991187933400092E0F4 /* Foundation.framework */; };
 		D8D36994187933400092E0F4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D36993187933400092E0F4 /* CoreGraphics.framework */; };
 		D8D36996187933400092E0F4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D36995187933400092E0F4 /* UIKit.framework */; };
@@ -21,6 +26,7 @@
 		D8D369B6187933400092E0F4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D36995187933400092E0F4 /* UIKit.framework */; };
 		D8D369BE187933400092E0F4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8D369BC187933400092E0F4 /* InfoPlist.strings */; };
 		D8D369C0187933400092E0F4 /* Get_To_24Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D369BF187933400092E0F4 /* Get_To_24Tests.m */; };
+		D8E4985D187B2157005A32D6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E4985C187B2157005A32D6 /* Default-568h@2x.png */; };
 		D8E5A4F5187937EF0002BAEE /* cardback in Resources */ = {isa = PBXBuildFile; fileRef = D8E5A4F4187937EF0002BAEE /* cardback */; };
 		D8E5A4FE18793DCB0002BAEE /* PlayingCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E5A4F718793DCB0002BAEE /* PlayingCardDeck.m */; };
 		D8E5A4FF18793DCB0002BAEE /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E5A4F918793DCB0002BAEE /* Card.m */; };
@@ -39,6 +45,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D8599D3D187B1A7B0033E51C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D8599D40187B1AE30033E51C /* 24app.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 24app.pdf; sourceTree = "<group>"; };
+		D8599D42187B1AF00033E51C /* getto24-icon-58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "getto24-icon-58.png"; sourceTree = "<group>"; };
+		D8599D43187B1AF00033E51C /* getto24-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "getto24-icon.png"; sourceTree = "<group>"; };
+		D8599D44187B1AF00033E51C /* getto24-icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "getto24-icon-29.png"; sourceTree = "<group>"; };
 		D8D3698E187933400092E0F4 /* Get To 24.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Get To 24.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8D36991187933400092E0F4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D8D36993187933400092E0F4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -58,6 +69,7 @@
 		D8D369BB187933400092E0F4 /* Get To 24Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Get To 24Tests-Info.plist"; sourceTree = "<group>"; };
 		D8D369BD187933400092E0F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D8D369BF187933400092E0F4 /* Get_To_24Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Get_To_24Tests.m; sourceTree = "<group>"; };
+		D8E4985C187B2157005A32D6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		D8E5A4F4187937EF0002BAEE /* cardback */ = {isa = PBXFileReference; lastKnownFileType = file; path = cardback; sourceTree = "<group>"; };
 		D8E5A4F618793DCB0002BAEE /* PlayingCardDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayingCardDeck.h; path = "Get To 24/PlayingCardDeck.h"; sourceTree = "<group>"; };
 		D8E5A4F718793DCB0002BAEE /* PlayingCardDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayingCardDeck.m; path = "Get To 24/PlayingCardDeck.m"; sourceTree = "<group>"; };
@@ -93,9 +105,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D8599D3F187B1ACB0033E51C /* images */ = {
+			isa = PBXGroup;
+			children = (
+				D8599D42187B1AF00033E51C /* getto24-icon-58.png */,
+				D8599D43187B1AF00033E51C /* getto24-icon.png */,
+				D8599D44187B1AF00033E51C /* getto24-icon-29.png */,
+				D8599D40187B1AE30033E51C /* 24app.pdf */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
 		D8D36985187933400092E0F4 = {
 			isa = PBXGroup;
 			children = (
+				D8E4985C187B2157005A32D6 /* Default-568h@2x.png */,
+				D8599D3F187B1ACB0033E51C /* images */,
 				D8E5A50218793DD40002BAEE /* Model */,
 				D8D36997187933400092E0F4 /* Get To 24 */,
 				D8D369B9187933400092E0F4 /* Get To 24Tests */,
@@ -132,6 +157,7 @@
 				D8D369A6187933400092E0F4 /* Main_iPad.storyboard */,
 				D8D369A9187933400092E0F4 /* GetTo24ViewController.h */,
 				D8D369AA187933400092E0F4 /* GetTo24ViewController.m */,
+				D8599D3D187B1A7B0033E51C /* Images.xcassets */,
 				D8D36998187933400092E0F4 /* Supporting Files */,
 			);
 			path = "Get To 24";
@@ -260,10 +286,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8599D45187B1AF00033E51C /* getto24-icon-58.png in Resources */,
 				D8E5A4F5187937EF0002BAEE /* cardback in Resources */,
+				D8599D46187B1AF00033E51C /* getto24-icon.png in Resources */,
+				D8E4985D187B2157005A32D6 /* Default-568h@2x.png in Resources */,
+				D8599D3E187B1A7B0033E51C /* Images.xcassets in Resources */,
 				D8D369A8187933400092E0F4 /* Main_iPad.storyboard in Resources */,
 				D8D369A5187933400092E0F4 /* Main_iPhone.storyboard in Resources */,
+				D8599D41187B1AE30033E51C /* 24app.pdf in Resources */,
 				D8D3699C187933400092E0F4 /* InfoPlist.strings in Resources */,
+				D8599D47187B1AF00033E51C /* getto24-icon-29.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,7 +456,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Get To 24/Get To 24-Prefix.pch";
 				INFOPLIST_FILE = "Get To 24/Get To 24-Info.plist";
@@ -438,7 +469,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Get To 24/Get To 24-Prefix.pch";
 				INFOPLIST_FILE = "Get To 24/Get To 24-Info.plist";

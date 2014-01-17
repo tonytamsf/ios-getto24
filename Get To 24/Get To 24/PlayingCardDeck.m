@@ -22,7 +22,6 @@
                 PlayingCard *card = [[PlayingCard alloc] init];
                 card.rank = rank;
                 card.suit = suit;
-                DLog(@"%d %@", card.rank, card.suit);
                 [self addCard:card];
             }
         }
