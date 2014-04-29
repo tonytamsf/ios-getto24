@@ -26,7 +26,7 @@
                                     <constraint firstAttribute="height" constant="139" id="tVt-Fz-UtB"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="34"/>
-                                <state key="normal" title="A ♣︎  ">
+                                <state key="normal">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -43,7 +43,7 @@
                                     <constraint firstAttribute="width" constant="96" id="q2C-AD-zxW"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="34"/>
-                                <state key="normal" title="A ♣︎  ">
+                                <state key="normal">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -51,8 +51,8 @@
                                     <action selector="touchCardButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="hRR-zE-b62"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cP7-ao-yCE">
-                                <rect key="frame" x="60" y="234" width="96" height="139"/>
+                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cP7-ao-yCE">
+                                <rect key="frame" x="60" y="244" width="96" height="139"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -60,7 +60,7 @@
                                     <constraint firstAttribute="width" constant="96" id="Y5u-LK-0J5"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="34"/>
-                                <state key="normal" title="A ♣︎  ">
+                                <state key="normal">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -69,7 +69,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pHx-cz-fWE">
-                                <rect key="frame" x="164" y="234" width="96" height="139"/>
+                                <rect key="frame" x="164" y="244" width="96" height="139"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -77,7 +77,7 @@
                                     <constraint firstAttribute="width" constant="96" id="VFs-3B-DU1"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="34"/>
-                                <state key="normal" title="A ♣︎  ">
+                                <state key="normal">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -85,15 +85,15 @@
                                     <action selector="touchCardButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Drg-6J-qKv"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Player  : 34" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NSd-Hb-EZb">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Player  1 : 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NSd-Hb-EZb">
                                 <rect key="frame" x="60" y="58" width="200" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Player  : 34" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="whQ-VG-LXX">
-                                <rect key="frame" x="60" y="381" width="200" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Player 2: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="whQ-VG-LXX">
+                                <rect key="frame" x="60" y="391" width="200" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -113,8 +113,8 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yr7-Ae-bzI">
-                                <rect key="frame" x="60" y="410" width="200" height="30"/>
+                            <button opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yr7-Ae-bzI">
+                                <rect key="frame" x="60" y="420" width="200" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.23064537822624456" green="0.36194670011123109" blue="0.60695482336956519" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -126,33 +126,71 @@
                                     <color key="titleColor" red="0.98968339019999996" green="0.99284903250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NLm-bZ-kY2">
+                                <rect key="frame" x="13" y="172" width="39" height="119"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.2306453782" green="0.36194670010000002" blue="0.60695482339999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="GIVE UP">
+                                    <color key="titleColor" red="0.98968339019999996" green="0.99284903250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="giveUp:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Y35-ES-U6D"/>
+                                </connections>
+                            </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" progress="0.5" progressImage="Default.png" trackImage="getto24-icon-29.png" translatesAutoresizingMaskIntoConstraints="NO" id="p7w-Qc-NW1">
+                                <rect key="frame" x="60" y="234" width="200" height="2"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.2306453782" green="0.36194670010000002" blue="0.60695482339999995" alpha="1" colorSpace="calibratedRGB"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" red="0.53656607419651214" green="0.57950460113165303" blue="0.60695482336956519" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="NSd-Hb-EZb" firstAttribute="top" secondItem="Q7m-3b-OYd" secondAttribute="bottom" constant="20" id="3MD-H9-x9b"/>
                             <constraint firstItem="pHx-cz-fWE" firstAttribute="centerY" secondItem="cP7-ao-yCE" secondAttribute="centerY" id="8Z4-kp-lvN"/>
                             <constraint firstItem="whQ-VG-LXX" firstAttribute="top" secondItem="pHx-cz-fWE" secondAttribute="bottom" constant="8" id="9sW-xT-idg"/>
-                            <constraint firstItem="pHx-cz-fWE" firstAttribute="top" secondItem="MOk-DM-pwU" secondAttribute="bottom" constant="8" id="Av6-Xq-XrH"/>
                             <constraint firstItem="e15-do-E3F" firstAttribute="top" secondItem="Q7m-3b-OYd" secondAttribute="bottom" constant="-60" id="BWp-o2-9Mt"/>
+                            <constraint firstItem="cP7-ao-yCE" firstAttribute="leading" secondItem="NLm-bZ-kY2" secondAttribute="trailing" constant="8" id="HW2-UH-uR0"/>
                             <constraint firstAttribute="centerX" secondItem="yr7-Ae-bzI" secondAttribute="centerX" id="MSF-dT-9Kv"/>
                             <constraint firstItem="XTM-ZA-O5p" firstAttribute="top" relation="lessThanOrEqual" secondItem="yr7-Ae-bzI" secondAttribute="bottom" constant="20" id="T5X-5m-ees"/>
                             <constraint firstItem="MOk-DM-pwU" firstAttribute="leading" secondItem="Gj5-hm-bcg" secondAttribute="trailing" constant="8" id="UNZ-N4-cCB"/>
                             <constraint firstAttribute="centerX" secondItem="Q7m-3b-OYd" secondAttribute="centerX" id="a3S-pp-SlQ"/>
+                            <constraint firstItem="p7w-Qc-NW1" firstAttribute="top" secondItem="Gj5-hm-bcg" secondAttribute="bottom" constant="8" id="drM-ec-3Zc"/>
+                            <constraint firstItem="Gj5-hm-bcg" firstAttribute="centerY" secondItem="NLm-bZ-kY2" secondAttribute="centerY" constant="-75" id="eW4-Qc-NoU"/>
                             <constraint firstItem="MOk-DM-pwU" firstAttribute="leading" secondItem="Gj5-hm-bcg" secondAttribute="trailing" constant="8" id="esu-OT-kcj"/>
                             <constraint firstAttribute="centerX" secondItem="whQ-VG-LXX" secondAttribute="centerX" id="fu4-Nt-mDy"/>
                             <constraint firstItem="Gj5-hm-bcg" firstAttribute="top" secondItem="NSd-Hb-EZb" secondAttribute="bottom" constant="8" id="gcq-X4-cLB"/>
+                            <constraint firstItem="cP7-ao-yCE" firstAttribute="top" secondItem="p7w-Qc-NW1" secondAttribute="bottom" constant="8" id="hRI-9v-ZWg"/>
                             <constraint firstItem="yr7-Ae-bzI" firstAttribute="top" relation="lessThanOrEqual" secondItem="whQ-VG-LXX" secondAttribute="bottom" constant="20" id="nMK-Ff-rq4"/>
                             <constraint firstItem="pHx-cz-fWE" firstAttribute="leading" secondItem="cP7-ao-yCE" secondAttribute="trailing" constant="8" id="qbX-ib-8JP"/>
                             <constraint firstAttribute="centerX" secondItem="NSd-Hb-EZb" secondAttribute="centerX" id="rT6-Nh-Pym"/>
                             <constraint firstItem="MOk-DM-pwU" firstAttribute="centerY" secondItem="Gj5-hm-bcg" secondAttribute="centerY" id="yMA-vn-XsG"/>
-                            <constraint firstItem="cP7-ao-yCE" firstAttribute="top" secondItem="Gj5-hm-bcg" secondAttribute="bottom" constant="8" id="yRb-ln-Qhz"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="buttonGiveUp" destination="NLm-bZ-kY2" id="C7U-tR-lrf"/>
+                        <outlet property="cardNE" destination="MOk-DM-pwU" id="Ej2-7i-4c6"/>
+                        <outlet property="cardNW" destination="Gj5-hm-bcg" id="03R-JH-R1Y"/>
+                        <outlet property="cardSE" destination="pHx-cz-fWE" id="rFc-9R-czy"/>
+                        <outlet property="cardSW" destination="cP7-ao-yCE" id="2Q5-c9-6LI"/>
+                        <outlet property="gameCountdownProgress" destination="p7w-Qc-NW1" id="ljE-qe-amc"/>
+                        <outlet property="giveUpButton" destination="NLm-bZ-kY2" id="E8D-Gn-yls"/>
+                        <outlet property="player1Button" destination="Q7m-3b-OYd" id="yBe-q0-ncO"/>
+                        <outlet property="player1Score" destination="NSd-Hb-EZb" id="bS3-h0-mkp"/>
+                        <outlet property="player2Button" destination="yr7-Ae-bzI" id="vya-Ej-2SV"/>
+                        <outlet property="player2Score" destination="whQ-VG-LXX" id="iSp-dB-w2H"/>
+                        <outlet property="progressBar" destination="p7w-Qc-NW1" id="C33-ay-CD1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
     </scenes>
+    <resources>
+        <image name="Default.png" width="16" height="16"/>
+        <image name="getto24-icon-29.png" width="864" height="864"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
