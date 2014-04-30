@@ -52,6 +52,9 @@
 
     DLog("Countdown %d %f", self.currentGameTime, percent);
     self.currentGameTime -= 1;
+    if (self.currentGameTime <= 0) {
+        [self giveUp:(id )nil];
+    }
     [self.gameCountdownProgress
         setProgress:percent
             animated:YES];
@@ -76,6 +79,7 @@
     [self.gameCountdownProgress setProgress:0.01 animated:YES];
     
 }
+
 - (IBAction)giveUp:(id)sender {
     [self.gameCountdownProgress setProgress:0.00 animated:YES];
 
