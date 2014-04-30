@@ -26,4 +26,8 @@
 
 @property (weak, nonatomic) IBOutlet UIProgressView *gameCountdownProgress;
 
+@property (weak, nonatomic) IBOutlet UILabel *player1NameLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *player2NameLabel;
+
 @end

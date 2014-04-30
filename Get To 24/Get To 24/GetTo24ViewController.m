@@ -32,6 +32,11 @@
 
 @property int currentGameTime;
 
+@property int player1ScorePoints;
+
+@property int player2ScorePoints;
+
+
 @end
 
 @implementation GetTo24ViewController
@@ -81,9 +86,21 @@
 }
 
 - (IBAction)giveUp:(id)sender {
-    [self.gameCountdownProgress setProgress:0.00 animated:YES];
+    [self.gameCountdownProgress setProgress:0.00 animated:NO];
 
     [self dealHand];
+}
+
+- (IBAction)player1Pressed:(id)sender {
+    self.player1ScorePoints += 1;
+    self.player1Score.text = [NSString stringWithFormat:@"%d",
+                                                        self.player1ScorePoints];
+}
+
+- (IBAction)player2Pressed:(id)sender {
+    self.player2ScorePoints += 1;
+    self.player2Score.text = [NSString stringWithFormat:@"%d",
+                              self.player2ScorePoints];
 }
 
 - (void)viewDidLoad
@@ -91,7 +108,11 @@
     [super viewDidLoad];
     [self.buttonGiveUp setTransform:CGAffineTransformMakeRotation(-M_PI / 2)];
     [self.player1Button setTransform:CGAffineTransformMakeRotation(-M_PI)];
-    //[self.progressBar setTransform:CGAffineTransformMakeRotation(-M_PI / 2)];
+    [self.player1Score setTransform:CGAffineTransformMakeRotation(-M_PI)];
+    [self.player1NameLabel setTransform:CGAffineTransformMakeRotation(-M_PI)];
+
+
+     //[self.progressBar setTransform:CGAffineTransformMakeRotation(-M_PI / 2)];
     
 	// Do any additional setup after loading the view, typically from a nib.
     [self.view setMultipleTouchEnabled:YES];
