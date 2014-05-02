@@ -140,12 +140,27 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.98968339019999996" green="0.99284903250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                <state key="normal" title="GIVE UP">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.5411764979" green="0.6784313917" blue="0.1294117719" alpha="1" colorSpace="deviceRGB"/>
+                                <state key="normal" title="NO SOLUTION">
+                                    <color key="titleColor" red="0.5411764979" green="0.6784313917" blue="0.1294117719" alpha="1" colorSpace="deviceRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="giveUp:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Y35-ES-U6D"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hBe-w9-qpE">
+                                <rect key="frame" x="268" y="181" width="39" height="119"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.98968339019999996" green="0.99284903250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="SKIP">
+                                    <color key="titleColor" red="0.80778702449999995" green="0.041449794960000001" blue="0.36780249520000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="giveUp:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="AIu-Qx-fW6"/>
+                                    <action selector="skip:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="yy7-OL-Igf"/>
                                 </connections>
                             </button>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="QCH-xF-pfB">
@@ -200,6 +215,7 @@
                         <outlet property="player2Button" destination="yr7-Ae-bzI" id="vya-Ej-2SV"/>
                         <outlet property="player2NameLabel" destination="EW9-NQ-mF4" id="KBY-N5-onW"/>
                         <outlet property="player2Score" destination="whQ-VG-LXX" id="iSp-dB-w2H"/>
+                        <outlet property="skipButton" destination="hBe-w9-qpE" id="cJL-1V-YYE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

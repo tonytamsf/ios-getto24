@@ -68,9 +68,24 @@
     }
 }
 
-- (NSString *)suit
+- (NSString *) description
+{
+    return [self contents];
+}
+
+- (NSString *) suit
 {
     return _suit ? _suit : @"?";
+}
+
+- (UIColor *) cardColor
+{
+    if ([self.suit isEqualToString:@"♠︎"] ||
+        [self.suit isEqualToString:@"♣︎"]
+        ) {
+        return [UIColor blackColor];
+    }
+    return [UIColor redColor];
 }
 
 @end

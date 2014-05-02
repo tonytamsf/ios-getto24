@@ -6,12 +6,14 @@
 //  Copyright (c) 2014 Yama Llama. All rights reserved.
 //
 //  TODO: fix the flashing when the button changes title for the card
-//
+//  TODO: visual should be red, black
+//  TODO: should be readable upside down
 
 #import "GetTo24ViewController.h"
 #import "PlayingCardDeck.h"
 #import "Deck.h"
 #import "Debug.h"
+#import "NSArrayUtil.h"
 
 @interface GetTo24ViewController ()
 
@@ -36,10 +38,16 @@
 
 @property int player2ScorePoints;
 
+@property NSMutableArray *hand;
+
 
 @end
 
 @implementation GetTo24ViewController
+
+- (IBAction)skip:(id)sender {
+    [self dealHand];
+}
 
 - (void) startGame
 {
@@ -47,6 +55,7 @@
         self._cardDeck = [[PlayingCardDeck alloc] init];
     }
     
+    self.hand = [[NSMutableArray alloc] init];
     self.gameCountdownProgress.progress = 0.0;
     [self dealHand];
 }
@@ -55,7 +64,7 @@
 {
     float percent = (60 - self.currentGameTime) / 60.0;
 
-    DLog("Countdown %d %f", self.currentGameTime, percent);
+    //DLog("Countdown %d %f", self.currentGameTime, percent);
     self.currentGameTime -= 1;
     if (self.currentGameTime <= 0) {
         [self giveUp:(id )nil];
@@ -67,13 +76,26 @@
 
 - (void) dealHand
 {
+
+    // TODO what if we run out of cards, time to call a winner
     self.currentGameTime = 60;
 
     [self.timer invalidate];
 
+
+    [self.hand removeAllObjects];
     for (UIButton *card in self.cards) {
-        [card setTitle:[[self._cardDeck drawRandomCard] contents] forState:UIControlStateNormal];
+        PlayingCard *newCard = (PlayingCard *)[self._cardDeck drawRandomCard];
+        
+        
+        [self.hand addObject:newCard];
+
+        [card setTitle:[newCard contents] forState:UIControlStateNormal];
+        [card setTitleColor:[newCard cardColor] forState:UIControlStateNormal];
     }
+    NSLog(@"--------------------- %@", self.hand);
+
+    [self calcuateAnswer];
 
      self.timer = [NSTimer scheduledTimerWithTimeInterval:1
                                target:self
@@ -95,12 +117,16 @@
     self.player1ScorePoints += 1;
     self.player1Score.text = [NSString stringWithFormat:@"%d",
                                                         self.player1ScorePoints];
+    [self dealHand];
+
 }
 
 - (IBAction)player2Pressed:(id)sender {
     self.player2ScorePoints += 1;
     self.player2Score.text = [NSString stringWithFormat:@"%d",
                               self.player2ScorePoints];
+    [self dealHand];
+
 }
 
 - (void)viewDidLoad
@@ -132,6 +158,17 @@
     // Dispose of any resources that can be recreated.
 }
 
+//
+// Take current hand and calcuate the answer
+//
+- (void) calcuateAnswer
+{
+    NSMutableArray *tryHand = [(NSArray *)self.hand allPermutations];
+
+    for (int i = 0; i < [tryHand count] - 1; ++i) {
+        NSLog(@"**************** %@", tryHand[i]);
+    }
+}
 
 - (void) setFlipCount:(int)flipCount
 {

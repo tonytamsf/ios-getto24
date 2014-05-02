@@ -12,6 +12,7 @@
 		D8599D45187B1AF00033E51C /* getto24-icon-58.png in Resources */ = {isa = PBXBuildFile; fileRef = D8599D42187B1AF00033E51C /* getto24-icon-58.png */; };
 		D8599D46187B1AF00033E51C /* getto24-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D8599D43187B1AF00033E51C /* getto24-icon.png */; };
 		D8599D47187B1AF00033E51C /* getto24-icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = D8599D44187B1AF00033E51C /* getto24-icon-29.png */; };
+		D89805F91913F61E003661C2 /* NSArrayUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D89805F81913F61E003661C2 /* NSArrayUtil.m */; };
 		D8D36992187933400092E0F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D36991187933400092E0F4 /* Foundation.framework */; };
 		D8D36994187933400092E0F4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D36993187933400092E0F4 /* CoreGraphics.framework */; };
 		D8D36996187933400092E0F4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D36995187933400092E0F4 /* UIKit.framework */; };
@@ -49,6 +50,8 @@
 		D8599D42187B1AF00033E51C /* getto24-icon-58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "getto24-icon-58.png"; sourceTree = "<group>"; };
 		D8599D43187B1AF00033E51C /* getto24-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "getto24-icon.png"; sourceTree = "<group>"; };
 		D8599D44187B1AF00033E51C /* getto24-icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "getto24-icon-29.png"; sourceTree = "<group>"; };
+		D89805F81913F61E003661C2 /* NSArrayUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArrayUtil.m; sourceTree = "<group>"; };
+		D89805FA1913F72A003661C2 /* NSArrayUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSArrayUtil.h; sourceTree = "<group>"; };
 		D8D3698E187933400092E0F4 /* Get To 24.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Get To 24.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8D36991187933400092E0F4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D8D36993187933400092E0F4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -115,6 +118,15 @@
 			name = images;
 			sourceTree = "<group>";
 		};
+		D89805F71913F61E003661C2 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				D89805FA1913F72A003661C2 /* NSArrayUtil.h */,
+				D89805F81913F61E003661C2 /* NSArrayUtil.m */,
+			);
+			path = util;
+			sourceTree = "<group>";
+		};
 		D8D36985187933400092E0F4 = {
 			isa = PBXGroup;
 			children = (
@@ -164,9 +176,9 @@
 		D8D36998187933400092E0F4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D8D36999187933400092E0F4 /* Get To 24-Info.plist */,
 				D8D369A0187933400092E0F4 /* GetTo24AppDelegate.h */,
 				D8D369A1187933400092E0F4 /* GetTo24AppDelegate.m */,
-				D8D36999187933400092E0F4 /* Get To 24-Info.plist */,
 				D8D3699A187933400092E0F4 /* InfoPlist.strings */,
 				D8D3699D187933400092E0F4 /* main.m */,
 				D8D3699F187933400092E0F4 /* Get To 24-Prefix.pch */,
@@ -195,6 +207,7 @@
 		D8FCF093190EB5060050E921 /* io-libs */ = {
 			isa = PBXGroup;
 			children = (
+				D89805F71913F61E003661C2 /* util */,
 				D8FCF094190EB5060050E921 /* debug */,
 				D8FCF096190EB5060050E921 /* model */,
 			);
@@ -342,6 +355,7 @@
 				D8D369A2187933400092E0F4 /* GetTo24AppDelegate.m in Sources */,
 				D8FCF0A3190EB5060050E921 /* PlayingCardDeck.m in Sources */,
 				D8D3699E187933400092E0F4 /* main.m in Sources */,
+				D89805F91913F61E003661C2 /* NSArrayUtil.m in Sources */,
 				D8FCF0A0190EB5060050E921 /* Card.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

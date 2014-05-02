@@ -11,6 +11,7 @@
 @interface GetTo24ViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIButton *buttonGiveUp;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressBar;
+@property (weak, nonatomic) IBOutlet UIButton *skipButton;
 
 @property (weak, nonatomic) IBOutlet UIButton *cardNE;
 @property (weak, nonatomic) IBOutlet UIButton *cardSW;

@@ -18,4 +18,7 @@
 + (NSArray *)validSuits;
 + (NSArray *)rankStrings;
 + (NSUInteger) maxRank;
+- (UIColor *) cardColor;
+- (NSString *) description;
+
 @end
