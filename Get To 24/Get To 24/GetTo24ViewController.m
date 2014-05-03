@@ -242,7 +242,7 @@
     PlayingCard *card2 = (PlayingCard *)cards[2];
     PlayingCard *card3 = (PlayingCard *)cards[3];
     Boolean found = FALSE;
-
+    NSDecimalNumber *subtotal = [[NSDecimalNumber alloc] init];
 
     for (int j = 0; j <= 3 ; ++j) {
         
@@ -254,23 +254,21 @@
                 SEL selector1 = selectors[k];
                 SEL selector2 = selectors[l];
                 if (! found ) {
-                    total = [[[NSDecimalNumber numberWithInt:MIN(card0.rank, 10)]
-                              performSelector:selector0
-                              withObject:[NSDecimalNumber numberWithInt:MIN(card1.rank, 10)]]
-                             intValue];
+                    subtotal = [[NSDecimalNumber numberWithInt:MIN(card0.rank, 10)]
+                                 performSelector:selector0
+                                 withObject:[NSDecimalNumber numberWithInt:MIN(card1.rank, 10)]];
                     
                     
-                    total = [[[NSDecimalNumber numberWithInt:total]
-                              performSelector:selector1
-                              withObject:[NSDecimalNumber numberWithInt:MIN(card2.rank, 10)]]
-                             intValue];
+                    subtotal = [subtotal
+                                performSelector:selector1
+                                withObject:[NSDecimalNumber numberWithInt:MIN(card2.rank, 10)]];
                     
-                    total = [[[NSDecimalNumber numberWithInt:total]
-                              performSelector:selector2
-                              withObject:[NSDecimalNumber numberWithInt:MIN(card3.rank, 10)]]
-                             intValue];
-                    if (total == 24.0 ) {
-                        DLog(@"--- found 24 %d %s %d %s %d %s %d",
+                    subtotal = [subtotal
+                                performSelector:selector2
+                                withObject:[NSDecimalNumber numberWithInt:MIN(card3.rank, 10)]];
+                    
+                    if ([subtotal intValue] == 24 ) {
+                        NSLog(@"--- found 24 %d %s %d %s %d %s %d",
                               MIN(card0.rank, 10), selector0,
                               MIN(card1.rank, 10),
                               selector1,

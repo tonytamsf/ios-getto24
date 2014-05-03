@@ -12,10 +12,16 @@
 		D8599D45187B1AF00033E51C /* getto24-icon-58.png in Resources */ = {isa = PBXBuildFile; fileRef = D8599D42187B1AF00033E51C /* getto24-icon-58.png */; };
 		D8599D46187B1AF00033E51C /* getto24-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D8599D43187B1AF00033E51C /* getto24-icon.png */; };
 		D8599D47187B1AF00033E51C /* getto24-icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = D8599D44187B1AF00033E51C /* getto24-icon-29.png */; };
-		D89805F91913F61E003661C2 /* NSArrayUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D89805F81913F61E003661C2 /* NSArrayUtil.m */; };
 		D8C09C5819159AA90057DDEB /* ray.wav in Resources */ = {isa = PBXBuildFile; fileRef = D8C09C5719159AA90057DDEB /* ray.wav */; };
 		D8C09C5A19159AF70057DDEB /* whoosh.wav in Resources */ = {isa = PBXBuildFile; fileRef = D8C09C5919159AF70057DDEB /* whoosh.wav */; };
-		D8C09C5C19159B9B0057DDEB /* AudioUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C09C5B19159B9B0057DDEB /* AudioUtil.m */; };
+		D8C09C761915A0510057DDEB /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D8C09C631915A0510057DDEB /* .gitignore */; };
+		D8C09C771915A0510057DDEB /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C09C691915A0510057DDEB /* Card.m */; };
+		D8C09C781915A0510057DDEB /* Deck.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C09C6B1915A0510057DDEB /* Deck.m */; };
+		D8C09C791915A0510057DDEB /* PlayingCard.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C09C6D1915A0510057DDEB /* PlayingCard.m */; };
+		D8C09C7A1915A0510057DDEB /* PlayingCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C09C6F1915A0510057DDEB /* PlayingCardDeck.m */; };
+		D8C09C7B1915A0510057DDEB /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D8C09C701915A0510057DDEB /* README.md */; };
+		D8C09C7C1915A0510057DDEB /* AudioUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C09C731915A0510057DDEB /* AudioUtil.m */; };
+		D8C09C7D1915A0510057DDEB /* NSArrayUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C09C751915A0510057DDEB /* NSArrayUtil.m */; };
 		D8C112CC19158BD600864A23 /* beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = D8C112CB19158BD600864A23 /* beep.wav */; };
 		D8C112CE19158F6E00864A23 /* tick.tock.wav in Resources */ = {isa = PBXBuildFile; fileRef = D8C112CD19158F6E00864A23 /* tick.tock.wav */; };
 		D8C112D3191591B500864A23 /* opening.wav in Resources */ = {isa = PBXBuildFile; fileRef = D8C112D2191591B500864A23 /* opening.wav */; };
@@ -35,10 +41,6 @@
 		D8D369BE187933400092E0F4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8D369BC187933400092E0F4 /* InfoPlist.strings */; };
 		D8D369C0187933400092E0F4 /* Get_To_24Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D369BF187933400092E0F4 /* Get_To_24Tests.m */; };
 		D8E4985D187B2157005A32D6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E4985C187B2157005A32D6 /* Default-568h@2x.png */; };
-		D8FCF0A0190EB5060050E921 /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = D8FCF099190EB5060050E921 /* Card.m */; };
-		D8FCF0A1190EB5060050E921 /* Deck.m in Sources */ = {isa = PBXBuildFile; fileRef = D8FCF09B190EB5060050E921 /* Deck.m */; };
-		D8FCF0A2190EB5060050E921 /* PlayingCard.m in Sources */ = {isa = PBXBuildFile; fileRef = D8FCF09D190EB5060050E921 /* PlayingCard.m */; };
-		D8FCF0A3190EB5060050E921 /* PlayingCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = D8FCF09F190EB5060050E921 /* PlayingCardDeck.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,12 +59,23 @@
 		D8599D42187B1AF00033E51C /* getto24-icon-58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "getto24-icon-58.png"; sourceTree = "<group>"; };
 		D8599D43187B1AF00033E51C /* getto24-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "getto24-icon.png"; sourceTree = "<group>"; };
 		D8599D44187B1AF00033E51C /* getto24-icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "getto24-icon-29.png"; sourceTree = "<group>"; };
-		D89805F81913F61E003661C2 /* NSArrayUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArrayUtil.m; sourceTree = "<group>"; };
-		D89805FA1913F72A003661C2 /* NSArrayUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSArrayUtil.h; sourceTree = "<group>"; };
 		D8C09C5719159AA90057DDEB /* ray.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ray.wav; sourceTree = "<group>"; };
 		D8C09C5919159AF70057DDEB /* whoosh.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = whoosh.wav; sourceTree = "<group>"; };
-		D8C09C5B19159B9B0057DDEB /* AudioUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioUtil.m; sourceTree = "<group>"; };
-		D8C09C5D19159BC40057DDEB /* AudioUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioUtil.h; sourceTree = "<group>"; };
+		D8C09C631915A0510057DDEB /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		D8C09C651915A0510057DDEB /* Debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Debug.h; sourceTree = "<group>"; };
+		D8C09C681915A0510057DDEB /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
+		D8C09C691915A0510057DDEB /* Card.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Card.m; sourceTree = "<group>"; };
+		D8C09C6A1915A0510057DDEB /* Deck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Deck.h; sourceTree = "<group>"; };
+		D8C09C6B1915A0510057DDEB /* Deck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Deck.m; sourceTree = "<group>"; };
+		D8C09C6C1915A0510057DDEB /* PlayingCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayingCard.h; sourceTree = "<group>"; };
+		D8C09C6D1915A0510057DDEB /* PlayingCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingCard.m; sourceTree = "<group>"; };
+		D8C09C6E1915A0510057DDEB /* PlayingCardDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayingCardDeck.h; sourceTree = "<group>"; };
+		D8C09C6F1915A0510057DDEB /* PlayingCardDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingCardDeck.m; sourceTree = "<group>"; };
+		D8C09C701915A0510057DDEB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		D8C09C721915A0510057DDEB /* AudioUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioUtil.h; sourceTree = "<group>"; };
+		D8C09C731915A0510057DDEB /* AudioUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioUtil.m; sourceTree = "<group>"; };
+		D8C09C741915A0510057DDEB /* NSArrayUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSArrayUtil.h; sourceTree = "<group>"; };
+		D8C09C751915A0510057DDEB /* NSArrayUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArrayUtil.m; sourceTree = "<group>"; };
 		D8C112CB19158BD600864A23 /* beep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = beep.wav; sourceTree = "<group>"; };
 		D8C112CD19158F6E00864A23 /* tick.tock.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = tick.tock.wav; sourceTree = "<group>"; };
 		D8C112D2191591B500864A23 /* opening.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = opening.wav; sourceTree = "<group>"; };
@@ -87,15 +100,6 @@
 		D8D369BD187933400092E0F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D8D369BF187933400092E0F4 /* Get_To_24Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Get_To_24Tests.m; sourceTree = "<group>"; };
 		D8E4985C187B2157005A32D6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		D8FCF095190EB5060050E921 /* Debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Debug.h; sourceTree = "<group>"; };
-		D8FCF098190EB5060050E921 /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
-		D8FCF099190EB5060050E921 /* Card.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Card.m; sourceTree = "<group>"; };
-		D8FCF09A190EB5060050E921 /* Deck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Deck.h; sourceTree = "<group>"; };
-		D8FCF09B190EB5060050E921 /* Deck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Deck.m; sourceTree = "<group>"; };
-		D8FCF09C190EB5060050E921 /* PlayingCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayingCard.h; sourceTree = "<group>"; };
-		D8FCF09D190EB5060050E921 /* PlayingCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingCard.m; sourceTree = "<group>"; };
-		D8FCF09E190EB5060050E921 /* PlayingCardDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayingCardDeck.h; sourceTree = "<group>"; };
-		D8FCF09F190EB5060050E921 /* PlayingCardDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingCardDeck.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,13 +137,57 @@
 			name = images;
 			sourceTree = "<group>";
 		};
-		D89805F71913F61E003661C2 /* util */ = {
+		D8C09C621915A0510057DDEB /* ios-libs */ = {
 			isa = PBXGroup;
 			children = (
-				D89805FA1913F72A003661C2 /* NSArrayUtil.h */,
-				D89805F81913F61E003661C2 /* NSArrayUtil.m */,
-				D8C09C5B19159B9B0057DDEB /* AudioUtil.m */,
-				D8C09C5D19159BC40057DDEB /* AudioUtil.h */,
+				D8C09C631915A0510057DDEB /* .gitignore */,
+				D8C09C641915A0510057DDEB /* debug */,
+				D8C09C661915A0510057DDEB /* model */,
+				D8C09C701915A0510057DDEB /* README.md */,
+				D8C09C711915A0510057DDEB /* util */,
+			);
+			name = "ios-libs";
+			path = "../../ios-libs";
+			sourceTree = "<group>";
+		};
+		D8C09C641915A0510057DDEB /* debug */ = {
+			isa = PBXGroup;
+			children = (
+				D8C09C651915A0510057DDEB /* Debug.h */,
+			);
+			path = debug;
+			sourceTree = "<group>";
+		};
+		D8C09C661915A0510057DDEB /* model */ = {
+			isa = PBXGroup;
+			children = (
+				D8C09C671915A0510057DDEB /* cards */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		D8C09C671915A0510057DDEB /* cards */ = {
+			isa = PBXGroup;
+			children = (
+				D8C09C681915A0510057DDEB /* Card.h */,
+				D8C09C691915A0510057DDEB /* Card.m */,
+				D8C09C6A1915A0510057DDEB /* Deck.h */,
+				D8C09C6B1915A0510057DDEB /* Deck.m */,
+				D8C09C6C1915A0510057DDEB /* PlayingCard.h */,
+				D8C09C6D1915A0510057DDEB /* PlayingCard.m */,
+				D8C09C6E1915A0510057DDEB /* PlayingCardDeck.h */,
+				D8C09C6F1915A0510057DDEB /* PlayingCardDeck.m */,
+			);
+			path = cards;
+			sourceTree = "<group>";
+		};
+		D8C09C711915A0510057DDEB /* util */ = {
+			isa = PBXGroup;
+			children = (
+				D8C09C721915A0510057DDEB /* AudioUtil.h */,
+				D8C09C731915A0510057DDEB /* AudioUtil.m */,
+				D8C09C741915A0510057DDEB /* NSArrayUtil.h */,
+				D8C09C751915A0510057DDEB /* NSArrayUtil.m */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -160,8 +208,8 @@
 		D8D36985187933400092E0F4 = {
 			isa = PBXGroup;
 			children = (
+				D8C09C621915A0510057DDEB /* ios-libs */,
 				D8C112CA19158A6F00864A23 /* sounds */,
-				D8FCF093190EB5060050E921 /* io-libs */,
 				D8E4985C187B2157005A32D6 /* Default-568h@2x.png */,
 				D8599D3F187B1ACB0033E51C /* images */,
 				D8D36997187933400092E0F4 /* Get To 24 */,
@@ -233,47 +281,6 @@
 				D8D369BC187933400092E0F4 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		D8FCF093190EB5060050E921 /* io-libs */ = {
-			isa = PBXGroup;
-			children = (
-				D89805F71913F61E003661C2 /* util */,
-				D8FCF094190EB5060050E921 /* debug */,
-				D8FCF096190EB5060050E921 /* model */,
-			);
-			path = "io-libs";
-			sourceTree = "<group>";
-		};
-		D8FCF094190EB5060050E921 /* debug */ = {
-			isa = PBXGroup;
-			children = (
-				D8FCF095190EB5060050E921 /* Debug.h */,
-			);
-			path = debug;
-			sourceTree = "<group>";
-		};
-		D8FCF096190EB5060050E921 /* model */ = {
-			isa = PBXGroup;
-			children = (
-				D8FCF097190EB5060050E921 /* cards */,
-			);
-			path = model;
-			sourceTree = "<group>";
-		};
-		D8FCF097190EB5060050E921 /* cards */ = {
-			isa = PBXGroup;
-			children = (
-				D8FCF098190EB5060050E921 /* Card.h */,
-				D8FCF099190EB5060050E921 /* Card.m */,
-				D8FCF09A190EB5060050E921 /* Deck.h */,
-				D8FCF09B190EB5060050E921 /* Deck.m */,
-				D8FCF09C190EB5060050E921 /* PlayingCard.h */,
-				D8FCF09D190EB5060050E921 /* PlayingCard.m */,
-				D8FCF09E190EB5060050E921 /* PlayingCardDeck.h */,
-				D8FCF09F190EB5060050E921 /* PlayingCardDeck.m */,
-			);
-			path = cards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -353,6 +360,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8C09C761915A0510057DDEB /* .gitignore in Resources */,
 				D8C112CC19158BD600864A23 /* beep.wav in Resources */,
 				D8599D45187B1AF00033E51C /* getto24-icon-58.png in Resources */,
 				D8599D46187B1AF00033E51C /* getto24-icon.png in Resources */,
@@ -363,6 +371,7 @@
 				D8C112D3191591B500864A23 /* opening.wav in Resources */,
 				D8599D3E187B1A7B0033E51C /* Images.xcassets in Resources */,
 				D8D369A8187933400092E0F4 /* Main_iPad.storyboard in Resources */,
+				D8C09C7B1915A0510057DDEB /* README.md in Resources */,
 				D8D369A5187933400092E0F4 /* Main_iPhone.storyboard in Resources */,
 				D8599D41187B1AE30033E51C /* 24app.pdf in Resources */,
 				D8C112CE19158F6E00864A23 /* tick.tock.wav in Resources */,
@@ -386,15 +395,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8FCF0A2190EB5060050E921 /* PlayingCard.m in Sources */,
-				D8FCF0A1190EB5060050E921 /* Deck.m in Sources */,
+				D8C09C7D1915A0510057DDEB /* NSArrayUtil.m in Sources */,
+				D8C09C791915A0510057DDEB /* PlayingCard.m in Sources */,
+				D8C09C781915A0510057DDEB /* Deck.m in Sources */,
 				D8D369AB187933400092E0F4 /* GetTo24ViewController.m in Sources */,
 				D8D369A2187933400092E0F4 /* GetTo24AppDelegate.m in Sources */,
-				D8FCF0A3190EB5060050E921 /* PlayingCardDeck.m in Sources */,
+				D8C09C7A1915A0510057DDEB /* PlayingCardDeck.m in Sources */,
 				D8D3699E187933400092E0F4 /* main.m in Sources */,
-				D8C09C5C19159B9B0057DDEB /* AudioUtil.m in Sources */,
-				D89805F91913F61E003661C2 /* NSArrayUtil.m in Sources */,
-				D8FCF0A0190EB5060050E921 /* Card.m in Sources */,
+				D8C09C7C1915A0510057DDEB /* AudioUtil.m in Sources */,
+				D8C09C771915A0510057DDEB /* Card.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
