@@ -11,7 +11,7 @@
 // DLog(@"here");
 // DLog(@"value: %d", x);
 // Unfortunately this doesn't work DLog(aStringVariable); you have to do this instead DLog(@"%@", aStringVariable);
-#define DEBUG 1
+//#define DEBUG 1
 
 #ifdef DEBUG
 #       define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);

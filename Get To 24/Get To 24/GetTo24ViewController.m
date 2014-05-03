@@ -9,6 +9,7 @@
 //  TODO: visual should be red, black
 //  TODO: should be readable upside down
 
+#undef DEBUG
 #import "GetTo24ViewController.h"
 #import "PlayingCardDeck.h"
 #import "Deck.h"
@@ -25,6 +26,10 @@
 - (void) dealHand;
 
 - (void) countdown;
+
+- (void) putInDeck:(NSArray *) cards;
+
+- (void) calculateHand:(NSArray *)cards;
 
 @property PlayingCardDeck *_cardDeck;
 
@@ -64,7 +69,7 @@
 {
     float percent = (60 - self.currentGameTime) / 60.0;
 
-    //DLog("Countdown %d %f", self.currentGameTime, percent);
+    DLog("Countdown %d %f", self.currentGameTime, percent);
     self.currentGameTime -= 1;
     if (self.currentGameTime <= 0) {
         [self giveUp:(id )nil];
@@ -72,6 +77,13 @@
     [self.gameCountdownProgress
         setProgress:percent
             animated:YES];
+}
+
+- (void) putInDeck:(NSArray *) cards
+{
+    for (Card *card in cards ) {
+        [self._cardDeck addCard:card];
+    }
 }
 
 - (void) dealHand
@@ -83,7 +95,12 @@
     [self.timer invalidate];
 
 
+    // clear the current hand about put back into the deck in random order?
+    [self putInDeck:self.hand];
+    
     [self.hand removeAllObjects];
+    
+    // deal 4 cards
     for (UIButton *card in self.cards) {
         PlayingCard *newCard = (PlayingCard *)[self._cardDeck drawRandomCard];
         
@@ -93,7 +110,6 @@
         [card setTitle:[newCard contents] forState:UIControlStateNormal];
         [card setTitleColor:[newCard cardColor] forState:UIControlStateNormal];
     }
-    NSLog(@"--------------------- %@", self.hand);
 
     [self calcuateAnswer];
 
@@ -163,10 +179,87 @@
 //
 - (void) calcuateAnswer
 {
-    NSMutableArray *tryHand = [(NSArray *)self.hand allPermutations];
+    NSArray *allHands = [(NSArray *)self.hand allPermutations];
+    DLog(@"TOTAL %d", [allHands count]);
+    for (int i = 0; i < [allHands count] - 1; ++i) {
+        NSArray *tryHand = allHands[i];
 
-    for (int i = 0; i < [tryHand count] - 1; ++i) {
-        NSLog(@"**************** %@", tryHand[i]);
+        DLog(@"==================================================");
+        DLog(@" %d %@", i, tryHand);
+        DLog(@"==================================================");
+        [self calculateHand:tryHand];
+    }
+}
+
+- (void) calculateHand:(NSArray *)cards
+{
+    int total = 0;
+    SEL plusSel = @selector(decimalNumberByAdding:);
+    SEL minusSel = @selector(decimalNumberBySubtracting:);
+    SEL mulSel = @selector(decimalNumberByMultiplyingBy:);
+    SEL divSel = @selector(decimalNumberByDividingBy:);
+
+    SEL selectors[] = {plusSel, minusSel, divSel, mulSel};
+    PlayingCard *card0 = (PlayingCard *)cards[0];
+    PlayingCard *card1 = (PlayingCard *)cards[1];
+    PlayingCard *card2 = (PlayingCard *)cards[2];
+    PlayingCard *card3 = (PlayingCard *)cards[3];
+    Boolean found = FALSE;
+
+
+    for (int j = 0; j <= 3 ; ++j) {
+        
+        for (int k = 0; k <=  3 ; ++k) {
+
+            for (int l = 0; l <= 3 ; ++l) {
+
+                SEL selector0 = selectors[j];
+                SEL selector1 = selectors[k];
+                SEL selector2 = selectors[l];
+                if (! found ) {
+                    total = [[[NSDecimalNumber numberWithInt:MIN(card0.rank, 10)]
+                              performSelector:selector0
+                              withObject:[NSDecimalNumber numberWithInt:MIN(card1.rank, 10)]]
+                             intValue];
+                    
+                    
+                    total = [[[NSDecimalNumber numberWithInt:total]
+                              performSelector:selector1
+                              withObject:[NSDecimalNumber numberWithInt:MIN(card2.rank, 10)]]
+                             intValue];
+                    
+                    total = [[[NSDecimalNumber numberWithInt:total]
+                              performSelector:selector2
+                              withObject:[NSDecimalNumber numberWithInt:MIN(card3.rank, 10)]]
+                             intValue];
+                    if (total == 24.0 ) {
+                        NSLog(@"--- found 24 %d %s %d %s %d %s %d",
+                              MIN(card0.rank, 10), selector0,
+                              MIN(card1.rank, 10),
+                              selector1,
+                              MIN(card2.rank, 10),
+                              selector2,
+                              MIN(card3.rank, 10));
+                        found = TRUE;
+                        break;
+                    } else {
+                        /*
+                         NSLog(@"--- try %d %s %d %s %d %s %d",
+                         MIN(card0.rank, 10), selector0,
+                         MIN(card1.rank, 10),
+                         selector1,
+                         MIN(card2.rank, 10),
+                         selector2,
+                         MIN(card3.rank, 10));
+                         */
+                    }
+                }
+                if (found) { break; };
+            }
+            if (found) { break; };
+        }
+        if (found) { break; };
+
     }
 }
 
