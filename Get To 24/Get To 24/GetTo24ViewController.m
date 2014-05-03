@@ -10,11 +10,14 @@
 //  TODO: should be readable upside down
 
 #undef DEBUG
+
+
 #import "GetTo24ViewController.h"
 #import "PlayingCardDeck.h"
 #import "Deck.h"
 #import "Debug.h"
 #import "NSArrayUtil.h"
+#import "AudioUtil.h"
 
 @interface GetTo24ViewController ()
 
@@ -46,12 +49,21 @@
 @property NSMutableArray *hand;
 
 
+- (void) rightAnswer;
+
 @end
 
 @implementation GetTo24ViewController
 
+
+-(void) rightAnswer
+{
+    [AudioUtil playSound:@"chimes" :@"wav"];
+}
+
 - (IBAction)skip:(id)sender {
     [self dealHand];
+    [AudioUtil playSound:@"whoosh" :@"wav"];
 }
 
 - (void) startGame
@@ -63,6 +75,8 @@
     self.hand = [[NSMutableArray alloc] init];
     self.gameCountdownProgress.progress = 0.0;
     [self dealHand];
+    [AudioUtil playSound:@"opening" :@"wav"];
+
 }
 
 - (void) countdown
@@ -72,8 +86,12 @@
     DLog("Countdown %d %f", self.currentGameTime, percent);
     self.currentGameTime -= 1;
     if (self.currentGameTime <= 0) {
-        [self giveUp:(id )nil];
+        [self timesUp];
     }
+    if (self.currentGameTime < 20) {
+        [AudioUtil playSound:@"tick.tock" :@"wav"];
+    }
+
     [self.gameCountdownProgress
         setProgress:percent
             animated:YES];
@@ -123,10 +141,26 @@
     
 }
 
+
+- (void)timesUp {
+    [self.gameCountdownProgress setProgress:0.00 animated:NO];
+    
+    [self dealHand];
+    [AudioUtil playSound:@"whoosh" :@"wav"];
+}
+
 - (IBAction)giveUp:(id)sender {
     [self.gameCountdownProgress setProgress:0.00 animated:NO];
 
     [self dealHand];
+    [AudioUtil playSound:@"whoosh" :@"wav"];
+}
+
+- (IBAction)noSolution:(id)sender {
+    [self.gameCountdownProgress setProgress:0.00 animated:NO];
+    
+    [self dealHand];
+    [AudioUtil playSound:@"beep" :@"wav"];
 }
 
 - (IBAction)player1Pressed:(id)sender {
@@ -134,6 +168,7 @@
     self.player1Score.text = [NSString stringWithFormat:@"%d",
                                                         self.player1ScorePoints];
     [self dealHand];
+    [self rightAnswer];
 
 }
 
@@ -142,6 +177,8 @@
     self.player2Score.text = [NSString stringWithFormat:@"%d",
                               self.player2ScorePoints];
     [self dealHand];
+    [self rightAnswer];
+
 
 }
 
@@ -233,7 +270,7 @@
                               withObject:[NSDecimalNumber numberWithInt:MIN(card3.rank, 10)]]
                              intValue];
                     if (total == 24.0 ) {
-                        NSLog(@"--- found 24 %d %s %d %s %d %s %d",
+                        DLog(@"--- found 24 %d %s %d %s %d %s %d",
                               MIN(card0.rank, 10), selector0,
                               MIN(card1.rank, 10),
                               selector1,
@@ -244,7 +281,7 @@
                         break;
                     } else {
                         /*
-                         NSLog(@"--- try %d %s %d %s %d %s %d",
+                         DLog(@"--- try %d %s %d %s %d %s %d",
                          MIN(card0.rank, 10), selector0,
                          MIN(card1.rank, 10),
                          selector1,

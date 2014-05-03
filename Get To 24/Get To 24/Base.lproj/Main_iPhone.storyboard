@@ -146,7 +146,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="giveUp:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Y35-ES-U6D"/>
+                                    <action selector="noSolution:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="iIg-ze-znQ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hBe-w9-qpE">
@@ -160,7 +160,6 @@
                                 </state>
                                 <connections>
                                     <action selector="giveUp:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="AIu-Qx-fW6"/>
-                                    <action selector="skip:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="yy7-OL-Igf"/>
                                 </connections>
                             </button>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="QCH-xF-pfB">
@@ -208,7 +207,6 @@
                         <outlet property="cardSE" destination="pHx-cz-fWE" id="rFc-9R-czy"/>
                         <outlet property="cardSW" destination="cP7-ao-yCE" id="2Q5-c9-6LI"/>
                         <outlet property="gameCountdownProgress" destination="QCH-xF-pfB" id="Q4n-38-h5D"/>
-                        <outlet property="giveUpButton" destination="NLm-bZ-kY2" id="E8D-Gn-yls"/>
                         <outlet property="player1Button" destination="Q7m-3b-OYd" id="yBe-q0-ncO"/>
                         <outlet property="player1NameLabel" destination="m4s-Sl-Q1R" id="DvX-fJ-QxD"/>
                         <outlet property="player1Score" destination="NSd-Hb-EZb" id="bS3-h0-mkp"/>
