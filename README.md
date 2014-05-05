@@ -10,3 +10,6 @@ A fun math game to make 4 playing cards come out to 24 using **addition**, **sub
 
 ### Wikipedia
    * http://en.wikipedia.org/wiki/24_Game
+
+### Serious play
+   * http://www.24game.com/default.aspx?
