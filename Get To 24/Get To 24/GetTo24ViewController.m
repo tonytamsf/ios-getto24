@@ -34,6 +34,9 @@
 
 - (void) calculateHand:(NSArray *)cards;
 
+- (NSDecimalNumber *) calcuateSimple:(NSArray *) cards usingOperators:(SEL *)selectors;
+- (NSDecimalNumber *) calcuateGrouping:(NSArray *) cards usingOperators:(SEL *)selectors;
+
 @property PlayingCardDeck *_cardDeck;
 
 @property NSArray *cards;
@@ -48,6 +51,9 @@
 
 @property NSMutableArray *hand;
 
+@property SEL plusSel, minusSel, mulSel, divSel;
+
+@property SEL *selectors;
 
 - (void) rightAnswer;
 
@@ -68,6 +74,16 @@
 
 - (void) startGame
 {
+    
+    self.plusSel = @selector(decimalNumberByAdding:);
+    self.minusSel = @selector(decimalNumberBySubtracting:);
+    self.mulSel = @selector(decimalNumberByMultiplyingBy:);
+    self.divSel = @selector(decimalNumberByDividingBy:);
+    self.selectors = malloc(sizeof(SEL) * 4);
+    self.selectors[0] = self.plusSel;
+    self.selectors[1] = self.minusSel;
+    self.selectors[2] = self.mulSel;
+    self.selectors[3] = self.divSel;
     if (! self._cardDeck) {
         self._cardDeck = [[PlayingCardDeck alloc] init];
     }
@@ -224,78 +240,237 @@
         DLog(@"==================================================");
         DLog(@" %d %@", i, tryHand);
         DLog(@"==================================================");
-        [self calculateHand:tryHand];
+        @try {
+            [self calculateHand:tryHand];
+        }
+        @catch (NSException *e) {
+            DLog("%@", e);
+        }
     }
 }
 
 - (void) calculateHand:(NSArray *)cards
 {
     int total = 0;
-    SEL plusSel = @selector(decimalNumberByAdding:);
-    SEL minusSel = @selector(decimalNumberBySubtracting:);
-    SEL mulSel = @selector(decimalNumberByMultiplyingBy:);
-    SEL divSel = @selector(decimalNumberByDividingBy:);
 
-    SEL selectors[] = {plusSel, minusSel, divSel, mulSel};
-    PlayingCard *card0 = (PlayingCard *)cards[0];
-    PlayingCard *card1 = (PlayingCard *)cards[1];
-    PlayingCard *card2 = (PlayingCard *)cards[2];
-    PlayingCard *card3 = (PlayingCard *)cards[3];
     Boolean found = FALSE;
-    NSDecimalNumber *subtotal = [[NSDecimalNumber alloc] init];
-
+    NSDecimalNumber *answer = [[NSDecimalNumber alloc] init];
+    NSDecimalNumber *rightAnswer = (NSDecimalNumber *)[NSDecimalNumber numberWithInt:24];
+    
+    //
+    // Solve for
+    // a op b op c op d
+    // (a op b) op (c op d)
+    // (a op b op c) op d
+    //
     for (int j = 0; j <= 3 ; ++j) {
         
         for (int k = 0; k <=  3 ; ++k) {
 
             for (int l = 0; l <= 3 ; ++l) {
+                SEL currentOperators[] = {
+                    self.selectors[j],
+                    self.selectors[k],
+                    self.selectors[l]
 
-                SEL selector0 = selectors[j];
-                SEL selector1 = selectors[k];
-                SEL selector2 = selectors[l];
-                if (! found ) {
-                    subtotal = [[NSDecimalNumber numberWithInt:MIN(card0.rank, 10)]
-                                 performSelector:selector0
-                                 withObject:[NSDecimalNumber numberWithInt:MIN(card1.rank, 10)]];
-                    
-                    
-                    subtotal = [subtotal
-                                performSelector:selector1
-                                withObject:[NSDecimalNumber numberWithInt:MIN(card2.rank, 10)]];
-                    
-                    subtotal = [subtotal
-                                performSelector:selector2
-                                withObject:[NSDecimalNumber numberWithInt:MIN(card3.rank, 10)]];
-                    
-                    if ([subtotal intValue] == 24 ) {
-                        NSLog(@"--- found 24 %d %s %d %s %d %s %d",
-                              MIN(card0.rank, 10), selector0,
-                              MIN(card1.rank, 10),
-                              selector1,
-                              MIN(card2.rank, 10),
-                              selector2,
-                              MIN(card3.rank, 10));
-                        found = TRUE;
-                        break;
-                    } else {
-                        /*
-                         DLog(@"--- try %d %s %d %s %d %s %d",
-                         MIN(card0.rank, 10), selector0,
-                         MIN(card1.rank, 10),
-                         selector1,
-                         MIN(card2.rank, 10),
-                         selector2,
-                         MIN(card3.rank, 10));
-                         */
-                    }
+                };
+                if (found) {
+                    break;
                 }
-                if (found) { break; };
+                answer = [self calcuateSimple:cards usingOperators:currentOperators];
+                if ([answer compare:rightAnswer] == NSOrderedSame) {
+                    /*
+                    NSLog(@"--- found 24 %d %s %d %s %d %s %d",
+                          MIN(((PlayingCard *)cards[0]).rank, 10), currentOperators[0],
+                          MIN(((PlayingCard *)cards[1]).rank, 10),
+                          currentOperators[1],
+                          MIN(((PlayingCard *)cards[2]).rank, 10),
+                          currentOperators[2],
+                          MIN(((PlayingCard *)cards[3]).rank, 10));
+                     */
+                    //found = TRUE;
+                    //break;
+                }
+                answer = [self calcuateGrouping:cards usingOperators:currentOperators];
+                if ([answer compare:rightAnswer] == NSOrderedSame) {
+                    NSLog(@"--- found 24 (%d %s %d) %s (%d %s %d)",
+                          MIN(((PlayingCard *)cards[0]).rank, 10), currentOperators[0],
+                          MIN(((PlayingCard *)cards[1]).rank, 10),
+                          currentOperators[1],
+                          MIN(((PlayingCard *)cards[2]).rank, 10),
+                          currentOperators[2],
+                          MIN(((PlayingCard *)cards[3]).rank, 10));
+                    //found = TRUE;
+                    //break;
+                }
+                answer = [self calcuateGroupingOfTwo:cards usingOperators:currentOperators];
+                if ([answer compare:rightAnswer] == NSOrderedSame) {
+                    NSLog(@"--- found 24 (%d %s %d) %s %d %s %d",
+                          MIN(((PlayingCard *)cards[0]).rank, 10), currentOperators[0],
+                          MIN(((PlayingCard *)cards[1]).rank, 10),
+                          currentOperators[1],
+                          MIN(((PlayingCard *)cards[2]).rank, 10),
+                          currentOperators[2],
+                          MIN(((PlayingCard *)cards[3]).rank, 10));
+                    //found = TRUE;
+                    //break;
+                }
+                answer = [self calcuateGroupingSecond:cards usingOperators:currentOperators];
+                if ([answer compare:rightAnswer] == NSOrderedSame) {
+                    NSLog(@"--- found 24 %d %s (%d %s %d) %s %d)",
+                          MIN(((PlayingCard *)cards[0]).rank, 10), currentOperators[0],
+                          MIN(((PlayingCard *)cards[1]).rank, 10),
+                          currentOperators[1],
+                          MIN(((PlayingCard *)cards[2]).rank, 10),
+                          currentOperators[2],
+                          MIN(((PlayingCard *)cards[3]).rank, 10));
+                    //found = TRUE;
+                    //break;
+                }
+                    /*
+                     DLog(@"--- try %d %s %d %s %d %s %d",
+                     MIN(card0.rank, 10), selector0,
+                     MIN(card1.rank, 10),
+                     selector1,
+                     MIN(card2.rank, 10),
+                     selector2,
+                     MIN(card3.rank, 10));
+                     */
             }
             if (found) { break; };
-        }
+            }
         if (found) { break; };
-
     }
+}
+
+// ((a op b) op c) op d
+- (NSDecimalNumber *) calcuateSimple:(NSArray *) cards usingOperators:(SEL [])selectors
+{
+    NSDecimalNumber *subtotal = [[NSDecimalNumber alloc] init];
+    SEL selector0 = selectors[0];
+    SEL selector1 = selectors[1];
+    SEL selector2 = selectors[2];
+
+    PlayingCard *card0 = (PlayingCard *)cards[0];
+    PlayingCard *card1 = (PlayingCard *)cards[1];
+    PlayingCard *card2 = (PlayingCard *)cards[2];
+    PlayingCard *card3 = (PlayingCard *)cards[3];
+    
+    subtotal = [[NSDecimalNumber numberWithInt:MIN(card0.rank, 10)]
+                performSelector:selector0
+                withObject:[NSDecimalNumber numberWithInt:MIN(card1.rank, 10)]];
+    
+    
+    subtotal = [subtotal
+                performSelector:selector1
+                withObject:[NSDecimalNumber numberWithInt:MIN(card2.rank, 10)]];
+    
+    subtotal = [subtotal
+                performSelector:selector2
+                withObject:[NSDecimalNumber numberWithInt:MIN(card3.rank, 10)]];
+    
+
+    return subtotal;
+}
+
+// (a op b) op (c op d)
+- (NSDecimalNumber *) calcuateGrouping:(NSArray *) cards usingOperators:(SEL [])selectors
+{
+    NSDecimalNumber *subtotal = [[NSDecimalNumber alloc] init];
+    NSDecimalNumber *subtotal1 = [[NSDecimalNumber alloc] init];
+
+    SEL selector0 = selectors[0];
+    SEL selector1 = selectors[1];
+    SEL selector2 = selectors[2];
+    
+    PlayingCard *card0 = (PlayingCard *)cards[0];
+    PlayingCard *card1 = (PlayingCard *)cards[1];
+    PlayingCard *card2 = (PlayingCard *)cards[2];
+    PlayingCard *card3 = (PlayingCard *)cards[3];
+    
+    subtotal = [[NSDecimalNumber numberWithInt:MIN(card0.rank, 10)]
+                performSelector:selector0
+                withObject:[NSDecimalNumber numberWithInt:MIN(card1.rank, 10)]];
+    
+    
+    subtotal1 = [[NSDecimalNumber numberWithInt:MIN(card2.rank, 10)]
+                performSelector:selector2
+                withObject:[NSDecimalNumber numberWithInt:MIN(card3.rank, 10)]];
+    
+    
+    subtotal = [subtotal
+                performSelector:selector1
+                withObject:subtotal1];
+    
+    
+    return subtotal;
+}
+
+
+// (a op b) op c op d
+- (NSDecimalNumber *) calcuateGroupingOfTwo:(NSArray *) cards usingOperators:(SEL [])selectors
+{
+    NSDecimalNumber *subtotal = [[NSDecimalNumber alloc] init];
+    NSDecimalNumber *subtotal1 = [[NSDecimalNumber alloc] init];
+    
+    SEL selector0 = selectors[0];
+    SEL selector1 = selectors[1];
+    SEL selector2 = selectors[2];
+    
+    PlayingCard *card0 = (PlayingCard *)cards[0];
+    PlayingCard *card1 = (PlayingCard *)cards[1];
+    PlayingCard *card2 = (PlayingCard *)cards[2];
+    PlayingCard *card3 = (PlayingCard *)cards[3];
+    
+    subtotal = [[NSDecimalNumber numberWithInt:MIN(card0.rank, 10)]
+                performSelector:selector0
+                withObject:[NSDecimalNumber numberWithInt:MIN(card1.rank, 10)]];
+    
+    
+    subtotal = [subtotal
+                performSelector:selector1
+                withObject:[NSDecimalNumber numberWithInt:MIN(card2.rank, 10)]];
+
+    
+    subtotal = [subtotal
+                performSelector:selector2
+                withObject:[NSDecimalNumber numberWithInt:MIN(card3.rank, 10)]];
+    
+    
+    return subtotal;
+}
+
+// a op (b op c) op d
+- (NSDecimalNumber *) calcuateGroupingSecond:(NSArray *) cards usingOperators:(SEL [])selectors
+{
+    NSDecimalNumber *subtotal = [[NSDecimalNumber alloc] init];
+    NSDecimalNumber *subtotal1 = [[NSDecimalNumber alloc] init];
+    
+    SEL selector0 = selectors[0];
+    SEL selector1 = selectors[1];
+    SEL selector2 = selectors[2];
+    
+    PlayingCard *card0 = (PlayingCard *)cards[0];
+    PlayingCard *card1 = (PlayingCard *)cards[1];
+    PlayingCard *card2 = (PlayingCard *)cards[2];
+    PlayingCard *card3 = (PlayingCard *)cards[3];
+    
+    subtotal = [[NSDecimalNumber numberWithInt:MIN(card1.rank, 10)]
+                performSelector:selector1
+                withObject:[NSDecimalNumber numberWithInt:MIN(card2.rank, 10)]];
+    
+    
+    subtotal = [[NSDecimalNumber numberWithInt:MIN(card1.rank, 10)]
+                performSelector:selector0
+                withObject:subtotal];
+    
+    
+    subtotal = [subtotal
+                performSelector:selector2
+                withObject:[NSDecimalNumber numberWithInt:MIN(card3.rank, 10)]];
+    
+    
+    return subtotal;
 }
 
 - (void) setFlipCount:(int)flipCount
