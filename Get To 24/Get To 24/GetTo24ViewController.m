@@ -185,9 +185,9 @@
     [UIView setAnimationDidStopSelector:@selector(showHideDidStop:finished:context:)];
     
     // Make the animatable changes.
-    card.alpha = 1.0;
-    left.alpha = 1.0;
-    right.alpha = 1.0;
+    card.alpha = 0.8;
+    left.alpha = 0.8;
+    right.alpha = 0.8;
     //[card setBackgroundImage:nil forState:UIControlStateNormal];
 
     // Commit the changes and perform the animation.
@@ -205,7 +205,7 @@
     UIButton *card = (__bridge UIButton *)context;
     
     // Make the animatable changes.
-    card.alpha = 1.0;
+    card.alpha = 0.8;
 
     [card setBackgroundImage:nil forState:UIControlStateNormal];
     
@@ -267,11 +267,10 @@
     [self.labelSWright setTransform:CGAffineTransformMakeRotation(-M_PI)];
     [self.labelSEright setTransform:CGAffineTransformMakeRotation(-M_PI)];
 
-     //[self.progressBar setTransform:CGAffineTransformMakeRotation(-M_PI / 2)];
-    
-	// Do any additional setup after loading the view, typically from a nib.
+    // 2 player game allow 2 players to press buttons at the same time
     [self.view setMultipleTouchEnabled:YES];
     
+    // The list of cards and the labels on them
     self.cards = [NSArray arrayWithObjects:
                   self.cardNW,
                   self.cardSW,
@@ -299,11 +298,16 @@
 }
 
 //
-// Take current hand and calcuate the answer
+// Take current hand generate all permutations of the 4 cards
+// 4 * 3 * 2 hands
+// Apply all the possible combinations of operators
+// 4 * 4 * 4 * 4 with the different possible parentisis
 //
 - (void) calcuateAnswer
 {
+    // This should give us 4 * 3 * 2 hands
     NSArray *allHands = [(NSArray *)self.hand allPermutations];
+    
     DLog(@"TOTAL %d", [allHands count]);
     for (int i = 0; i < [allHands count] - 1; ++i) {
         NSArray *tryHand = allHands[i];
@@ -315,11 +319,15 @@
             [self calculateHand:tryHand];
         }
         @catch (NSException *e) {
+            // Just catch division by zero, ignore
             DLog("%@", e);
         }
     }
 }
 
+//
+// Apply all the possible operators on the 4 cards, keeping them in the same order
+//
 - (void) calculateHand:(NSArray *)cards
 {
     int total = 0;
@@ -329,11 +337,11 @@
     NSDecimalNumber *rightAnswer = (NSDecimalNumber *)[NSDecimalNumber numberWithInt:24];
     
     //
-    // Solve for
-    // a op b op c op d
+    // Solve for these combination
+    // ((a op b) op c) op d
     // (a op b) op (c op d)
-    // (a op b op c) op d
-    //
+    // a op (b op c) op d
+    // (a op b) op c op d
     for (int j = 0; j <= 3 ; ++j) {
         
         for (int k = 0; k <=  3 ; ++k) {
