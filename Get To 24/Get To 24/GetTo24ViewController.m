@@ -140,17 +140,18 @@
     UIButton *card;
     
     for (int i = 0; i < [self.cards count]; i++) {
-        UIButton *card = [self.cards objectAtIndex:i];
         
-        [card setBackgroundImage:nil forState:UIControlStateNormal];
+        UILabel *left = [self.cardLabels objectAtIndex:2*i];
+        UILabel *right = [self.cardLabels objectAtIndex:2*i+1];
         
+        card = [self.cards objectAtIndex:i];
+        [card setBackgroundImage:[UIImage imageNamed:@"red.card.background.png"] forState:UIControlStateNormal];
+        [self showCard:card label:left label:right];
+
         PlayingCard *newCard = (PlayingCard *)[self._cardDeck drawRandomCard];
         
         [self.hand addObject:newCard];
 
-        UILabel *left = [self.cardLabels objectAtIndex:2*i];
-        UILabel *right = [self.cardLabels objectAtIndex:2*i+1];
-        
         left.text =  [newCard contents];
         left.TextColor = [newCard cardColor];
         right.text =  [newCard contents];
@@ -167,6 +168,49 @@
 
     [self.gameCountdownProgress setProgress:0.01 animated:YES];
     
+}
+
+- (void) showCard:(UIButton *) card label:(UILabel *)left label:(UILabel *)right
+{
+    card.alpha = 0.0;
+    left.alpha = 0.0;
+    right.alpha = 0.0;
+    [card setBackgroundImage:[UIImage imageNamed:@"red.card.background.png"] forState:UIControlStateNormal];
+
+
+    [UIView beginAnimations:@"ShowHideView" context:(void*)card];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+    [UIView setAnimationDuration:0.4];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(showHideDidStop:finished:context:)];
+    
+    // Make the animatable changes.
+    card.alpha = 1.0;
+    left.alpha = 1.0;
+    right.alpha = 1.0;
+    //[card setBackgroundImage:nil forState:UIControlStateNormal];
+
+    // Commit the changes and perform the animation.
+    [UIView commitAnimations];
+}
+
+// Called at the end of the preceding animation.
+- (void)showHideDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context
+{
+    [UIView beginAnimations:@"ShowHideView2" context:context];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+    [UIView setAnimationDuration:1.0];
+    [UIView setAnimationDelay:0.0];
+    
+    UIButton *card = (__bridge UIButton *)context;
+    
+    // Make the animatable changes.
+    card.alpha = 1.0;
+
+    [card setBackgroundImage:nil forState:UIControlStateNormal];
+    
+    DLog(@"showHideDidStop");
+    [UIView commitAnimations];
 }
 
 
@@ -306,7 +350,6 @@
                 }
                 answer = [self calcuateSimple:cards usingOperators:currentOperators];
                 if ([answer compare:rightAnswer] == NSOrderedSame) {
-                    /*
                     NSLog(@"--- found 24 %d %s %d %s %d %s %d",
                           MIN(((PlayingCard *)cards[0]).rank, 10), currentOperators[0],
                           MIN(((PlayingCard *)cards[1]).rank, 10),
@@ -314,9 +357,8 @@
                           MIN(((PlayingCard *)cards[2]).rank, 10),
                           currentOperators[2],
                           MIN(((PlayingCard *)cards[3]).rank, 10));
-                     */
-                    //found = TRUE;
-                    //break;
+                    found = TRUE;
+                    break;
                 }
                 answer = [self calcuateGrouping:cards usingOperators:currentOperators];
                 if ([answer compare:rightAnswer] == NSOrderedSame) {
@@ -327,8 +369,8 @@
                           MIN(((PlayingCard *)cards[2]).rank, 10),
                           currentOperators[2],
                           MIN(((PlayingCard *)cards[3]).rank, 10));
-                    //found = TRUE;
-                    //break;
+                    found = TRUE;
+                    break;
                 }
                 answer = [self calcuateGroupingOfTwo:cards usingOperators:currentOperators];
                 if ([answer compare:rightAnswer] == NSOrderedSame) {
@@ -339,8 +381,8 @@
                           MIN(((PlayingCard *)cards[2]).rank, 10),
                           currentOperators[2],
                           MIN(((PlayingCard *)cards[3]).rank, 10));
-                    //found = TRUE;
-                    //break;
+                    found = TRUE;
+                    break;
                 }
                 answer = [self calcuateGroupingSecond:cards usingOperators:currentOperators];
                 if ([answer compare:rightAnswer] == NSOrderedSame) {
@@ -351,8 +393,8 @@
                           MIN(((PlayingCard *)cards[2]).rank, 10),
                           currentOperators[2],
                           MIN(((PlayingCard *)cards[3]).rank, 10));
-                    //found = TRUE;
-                    //break;
+                    found = TRUE;
+                    break;
                 }
                     /*
                      DLog(@"--- try %d %s %d %s %d %s %d",
@@ -487,7 +529,7 @@
                 withObject:[NSDecimalNumber numberWithInt:MIN(card2.rank, 10)]];
     
     
-    subtotal = [[NSDecimalNumber numberWithInt:MIN(card1.rank, 10)]
+    subtotal = [[NSDecimalNumber numberWithInt:MIN(card0.rank, 10)]
                 performSelector:selector0
                 withObject:subtotal];
     

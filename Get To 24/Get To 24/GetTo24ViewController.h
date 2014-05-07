@@ -30,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *player1NameLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *player2NameLabel;
+@property (weak, nonatomic) IBOutlet UIButton *cardNWback;
 
 @property (weak, nonatomic) IBOutlet UILabel *labelNWleft;
 @property (weak, nonatomic) IBOutlet UILabel *labelNWright;
