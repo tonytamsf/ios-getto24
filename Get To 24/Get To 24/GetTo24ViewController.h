@@ -31,4 +31,12 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *player2NameLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *labelNWleft;
+@property (weak, nonatomic) IBOutlet UILabel *labelNWright;
+@property (weak, nonatomic) IBOutlet UILabel *labelNEleft;
+@property (weak, nonatomic) IBOutlet UILabel *labelNEright;
+@property (weak, nonatomic) IBOutlet UILabel *labelSWleft;
+@property (weak, nonatomic) IBOutlet UILabel *labelSWright;
+@property (weak, nonatomic) IBOutlet UILabel *labelSEright;
+@property (weak, nonatomic) IBOutlet UILabel *labelSEleft;
 @end

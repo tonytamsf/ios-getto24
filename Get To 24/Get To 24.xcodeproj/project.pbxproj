@@ -12,6 +12,8 @@
 		D8599D45187B1AF00033E51C /* getto24-icon-58.png in Resources */ = {isa = PBXBuildFile; fileRef = D8599D42187B1AF00033E51C /* getto24-icon-58.png */; };
 		D8599D46187B1AF00033E51C /* getto24-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D8599D43187B1AF00033E51C /* getto24-icon.png */; };
 		D8599D47187B1AF00033E51C /* getto24-icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = D8599D44187B1AF00033E51C /* getto24-icon-29.png */; };
+		D868E2461919C26E00324698 /* red.card.background.png in Resources */ = {isa = PBXBuildFile; fileRef = D868E2451919C26E00324698 /* red.card.background.png */; };
+		D868E2481919C3EE00324698 /* playing.background.png in Resources */ = {isa = PBXBuildFile; fileRef = D868E2471919C3EE00324698 /* playing.background.png */; };
 		D8C09C5819159AA90057DDEB /* ray.wav in Resources */ = {isa = PBXBuildFile; fileRef = D8C09C5719159AA90057DDEB /* ray.wav */; };
 		D8C09C5A19159AF70057DDEB /* whoosh.wav in Resources */ = {isa = PBXBuildFile; fileRef = D8C09C5919159AF70057DDEB /* whoosh.wav */; };
 		D8C09C761915A0510057DDEB /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D8C09C631915A0510057DDEB /* .gitignore */; };
@@ -59,6 +61,8 @@
 		D8599D42187B1AF00033E51C /* getto24-icon-58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "getto24-icon-58.png"; sourceTree = "<group>"; };
 		D8599D43187B1AF00033E51C /* getto24-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "getto24-icon.png"; sourceTree = "<group>"; };
 		D8599D44187B1AF00033E51C /* getto24-icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "getto24-icon-29.png"; sourceTree = "<group>"; };
+		D868E2451919C26E00324698 /* red.card.background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red.card.background.png; sourceTree = "<group>"; };
+		D868E2471919C3EE00324698 /* playing.background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playing.background.png; sourceTree = "<group>"; };
 		D8C09C5719159AA90057DDEB /* ray.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ray.wav; sourceTree = "<group>"; };
 		D8C09C5919159AF70057DDEB /* whoosh.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = whoosh.wav; sourceTree = "<group>"; };
 		D8C09C631915A0510057DDEB /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -129,6 +133,8 @@
 		D8599D3F187B1ACB0033E51C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				D868E2471919C3EE00324698 /* playing.background.png */,
+				D868E2451919C26E00324698 /* red.card.background.png */,
 				D8599D42187B1AF00033E51C /* getto24-icon-58.png */,
 				D8599D43187B1AF00033E51C /* getto24-icon.png */,
 				D8599D44187B1AF00033E51C /* getto24-icon-29.png */,
@@ -365,6 +371,7 @@
 				D8599D45187B1AF00033E51C /* getto24-icon-58.png in Resources */,
 				D8599D46187B1AF00033E51C /* getto24-icon.png in Resources */,
 				D8C09C5819159AA90057DDEB /* ray.wav in Resources */,
+				D868E2481919C3EE00324698 /* playing.background.png in Resources */,
 				D8C09C5A19159AF70057DDEB /* whoosh.wav in Resources */,
 				D8E4985D187B2157005A32D6 /* Default-568h@2x.png in Resources */,
 				D8C112D51915926700864A23 /* chimes.wav in Resources */,
@@ -373,6 +380,7 @@
 				D8D369A8187933400092E0F4 /* Main_iPad.storyboard in Resources */,
 				D8C09C7B1915A0510057DDEB /* README.md in Resources */,
 				D8D369A5187933400092E0F4 /* Main_iPhone.storyboard in Resources */,
+				D868E2461919C26E00324698 /* red.card.background.png in Resources */,
 				D8599D41187B1AE30033E51C /* 24app.pdf in Resources */,
 				D8C112CE19158F6E00864A23 /* tick.tock.wav in Resources */,
 				D8D3699C187933400092E0F4 /* InfoPlist.strings in Resources */,

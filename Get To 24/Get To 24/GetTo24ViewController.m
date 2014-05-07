@@ -41,6 +41,8 @@
 
 @property NSArray *cards;
 
+@property NSArray *cardLabels;
+
 @property NSTimer *timer;
 
 @property int currentGameTime;
@@ -135,14 +137,24 @@
     [self.hand removeAllObjects];
     
     // deal 4 cards
-    for (UIButton *card in self.cards) {
-        PlayingCard *newCard = (PlayingCard *)[self._cardDeck drawRandomCard];
+    UIButton *card;
+    
+    for (int i = 0; i < [self.cards count]; i++) {
+        UIButton *card = [self.cards objectAtIndex:i];
         
+        [card setBackgroundImage:nil forState:UIControlStateNormal];
+        
+        PlayingCard *newCard = (PlayingCard *)[self._cardDeck drawRandomCard];
         
         [self.hand addObject:newCard];
 
-        [card setTitle:[newCard contents] forState:UIControlStateNormal];
-        [card setTitleColor:[newCard cardColor] forState:UIControlStateNormal];
+        UILabel *left = [self.cardLabels objectAtIndex:2*i];
+        UILabel *right = [self.cardLabels objectAtIndex:2*i+1];
+        
+        left.text =  [newCard contents];
+        left.TextColor = [newCard cardColor];
+        right.text =  [newCard contents];
+        right.TextColor = [newCard cardColor];
     }
 
     [self calcuateAnswer];
@@ -206,6 +218,10 @@
     [self.player1Score setTransform:CGAffineTransformMakeRotation(-M_PI)];
     [self.player1NameLabel setTransform:CGAffineTransformMakeRotation(-M_PI)];
 
+    [self.labelNEright setTransform:CGAffineTransformMakeRotation(-M_PI)];
+    [self.labelNWright setTransform:CGAffineTransformMakeRotation(-M_PI)];
+    [self.labelSWright setTransform:CGAffineTransformMakeRotation(-M_PI)];
+    [self.labelSEright setTransform:CGAffineTransformMakeRotation(-M_PI)];
 
      //[self.progressBar setTransform:CGAffineTransformMakeRotation(-M_PI / 2)];
     
@@ -218,6 +234,17 @@
                   self.cardSE,
                   self.cardNE, nil];
     
+    self.cardLabels = [NSArray arrayWithObjects:
+                       self.labelNWleft,
+                       self.labelNWright,
+                       self.labelSWleft,
+                       self.labelSWright,
+                       self.labelSEleft,
+                       self.labelSEright,
+                       self.labelNEleft,
+                       self.labelNEright,
+                       nil
+                       ];
     [self startGame];
 }
 
