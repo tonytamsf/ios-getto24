@@ -5,12 +5,10 @@
 //  Created by Tony Tam on 1/4/14.
 //  Copyright (c) 2014 Yama Llama. All rights reserved.
 //
-//  TODO: fix the flashing when the button changes title for the card
-//  TODO: visual should be red, black
-//  TODO: should be readable upside down
-
-#undef DEBUG
-
+// TODO: local leader board
+// TODO: fix the time transition
+// TODO: the transition of the card label needs work
+//
 
 #import "GetTo24ViewController.h"
 #import "PlayingCardDeck.h"
@@ -56,6 +54,7 @@
 @property SEL plusSel, minusSel, mulSel, divSel;
 
 @property SEL *selectors;
+@property char *operatorChars;
 
 - (void) rightAnswer;
 
@@ -64,39 +63,66 @@
 @implementation GetTo24ViewController
 
 
+//
+// Player got the right answer, reward with a point
+// Maybe show them other potential answers
+//
 -(void) rightAnswer
 {
     [AudioUtil playSound:@"chimes" :@"wav"];
 }
 
+//
+// Player choose to skip the card
+//
 - (IBAction)skip:(id)sender {
     [self dealHand];
     [AudioUtil playSound:@"whoosh" :@"wav"];
 }
 
+//
+// Kick off the game
+//
 - (void) startGame
 {
     
+    // The valid operators
     self.plusSel = @selector(decimalNumberByAdding:);
     self.minusSel = @selector(decimalNumberBySubtracting:);
     self.mulSel = @selector(decimalNumberByMultiplyingBy:);
     self.divSel = @selector(decimalNumberByDividingBy:);
+    
+    // We will need to loop through the operators/selectors
     self.selectors = malloc(sizeof(SEL) * 4);
     self.selectors[0] = self.plusSel;
     self.selectors[1] = self.minusSel;
     self.selectors[2] = self.mulSel;
     self.selectors[3] = self.divSel;
+
+    self.operatorChars = malloc(sizeof(char) * 4);
+    self.operatorChars[0] = '+';
+    self.operatorChars[0] = '-';
+    self.operatorChars[0] = '*';
+    self.operatorChars[0] = '/';
+
+    // Deal a new deck of cards
     if (! self._cardDeck) {
         self._cardDeck = [[PlayingCardDeck alloc] init];
     }
     
+    
     self.hand = [[NSMutableArray alloc] init];
     self.gameCountdownProgress.progress = 0.0;
-    [self dealHand];
+    
     [AudioUtil playSound:@"opening" :@"wav"];
 
+    // Deal a fresh hand
+    [self dealHand];
 }
 
+//
+// The timer calls this to start a ticking sound, very annoying
+//
 - (void) countdown
 {
     float percent = (60 - self.currentGameTime) / 60.0;
@@ -105,9 +131,7 @@
     self.currentGameTime -= 1;
     if (self.currentGameTime <= 0) {
         [self timesUp];
-    }
-    if (self.currentGameTime < 20) {
-        [AudioUtil playSound:@"tick.tock" :@"wav"];
+        return;
     }
 
     [self.gameCountdownProgress
@@ -115,6 +139,9 @@
             animated:YES];
 }
 
+//
+// Put the 4 cards back into the deck
+//
 - (void) putInDeck:(NSArray *) cards
 {
     for (Card *card in cards ) {
@@ -122,54 +149,65 @@
     }
 }
 
+//
+// Deal 4 cards to start a game
+//
 - (void) dealHand
 {
 
     // TODO what if we run out of cards, time to call a winner
     self.currentGameTime = 60;
 
-    [self.timer invalidate];
-
-
     // clear the current hand about put back into the deck in random order?
     [self putInDeck:self.hand];
     
+    // clear the hand
     [self.hand removeAllObjects];
     
-    // deal 4 cards
     UIButton *card;
     
+    // deal 4 cards
     for (int i = 0; i < [self.cards count]; i++) {
+        PlayingCard *newCard = (PlayingCard *)[self._cardDeck drawRandomCard];
+
+        [self.hand addObject:newCard];
         
+        // For displaying the 2 lables for the card and color
         UILabel *left = [self.cardLabels objectAtIndex:2*i];
         UILabel *right = [self.cardLabels objectAtIndex:2*i+1];
         
-        card = [self.cards objectAtIndex:i];
-        [card setBackgroundImage:[UIImage imageNamed:@"red.card.background.png"] forState:UIControlStateNormal];
-        [self showCard:card label:left label:right];
-
-        PlayingCard *newCard = (PlayingCard *)[self._cardDeck drawRandomCard];
-        
-        [self.hand addObject:newCard];
-
         left.text =  [newCard contents];
+
+        card = [self.cards objectAtIndex:i];
         left.TextColor = [newCard cardColor];
         right.text =  [newCard contents];
         right.TextColor = [newCard cardColor];
+        
+        [self showCard:card label:left label:right];
     }
 
+    // We the answer before the user
     [self calcuateAnswer];
-
+    
+    [self.timer invalidate];
+    // Start the countdown
      self.timer = [NSTimer scheduledTimerWithTimeInterval:1
                                target:self
                                selector:@selector(countdown)
                                userInfo:nil
                                repeats:YES];
 
-    [self.gameCountdownProgress setProgress:0.01 animated:YES];
-    
+    [self.gameCountdownProgress setProgress:0.00 animated:NO];
+    [AudioUtil playSound:@"relaxing-short" :@"wav"];
 }
 
+//
+// Animate the card flipping
+// go from alpha == 0.0 (hidden) to transparency of 0.7
+// The background is the image of the back of the card, once
+// the animation is one, animate removing the background so it
+// look like it's flipped
+//
 - (void) showCard:(UIButton *) card label:(UILabel *)left label:(UILabel *)right
 {
     card.alpha = 0.0;
@@ -185,9 +223,9 @@
     [UIView setAnimationDidStopSelector:@selector(showHideDidStop:finished:context:)];
     
     // Make the animatable changes.
-    card.alpha = 0.8;
-    left.alpha = 0.8;
-    right.alpha = 0.8;
+    card.alpha = 0.7;
+    left.alpha = 0.7;
+    right.alpha = 0.7;
     //[card setBackgroundImage:nil forState:UIControlStateNormal];
 
     // Commit the changes and perform the animation.
@@ -195,6 +233,8 @@
 }
 
 // Called at the end of the preceding animation.
+// remove the background
+//
 - (void)showHideDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context
 {
     [UIView beginAnimations:@"ShowHideView2" context:context];
@@ -205,7 +245,7 @@
     UIButton *card = (__bridge UIButton *)context;
     
     // Make the animatable changes.
-    card.alpha = 0.8;
+    card.alpha = 0.7;
 
     [card setBackgroundImage:nil forState:UIControlStateNormal];
     
@@ -213,14 +253,24 @@
     [UIView commitAnimations];
 }
 
-
+//
+// Dock points from both players
+// the player has to find the answer, skip or say there is no answer
+//
 - (void)timesUp {
     [self.gameCountdownProgress setProgress:0.00 animated:NO];
+    //[AudioUtil playSound:@"whoosh" :@"wav"];
+    // Stop the previous timer
+    [self.timer invalidate];
+    
+    [AudioUtil playSound:@"ray" :@"wav"];
     
     [self dealHand];
-    [AudioUtil playSound:@"whoosh" :@"wav"];
 }
 
+//
+// Give up without saying anything, any dock points from both players
+//
 - (IBAction)giveUp:(id)sender {
     [self.gameCountdownProgress setProgress:0.00 animated:NO];
 
@@ -228,6 +278,10 @@
     [AudioUtil playSound:@"whoosh" :@"wav"];
 }
 
+//
+// Say therei no solution, plus points if computer agrees otherwise it's consider
+// the same as wrong answer
+//
 - (IBAction)noSolution:(id)sender {
     [self.gameCountdownProgress setProgress:0.00 animated:NO];
     
@@ -235,6 +289,10 @@
     [AudioUtil playSound:@"beep" :@"wav"];
 }
 
+//
+// Player1 thinks he has it, need to validate the answer
+// TODO
+//
 - (IBAction)player1Pressed:(id)sender {
     self.player1ScorePoints += 1;
     self.player1Score.text = [NSString stringWithFormat:@"%d",
@@ -244,6 +302,10 @@
 
 }
 
+//
+// Player2 thinks he has it, need to validate the answer
+// TODO
+//
 - (IBAction)player2Pressed:(id)sender {
     self.player2ScorePoints += 1;
     self.player2Score.text = [NSString stringWithFormat:@"%d",
@@ -254,9 +316,30 @@
 
 }
 
+//
+// Hide the answers, show it when we are ready
+//
+- (void) hideAnswer
+{
+    self.operatorNESE.alpha = 0.0;
+    self.operatorNWNE.alpha = 0.0;
+    self.operatorNWSW.alpha = 0.0;
+    self.operatorSWSE.alpha = 0.0;
+
+}
+
+//
+// Beginning
+// Rotate the buttons
+//
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // rotate the buttons, labels
+    [self.operatorNESE setTransform:CGAffineTransformMakeRotation(-M_PI / 2)];
+    [self.operatorNWSW setTransform:CGAffineTransformMakeRotation(-M_PI / 2)];
+
     [self.buttonGiveUp setTransform:CGAffineTransformMakeRotation(-M_PI / 2)];
     [self.player1Button setTransform:CGAffineTransformMakeRotation(-M_PI)];
     [self.player1Score setTransform:CGAffineTransformMakeRotation(-M_PI)];
@@ -277,6 +360,7 @@
                   self.cardSE,
                   self.cardNE, nil];
     
+    // setup the list to labels
     self.cardLabels = [NSArray arrayWithObjects:
                        self.labelNWleft,
                        self.labelNWright,
@@ -288,6 +372,11 @@
                        self.labelNEright,
                        nil
                        ];
+    
+    // Don't show them the answers
+    [self hideAnswer];
+    
+    // Get started
     [self startGame];
 }
 
@@ -328,30 +417,33 @@
 //
 // Apply all the possible operators on the 4 cards, keeping them in the same order
 //
+// Solve for these combination
+// ((a op b) op c) op d
+// (a op b) op (c op d)
+// a op (b op c) op d
+// (a op b) op c op d
+//
 - (void) calculateHand:(NSArray *)cards
 {
-    int total = 0;
-
     Boolean found = FALSE;
     NSDecimalNumber *answer = [[NSDecimalNumber alloc] init];
     NSDecimalNumber *rightAnswer = (NSDecimalNumber *)[NSDecimalNumber numberWithInt:24];
     
-    //
-    // Solve for these combination
-    // ((a op b) op c) op d
-    // (a op b) op (c op d)
-    // a op (b op c) op d
-    // (a op b) op c op d
-    for (int j = 0; j <= 3 ; ++j) {
-        
-        for (int k = 0; k <=  3 ; ++k) {
 
+    for (int j = 0; j <= 3 ; ++j) {
+        for (int k = 0; k <=  3 ; ++k) {
             for (int l = 0; l <= 3 ; ++l) {
                 SEL currentOperators[] = {
                     self.selectors[j],
                     self.selectors[k],
                     self.selectors[l]
 
+                };
+                
+                char currentOperatorChars = {
+                    self.operatorChars[j],
+                    self.operatorChars[k],
+                    self.operatorChars[l],
                 };
                 if (found) {
                     break;

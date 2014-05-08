@@ -17,6 +17,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *cardSW;
 @property (weak, nonatomic) IBOutlet UIButton *cardSE;
 @property (weak, nonatomic) IBOutlet UIButton *cardNW;
+@property (weak, nonatomic) IBOutlet UILabel *operatorNWNE;
+@property (weak, nonatomic) IBOutlet UILabel *operatorNESE;
+@property (weak, nonatomic) IBOutlet UILabel *operatorSWSE;
+@property (weak, nonatomic) IBOutlet UILabel *operatorNWSW;
 
 @property (weak, nonatomic) IBOutlet UIButton *player1Button;
 @property (weak, nonatomic) IBOutlet UIButton *player2Button;
