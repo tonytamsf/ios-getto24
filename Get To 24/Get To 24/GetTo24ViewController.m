@@ -17,7 +17,27 @@
 #import "NSArrayUtil.h"
 #import "AudioUtil.h"
 
+@interface AnswerPackage : NSObject
+@property NSString *stringAnswer;
+@property NSString *stringFormat;
+@property NSArray *operators;
+@property NSArray *cards;
+@property NSDecimalNumber *answer;
+@end
+
+@implementation AnswerPackage
+@end
+
+@interface CardHand : NSObject
+@property PlayingCard *card;
+@property UILabel *operatorLabel;
+@end
+    
+@implementation CardHand
+@end
+
 @interface GetTo24ViewController ()
+
 
 @property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
 @property (nonatomic) int flipCount;
@@ -30,10 +50,12 @@
 
 - (void) putInDeck:(NSArray *) cards;
 
-- (void) calculateHand:(NSArray *)cards;
+- (AnswerPackage *) calculateHand:(NSArray *)cards;
 
-- (NSDecimalNumber *) calcuateSimple:(NSArray *) cards usingOperators:(SEL *)selectors;
-- (NSDecimalNumber *) calcuateGrouping:(NSArray *) cards usingOperators:(SEL *)selectors;
+- (AnswerPackage *) calcuateSimple:(NSArray *)cards  usingOperators:(SEL *)selectors withOperatorChars:(NSArray *)currentOperatorChars;
+- (AnswerPackage *) calcuateGrouping:(NSArray *)cards  usingOperators:(SEL *)selectors withOperatorChars:(NSArray *)currentOperatorChars;
+- (AnswerPackage *) calcuateGroupingOfTwo:(NSArray *)cards usingOperators:(SEL *)selectors withOperatorChars:(NSArray *)currentOperatorChars;
+- (AnswerPackage *) calcuateGroupingSecond:(NSArray *)cards usingOperators:(SEL *)selectors withOperatorChars:(NSArray *)currentOperatorChars;
 
 @property PlayingCardDeck *_cardDeck;
 
@@ -54,7 +76,10 @@
 @property SEL plusSel, minusSel, mulSel, divSel;
 
 @property SEL *selectors;
-@property char *operatorChars;
+
+@property NSArray *operatorChars;
+@property NSArray *operatorLabels;
+
 
 - (void) rightAnswer;
 
@@ -99,11 +124,20 @@
     self.selectors[2] = self.mulSel;
     self.selectors[3] = self.divSel;
 
-    self.operatorChars = malloc(sizeof(char) * 4);
-    self.operatorChars[0] = '+';
-    self.operatorChars[0] = '-';
-    self.operatorChars[0] = '*';
-    self.operatorChars[0] = '/';
+    self.operatorChars = [NSArray arrayWithObjects:
+                          @"+",
+                          @"-",
+                          @"*",
+                          @"/",
+                          nil];
+
+    self.operatorLabels = [NSArray arrayWithObjects:
+                           self.operatorNWNE,
+                           self.operatorNESE,
+                           self.operatorSWSE,
+                           self.operatorNWSW,
+                           nil
+                           ];
 
     // Deal a new deck of cards
     if (! self._cardDeck) {
@@ -144,8 +178,8 @@
 //
 - (void) putInDeck:(NSArray *) cards
 {
-    for (Card *card in cards ) {
-        [self._cardDeck addCard:card];
+    for (CardHand *card in cards ) {
+        [self._cardDeck addCard:card.card];
     }
 }
 
@@ -169,8 +203,12 @@
     // deal 4 cards
     for (int i = 0; i < [self.cards count]; i++) {
         PlayingCard *newCard = (PlayingCard *)[self._cardDeck drawRandomCard];
+        CardHand *singleDeal = [[CardHand alloc] init];
+        
+        singleDeal.card = newCard;
+        singleDeal.operatorLabel = self.operatorLabels[i];
 
-        [self.hand addObject:newCard];
+        [self.hand addObject:singleDeal];
         
         // For displaying the 2 lables for the card and color
         UILabel *left = [self.cardLabels objectAtIndex:2*i];
@@ -358,7 +396,8 @@
                   self.cardNW,
                   self.cardSW,
                   self.cardSE,
-                  self.cardNE, nil];
+                  self.cardNE,
+                  nil];
     
     // setup the list to labels
     self.cardLabels = [NSArray arrayWithObjects:
@@ -392,10 +431,11 @@
 // Apply all the possible combinations of operators
 // 4 * 4 * 4 * 4 with the different possible parentisis
 //
-- (void) calcuateAnswer
+- (AnswerPackage *) calcuateAnswer
 {
     // This should give us 4 * 3 * 2 hands
     NSArray *allHands = [(NSArray *)self.hand allPermutations];
+    AnswerPackage *storeAnswerPackage
     
     DLog(@"TOTAL %d", [allHands count]);
     for (int i = 0; i < [allHands count] - 1; ++i) {
@@ -405,13 +445,17 @@
         DLog(@" %d %@", i, tryHand);
         DLog(@"==================================================");
         @try {
-            [self calculateHand:tryHand];
+            storeAnswerPackage = [self calculateHand:tryHand];
+            if (nil != storeAnswerPackage) {
+                return storeAnswerPackage;
+            }
         }
         @catch (NSException *e) {
             // Just catch division by zero, ignore
-            DLog("%@", e);
+            //NSLog(@"%@", e);
         }
     }
+    return nil;
 }
 
 //
@@ -423,16 +467,16 @@
 // a op (b op c) op d
 // (a op b) op c op d
 //
-- (void) calculateHand:(NSArray *)cards
+- (AnswerPackage *) calculateHand:(NSArray *)cards
 {
     Boolean found = FALSE;
-    NSDecimalNumber *answer = [[NSDecimalNumber alloc] init];
     NSDecimalNumber *rightAnswer = (NSDecimalNumber *)[NSDecimalNumber numberWithInt:24];
-    
+    AnswerPackage *storeAnswerPackage;
 
     for (int j = 0; j <= 3 ; ++j) {
         for (int k = 0; k <=  3 ; ++k) {
             for (int l = 0; l <= 3 ; ++l) {
+                // TODO: Seems hard to get a NSArray of SEL
                 SEL currentOperators[] = {
                     self.selectors[j],
                     self.selectors[k],
@@ -440,90 +484,81 @@
 
                 };
                 
-                char currentOperatorChars = {
-                    self.operatorChars[j],
-                    self.operatorChars[k],
-                    self.operatorChars[l],
-                };
+                NSArray *currentOperatorChars = [NSArray arrayWithObjects:
+                                                 [self.operatorChars objectAtIndex:j],
+                                                 [self.operatorChars objectAtIndex:k],
+                                                 [self.operatorChars objectAtIndex:l],
+                                                 nil];
                 if (found) {
                     break;
                 }
-                answer = [self calcuateSimple:cards usingOperators:currentOperators];
-                if ([answer compare:rightAnswer] == NSOrderedSame) {
-                    NSLog(@"--- found 24 %d %s %d %s %d %s %d",
-                          MIN(((PlayingCard *)cards[0]).rank, 10), currentOperators[0],
-                          MIN(((PlayingCard *)cards[1]).rank, 10),
-                          currentOperators[1],
-                          MIN(((PlayingCard *)cards[2]).rank, 10),
-                          currentOperators[2],
-                          MIN(((PlayingCard *)cards[3]).rank, 10));
+
+                storeAnswerPackage = [self calcuateSimple:cards usingOperators:currentOperators
+                                                                withOperatorChars:currentOperatorChars];
+                if ([storeAnswerPackage.answer compare:rightAnswer] == NSOrderedSame) {
+                    NSLog(@"answer %@", storeAnswerPackage.stringAnswer);
+
                     found = TRUE;
                     break;
                 }
-                answer = [self calcuateGrouping:cards usingOperators:currentOperators];
-                if ([answer compare:rightAnswer] == NSOrderedSame) {
-                    NSLog(@"--- found 24 (%d %s %d) %s (%d %s %d)",
-                          MIN(((PlayingCard *)cards[0]).rank, 10), currentOperators[0],
-                          MIN(((PlayingCard *)cards[1]).rank, 10),
-                          currentOperators[1],
-                          MIN(((PlayingCard *)cards[2]).rank, 10),
-                          currentOperators[2],
-                          MIN(((PlayingCard *)cards[3]).rank, 10));
+                storeAnswerPackage = [self calcuateGrouping:cards usingOperators:currentOperators
+                                                                  withOperatorChars:currentOperatorChars];
+                if ([storeAnswerPackage.answer compare:rightAnswer] == NSOrderedSame) {
+                    NSLog(@"answer %@", storeAnswerPackage.stringAnswer);
+
                     found = TRUE;
                     break;
                 }
-                answer = [self calcuateGroupingOfTwo:cards usingOperators:currentOperators];
-                if ([answer compare:rightAnswer] == NSOrderedSame) {
-                    NSLog(@"--- found 24 (%d %s %d) %s %d %s %d",
-                          MIN(((PlayingCard *)cards[0]).rank, 10), currentOperators[0],
-                          MIN(((PlayingCard *)cards[1]).rank, 10),
-                          currentOperators[1],
-                          MIN(((PlayingCard *)cards[2]).rank, 10),
-                          currentOperators[2],
-                          MIN(((PlayingCard *)cards[3]).rank, 10));
+                storeAnswerPackage = [self calcuateGroupingOfTwo:cards usingOperators:currentOperators
+                                                                       withOperatorChars:currentOperatorChars];
+                if ([storeAnswerPackage.answer compare:rightAnswer] == NSOrderedSame) {
+                    NSLog(@"answer %@", storeAnswerPackage.stringAnswer);
+
                     found = TRUE;
                     break;
                 }
-                answer = [self calcuateGroupingSecond:cards usingOperators:currentOperators];
-                if ([answer compare:rightAnswer] == NSOrderedSame) {
-                    NSLog(@"--- found 24 %d %s (%d %s %d) %s %d)",
-                          MIN(((PlayingCard *)cards[0]).rank, 10), currentOperators[0],
-                          MIN(((PlayingCard *)cards[1]).rank, 10),
-                          currentOperators[1],
-                          MIN(((PlayingCard *)cards[2]).rank, 10),
-                          currentOperators[2],
-                          MIN(((PlayingCard *)cards[3]).rank, 10));
+                storeAnswerPackage = [self calcuateGroupingSecond:cards usingOperators:currentOperators
+                                                                        withOperatorChars:currentOperatorChars];
+                if ([storeAnswerPackage.answer compare:rightAnswer] == NSOrderedSame) {
+                    NSLog(@"answer %@", storeAnswerPackage.stringAnswer);
+
                     found = TRUE;
                     break;
                 }
-                    /*
-                     DLog(@"--- try %d %s %d %s %d %s %d",
-                     MIN(card0.rank, 10), selector0,
+                DLog(@"--- try %d %s %d %s %d %s %d",
+                     MIN(card0.rank, 10),
+                     selector0,
                      MIN(card1.rank, 10),
                      selector1,
                      MIN(card2.rank, 10),
                      selector2,
                      MIN(card3.rank, 10));
-                     */
             }
             if (found) { break; };
             }
         if (found) { break; };
     }
+    if (found) {
+        return storeAnswerPackage;
+    } else {
+        return nil;
+    }
 }
 
 // ((a op b) op c) op d
-- (NSDecimalNumber *) calcuateSimple:(NSArray *) cards usingOperators:(SEL [])selectors
+- (AnswerPackage *) calcuateSimple:(NSArray *) cards usingOperators:(SEL [])selectors withOperatorChars:(NSArray *)currentOperatorChars
 {
     NSDecimalNumber *subtotal = [[NSDecimalNumber alloc] init];
+    AnswerPackage *answer = [[AnswerPackage alloc] init];
+
     SEL selector0 = selectors[0];
     SEL selector1 = selectors[1];
     SEL selector2 = selectors[2];
 
-    PlayingCard *card0 = (PlayingCard *)cards[0];
-    PlayingCard *card1 = (PlayingCard *)cards[1];
-    PlayingCard *card2 = (PlayingCard *)cards[2];
-    PlayingCard *card3 = (PlayingCard *)cards[3];
+    PlayingCard *card0 = (PlayingCard *)((CardHand *)cards[0]).card;
+    PlayingCard *card1 = (PlayingCard *)((CardHand *)cards[1]).card;
+    PlayingCard *card2 = (PlayingCard *)((CardHand *)cards[2]).card;
+    PlayingCard *card3 = (PlayingCard *)((CardHand *)cards[3]).card;
     
     subtotal = [[NSDecimalNumber numberWithInt:MIN(card0.rank, 10)]
                 performSelector:selector0
@@ -537,25 +572,38 @@
     subtotal = [subtotal
                 performSelector:selector2
                 withObject:[NSDecimalNumber numberWithInt:MIN(card3.rank, 10)]];
-    
+    answer.answer = subtotal;
+    answer.stringFormat = @"((%d %@ %d) %@ %d) %@ %d";
+    answer.stringAnswer = [NSString stringWithFormat:answer.stringFormat,
+                           MIN(card0.rank, 10),
+                           [currentOperatorChars objectAtIndex:0],
+                           MIN(card1.rank, 10),
+                           [currentOperatorChars objectAtIndex:1],
+                           MIN(card2.rank, 10),
+                           [currentOperatorChars objectAtIndex:2],
+                           MIN(card3.rank, 10)
+                           ];
+    answer.operators = [NSArray arrayWithArray:currentOperatorChars];
+    answer.cards = [NSArray arrayWithArray:cards];
 
-    return subtotal;
+    return answer;
 }
 
 // (a op b) op (c op d)
-- (NSDecimalNumber *) calcuateGrouping:(NSArray *) cards usingOperators:(SEL [])selectors
+- (AnswerPackage *) calcuateGrouping:(NSArray *) cards usingOperators:(SEL [])selectors withOperatorChars:(NSArray *)currentOperatorChars
 {
     NSDecimalNumber *subtotal = [[NSDecimalNumber alloc] init];
     NSDecimalNumber *subtotal1 = [[NSDecimalNumber alloc] init];
+    AnswerPackage *answer = [[AnswerPackage alloc] init];
 
     SEL selector0 = selectors[0];
     SEL selector1 = selectors[1];
     SEL selector2 = selectors[2];
     
-    PlayingCard *card0 = (PlayingCard *)cards[0];
-    PlayingCard *card1 = (PlayingCard *)cards[1];
-    PlayingCard *card2 = (PlayingCard *)cards[2];
-    PlayingCard *card3 = (PlayingCard *)cards[3];
+    PlayingCard *card0 = (PlayingCard *)((CardHand *)cards[0]).card;
+    PlayingCard *card1 = (PlayingCard *)((CardHand *)cards[1]).card;
+    PlayingCard *card2 = (PlayingCard *)((CardHand *)cards[2]).card;
+    PlayingCard *card3 = (PlayingCard *)((CardHand *)cards[3]).card;
     
     subtotal = [[NSDecimalNumber numberWithInt:MIN(card0.rank, 10)]
                 performSelector:selector0
@@ -570,26 +618,41 @@
     subtotal = [subtotal
                 performSelector:selector1
                 withObject:subtotal1];
+
+    answer.answer = subtotal;
+    answer.stringFormat = @"(%d %@ %d) %@ (%d %@ %d)";
+    answer.stringAnswer = [NSString stringWithFormat:answer.stringFormat,
+                           MIN(card0.rank, 10),
+                           [currentOperatorChars objectAtIndex:0],
+                           MIN(card1.rank, 10),
+                           [currentOperatorChars objectAtIndex:1],
+                           MIN(card2.rank, 10),
+                           [currentOperatorChars objectAtIndex:2],
+                           MIN(card3.rank, 10)
+                           ];
     
-    
-    return subtotal;
+    answer.operators = [NSArray arrayWithArray:currentOperatorChars];
+    answer.cards = [NSArray arrayWithArray:cards];
+
+    return answer;
 }
 
 
 // (a op b) op c op d
-- (NSDecimalNumber *) calcuateGroupingOfTwo:(NSArray *) cards usingOperators:(SEL [])selectors
+- (AnswerPackage *)calcuateGroupingOfTwo:(NSArray *) cards usingOperators:(SEL [])selectors withOperatorChars:(NSArray *)currentOperatorChars
 {
     NSDecimalNumber *subtotal = [[NSDecimalNumber alloc] init];
     NSDecimalNumber *subtotal1 = [[NSDecimalNumber alloc] init];
-    
+    AnswerPackage *answer = [[AnswerPackage alloc] init];
+
     SEL selector0 = selectors[0];
     SEL selector1 = selectors[1];
     SEL selector2 = selectors[2];
     
-    PlayingCard *card0 = (PlayingCard *)cards[0];
-    PlayingCard *card1 = (PlayingCard *)cards[1];
-    PlayingCard *card2 = (PlayingCard *)cards[2];
-    PlayingCard *card3 = (PlayingCard *)cards[3];
+    PlayingCard *card0 = (PlayingCard *)((CardHand *)cards[0]).card;
+    PlayingCard *card1 = (PlayingCard *)((CardHand *)cards[1]).card;
+    PlayingCard *card2 = (PlayingCard *)((CardHand *)cards[2]).card;
+    PlayingCard *card3 = (PlayingCard *)((CardHand *)cards[3]).card;
     
     subtotal = [[NSDecimalNumber numberWithInt:MIN(card0.rank, 10)]
                 performSelector:selector0
@@ -605,24 +668,39 @@
                 performSelector:selector2
                 withObject:[NSDecimalNumber numberWithInt:MIN(card3.rank, 10)]];
     
+    answer.answer = subtotal;
+    answer.stringFormat = @"(%d %@ %d) %@ %d %@ %d";
+    answer.stringAnswer = [NSString stringWithFormat:answer.stringFormat,
+                           MIN(card0.rank, 10),
+                           [currentOperatorChars objectAtIndex:0],
+                           MIN(card1.rank, 10),
+                           [currentOperatorChars objectAtIndex:1],
+                           MIN(card2.rank, 10),
+                           [currentOperatorChars objectAtIndex:2],
+                           MIN(card3.rank, 10)
+                           ];
     
-    return subtotal;
+    answer.operators = [NSArray arrayWithArray:currentOperatorChars];
+    answer.cards = [NSArray arrayWithArray:cards];
+    
+    return answer;
 }
 
 // a op (b op c) op d
-- (NSDecimalNumber *) calcuateGroupingSecond:(NSArray *) cards usingOperators:(SEL [])selectors
+- (AnswerPackage *) calcuateGroupingSecond:(NSArray *) cards usingOperators:(SEL [])selectors withOperatorChars:(NSArray *)currentOperatorChars
 {
     NSDecimalNumber *subtotal = [[NSDecimalNumber alloc] init];
     NSDecimalNumber *subtotal1 = [[NSDecimalNumber alloc] init];
+    AnswerPackage *answer = [[AnswerPackage alloc] init];
     
     SEL selector0 = selectors[0];
     SEL selector1 = selectors[1];
     SEL selector2 = selectors[2];
     
-    PlayingCard *card0 = (PlayingCard *)cards[0];
-    PlayingCard *card1 = (PlayingCard *)cards[1];
-    PlayingCard *card2 = (PlayingCard *)cards[2];
-    PlayingCard *card3 = (PlayingCard *)cards[3];
+    PlayingCard *card0 = (PlayingCard *)((CardHand *)cards[0]).card;
+    PlayingCard *card1 = (PlayingCard *)((CardHand *)cards[1]).card;
+    PlayingCard *card2 = (PlayingCard *)((CardHand *)cards[2]).card;
+    PlayingCard *card3 = (PlayingCard *)((CardHand *)cards[3]).card;
     
     subtotal = [[NSDecimalNumber numberWithInt:MIN(card1.rank, 10)]
                 performSelector:selector1
@@ -637,9 +715,22 @@
     subtotal = [subtotal
                 performSelector:selector2
                 withObject:[NSDecimalNumber numberWithInt:MIN(card3.rank, 10)]];
+    answer.answer = subtotal;
+    answer.stringFormat = @"%d %@ (%d %@ %d) %@ %d";
+    answer.stringAnswer = [NSString stringWithFormat:answer.stringFormat,
+                           MIN(card0.rank, 10),
+                           [currentOperatorChars objectAtIndex:0],
+                           MIN(card1.rank, 10),
+                           [currentOperatorChars objectAtIndex:1],
+                           MIN(card2.rank, 10),
+                           [currentOperatorChars objectAtIndex:2],
+                           MIN(card3.rank, 10)
+                           ];
     
+    answer.operators = [NSArray arrayWithArray:currentOperatorChars];
+    answer.cards = [NSArray arrayWithArray:cards];
     
-    return subtotal;
+    return answer;
 }
 
 - (void) setFlipCount:(int)flipCount
