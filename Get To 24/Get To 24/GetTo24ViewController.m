@@ -788,8 +788,10 @@
     [self dealHand];
 }
 
+//
 // Handle UILabel touch events
 // http://stackoverflow.com/questions/18459322/how-to-get-uilabel-tags-in-iphone
+//
 -(void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event;
 {
     UITouch *touch = [touches anyObject];
