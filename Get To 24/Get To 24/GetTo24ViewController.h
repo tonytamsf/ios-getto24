@@ -24,7 +24,6 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *player1Button;
 @property (weak, nonatomic) IBOutlet UIButton *player2Button;
-@property (weak, nonatomic) IBOutlet UIButton *giveUpButton;
 
 @property (weak, nonatomic) IBOutlet UILabel *player1Score;
 @property (weak, nonatomic) IBOutlet UILabel *player2Score;
@@ -44,4 +43,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelSWright;
 @property (weak, nonatomic) IBOutlet UILabel *labelSEright;
 @property (weak, nonatomic) IBOutlet UILabel *labelSEleft;
+
+@property (weak, nonatomic) IBOutlet UILabel *labelAnswer;
+
 @end

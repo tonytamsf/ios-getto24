@@ -79,7 +79,7 @@
 
 @property NSArray *operatorChars;
 @property NSArray *operatorLabels;
-
+@property AnswerPackage *storeAnswerPackage;
 
 - (void) rightAnswer;
 
@@ -87,13 +87,41 @@
 
 @implementation GetTo24ViewController
 
+// pop up the text field
+- (void) verifyAnswer
+{
+    for (int i = 0; i < 4; i++ ){
+        [((UIButton *)self.cards[i]) setUserInteractionEnabled:TRUE];
+        ((UIButton *)self.operatorLabels[i]).hidden = FALSE;
+    }
+    
+    self.labelAnswer.hidden = FALSE;
+    self.labelAnswer.text = @"(select cards)";
 
+    [self.timer invalidate];
+
+}
 //
 // Player got the right answer, reward with a point
 // Maybe show them other potential answers
 //
 -(void) rightAnswer
 {
+    [self.timer invalidate];
+
+    self.labelAnswer.hidden = FALSE;
+    if (self.storeAnswerPackage.stringAnswer == nil) {
+        self.labelAnswer.text = @"No answer";
+    } else {
+        self.labelAnswer.text = self.storeAnswerPackage.stringAnswer;
+    }
+    
+    // Disable the other button
+    self.player1Button.enabled = FALSE;
+    self.player2Button.enabled = FALSE;
+    self.skipButton.enabled = FALSE;
+    self.buttonGiveUp.enabled = FALSE;
+    
     [AudioUtil playSound:@"chimes" :@"wav"];
 }
 
@@ -205,6 +233,8 @@
         PlayingCard *newCard = (PlayingCard *)[self._cardDeck drawRandomCard];
         CardHand *singleDeal = [[CardHand alloc] init];
         
+        [self.cards[i] setTag:MIN(10, newCard.rank)];
+        
         singleDeal.card = newCard;
         singleDeal.operatorLabel = self.operatorLabels[i];
 
@@ -311,8 +341,8 @@
 //
 - (IBAction)giveUp:(id)sender {
     [self.gameCountdownProgress setProgress:0.00 animated:NO];
-
     [self dealHand];
+
     [AudioUtil playSound:@"whoosh" :@"wav"];
 }
 
@@ -322,8 +352,8 @@
 //
 - (IBAction)noSolution:(id)sender {
     [self.gameCountdownProgress setProgress:0.00 animated:NO];
-    
-    [self dealHand];
+    [self rightAnswer];
+
     [AudioUtil playSound:@"beep" :@"wav"];
 }
 
@@ -335,9 +365,7 @@
     self.player1ScorePoints += 1;
     self.player1Score.text = [NSString stringWithFormat:@"%d",
                                                         self.player1ScorePoints];
-    [self dealHand];
-    [self rightAnswer];
-
+    [self verifyAnswer];
 }
 
 //
@@ -348,8 +376,7 @@
     self.player2ScorePoints += 1;
     self.player2Score.text = [NSString stringWithFormat:@"%d",
                               self.player2ScorePoints];
-    [self dealHand];
-    [self rightAnswer];
+    [self verifyAnswer];
 
 
 }
@@ -363,7 +390,8 @@
     self.operatorNWNE.alpha = 0.0;
     self.operatorNWSW.alpha = 0.0;
     self.operatorSWSE.alpha = 0.0;
-
+    
+    self.labelAnswer.hidden = TRUE;
 }
 
 //
@@ -379,6 +407,8 @@
     [self.operatorNWSW setTransform:CGAffineTransformMakeRotation(-M_PI / 2)];
 
     [self.buttonGiveUp setTransform:CGAffineTransformMakeRotation(-M_PI / 2)];
+    [self.skipButton setTransform:CGAffineTransformMakeRotation(-M_PI / 2)];
+
     [self.player1Button setTransform:CGAffineTransformMakeRotation(-M_PI)];
     [self.player1Score setTransform:CGAffineTransformMakeRotation(-M_PI)];
     [self.player1NameLabel setTransform:CGAffineTransformMakeRotation(-M_PI)];
@@ -414,7 +444,9 @@
     
     // Don't show them the answers
     [self hideAnswer];
+    [self.labelAnswer setTag:1];
     
+    self.skipButton.contentEdgeInsets = UIEdgeInsetsZero;
     // Get started
     [self startGame];
 }
@@ -435,7 +467,6 @@
 {
     // This should give us 4 * 3 * 2 hands
     NSArray *allHands = [(NSArray *)self.hand allPermutations];
-    AnswerPackage *storeAnswerPackage
     
     DLog(@"TOTAL %d", [allHands count]);
     for (int i = 0; i < [allHands count] - 1; ++i) {
@@ -445,9 +476,9 @@
         DLog(@" %d %@", i, tryHand);
         DLog(@"==================================================");
         @try {
-            storeAnswerPackage = [self calculateHand:tryHand];
-            if (nil != storeAnswerPackage) {
-                return storeAnswerPackage;
+            self.storeAnswerPackage = [self calculateHand:tryHand];
+            if (nil != self.storeAnswerPackage) {
+                return self.storeAnswerPackage;
             }
         }
         @catch (NSException *e) {
@@ -741,8 +772,37 @@
 }
 
 
+- (IBAction)buttonAnswerDismiss:(id)sender {
+    
+    ((UIButton *)sender).hidden = TRUE;
+    self.player1Button.enabled = TRUE;
+    self.player2Button.enabled = TRUE;
+    self.skipButton.enabled = TRUE;
+    self.buttonGiveUp.enabled = TRUE;
+    
+    for (int i = 0; i < 4; i++ ){
+        [((UIButton *)self.cards[i]) setUserInteractionEnabled:FALSE];
+        [((UIButton *)self.cards[i]) setTitle:@""
+                forState:UIControlStateNormal];
+    }
+    [self dealHand];
+}
+
+// Handle UILabel touch events
+// http://stackoverflow.com/questions/18459322/how-to-get-uilabel-tags-in-iphone
+-(void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event;
+{
+    UITouch *touch = [touches anyObject];
+    
+    if(touch.view.tag == 1)
+        [self buttonAnswerDismiss:self.labelAnswer];
+}
+
 - (IBAction)touchCardButton:(UIButton *)sender
 {
+    if ([self.labelAnswer.text compare:@"(select cards)"] == NSOrderedSame) {
+        self.labelAnswer.text = @"";
+    }
     if ([sender.currentTitle length]) {
         UIImage *cardImage = [UIImage imageNamed:@"cardback"];
         [sender setBackgroundImage:cardImage
@@ -753,9 +813,12 @@
         UIImage *cardImage = [UIImage imageNamed:@"cardfront"];
         [sender setBackgroundImage:cardImage
                           forState:UIControlStateNormal ];
-        [sender setTitle:@"A ♣︎"
+        [sender setTitle:[NSString stringWithFormat:@"%d", sender.tag]
                 forState:UIControlStateNormal];
+        
+        self.labelAnswer.text = [NSString stringWithFormat:@"%@ %d", self.labelAnswer.text, sender.tag];
     }
-    self.flipCount++;
+    
+    NSLog(@"%@", sender);
 }
 @end
