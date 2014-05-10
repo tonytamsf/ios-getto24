@@ -13,3 +13,6 @@ A fun math game to make 4 playing cards come out to 24 using **addition**, **sub
 
 ### Serious play
    * http://www.24game.com/default.aspx?
+
+### Opensource Project Credits
+   * https://github.com/martinezdelariva/MRCircularProgressView
