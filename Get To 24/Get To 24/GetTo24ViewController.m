@@ -11,6 +11,8 @@
 //
 
 #import "GetTo24ViewController.h"
+#import "MRCircularProgressView.h"
+
 #import "PlayingCardDeck.h"
 #import "Deck.h"
 #import "Debug.h"
@@ -96,6 +98,9 @@
     }
     
     self.labelAnswer.hidden = FALSE;
+    self.labelOperatorBackground.hidden = FALSE;
+    self.gameCountdownProgress.hidden = TRUE;
+    
     self.labelAnswer.text = @"(select cards)";
 
     [self.timer invalidate];
@@ -160,10 +165,10 @@
                           nil];
 
     self.operatorLabels = [NSArray arrayWithObjects:
-                           self.operatorNWNE,
-                           self.operatorNESE,
-                           self.operatorSWSE,
-                           self.operatorNWSW,
+                           self.buttonPlus,
+                           self.buttonMinus,
+                           self.buttonMultiplication,
+                           self.buttonDivision,
                            nil
                            ];
 
@@ -174,8 +179,8 @@
     
     
     self.hand = [[NSMutableArray alloc] init];
-    self.gameCountdownProgress.progress = 0.0;
-    
+    [self.gameCountdownProgress setProgress:0.0 duration:1.0];
+    self.gameCountdownProgress.progressArcWidth = 3.0f;
     [AudioUtil playSound:@"opening" :@"wav"];
 
     // Deal a fresh hand
@@ -196,9 +201,18 @@
         return;
     }
 
-    [self.gameCountdownProgress
-        setProgress:percent
-            animated:YES];
+    if (self.currentGameTime < 40) {
+        self.gameCountdownProgress.progressColor = [UIColor yellowColor];
+    }
+    if (self.currentGameTime < 20) {
+        self.gameCountdownProgress.progressColor = [UIColor redColor];
+    }
+    if (self.currentGameTime < 5) {
+        self.gameCountdownProgress.progressColor = [UIColor purpleColor];
+    }
+
+    [self.gameCountdownProgress setProgress:percent duration:1.0];
+
 }
 
 //
@@ -265,7 +279,7 @@
                                userInfo:nil
                                repeats:YES];
 
-    [self.gameCountdownProgress setProgress:0.00 animated:NO];
+    [self.gameCountdownProgress setProgress:0.0 duration:1.0];
     [AudioUtil playSound:@"relaxing-short" :@"wav"];
 }
 
@@ -386,12 +400,15 @@
 //
 - (void) hideAnswer
 {
-    self.operatorNESE.alpha = 0.0;
-    self.operatorNWNE.alpha = 0.0;
-    self.operatorNWSW.alpha = 0.0;
-    self.operatorSWSE.alpha = 0.0;
+    self.buttonMinus.hidden = TRUE;
+    self.buttonPlus.hidden = TRUE;
+    self.buttonMultiplication.hidden = TRUE;
+    self.buttonDivision.hidden = TRUE;
     
     self.labelAnswer.hidden = TRUE;
+    self.labelOperatorBackground.hidden = TRUE;
+    self.gameCountdownProgress.hidden = FALSE;
+
 }
 
 //
@@ -403,9 +420,6 @@
     [super viewDidLoad];
     
     // rotate the buttons, labels
-    [self.operatorNESE setTransform:CGAffineTransformMakeRotation(-M_PI / 2)];
-    [self.operatorNWSW setTransform:CGAffineTransformMakeRotation(-M_PI / 2)];
-
     [self.buttonGiveUp setTransform:CGAffineTransformMakeRotation(-M_PI / 2)];
     [self.skipButton setTransform:CGAffineTransformMakeRotation(-M_PI / 2)];
 
@@ -441,11 +455,17 @@
                        self.labelNEright,
                        nil
                        ];
-    
+    //
+    [self.buttonPlus setTag:10];
+    [self.buttonMinus setTag:11];
+    [self.buttonMultiplication setTag:12];
+    [self.buttonDivision setTag:13];
+
     // Don't show them the answers
-    [self hideAnswer];
-    [self.labelAnswer setTag:1];
-    
+    [self hideAnswer];	
+    [self.labelAnswer setTag:100];
+    [self.labelOperatorBackground setTag:101];
+
     self.skipButton.contentEdgeInsets = UIEdgeInsetsZero;
     // Get started
     [self startGame];
@@ -673,7 +693,6 @@
 - (AnswerPackage *)calcuateGroupingOfTwo:(NSArray *) cards usingOperators:(SEL [])selectors withOperatorChars:(NSArray *)currentOperatorChars
 {
     NSDecimalNumber *subtotal = [[NSDecimalNumber alloc] init];
-    NSDecimalNumber *subtotal1 = [[NSDecimalNumber alloc] init];
     AnswerPackage *answer = [[AnswerPackage alloc] init];
 
     SEL selector0 = selectors[0];
@@ -721,7 +740,6 @@
 - (AnswerPackage *) calcuateGroupingSecond:(NSArray *) cards usingOperators:(SEL [])selectors withOperatorChars:(NSArray *)currentOperatorChars
 {
     NSDecimalNumber *subtotal = [[NSDecimalNumber alloc] init];
-    NSDecimalNumber *subtotal1 = [[NSDecimalNumber alloc] init];
     AnswerPackage *answer = [[AnswerPackage alloc] init];
     
     SEL selector0 = selectors[0];
@@ -775,16 +793,22 @@
 - (IBAction)buttonAnswerDismiss:(id)sender {
     
     ((UIButton *)sender).hidden = TRUE;
+    self.labelOperatorBackground.hidden = TRUE;
+
     self.player1Button.enabled = TRUE;
     self.player2Button.enabled = TRUE;
     self.skipButton.enabled = TRUE;
     self.buttonGiveUp.enabled = TRUE;
     
+    // Hide
     for (int i = 0; i < 4; i++ ){
         [((UIButton *)self.cards[i]) setUserInteractionEnabled:FALSE];
         [((UIButton *)self.cards[i]) setTitle:@""
                 forState:UIControlStateNormal];
+        ((UIButton *)self.operatorLabels[i]).hidden = TRUE;
+
     }
+
     [self dealHand];
 }
 
@@ -796,8 +820,12 @@
 {
     UITouch *touch = [touches anyObject];
     
-    if(touch.view.tag == 1)
+    if(touch.view.tag >= 100 && touch.view.tag < 110)
         [self buttonAnswerDismiss:self.labelAnswer];
+}
+
+- (IBAction)operatorTouched:(id)sender {
+    
 }
 
 - (IBAction)touchCardButton:(UIButton *)sender
