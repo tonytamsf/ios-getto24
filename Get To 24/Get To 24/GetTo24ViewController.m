@@ -106,6 +106,8 @@
 
 @property NSArray *operatorChars;
 @property NSArray *operatorLabels;
+@property NSArray *operatorLabels2;
+
 @property AnswerPackage *storeAnswerPackage;
 
 - (void) rightAnswer;
@@ -131,6 +133,8 @@
     for (int i = 0; i < 4; i++ ){
         [((UIButton *)self.cards[i]) setUserInteractionEnabled:show];
         ((UIButton *)self.operatorLabels[i]).hidden = !show;
+        ((UIButton *)self.operatorLabels2[i]).hidden = !show;
+
         if (show == FALSE) {
             [((UIButton *)self.cards[i]) setTitle:@""
                                          forState:UIControlStateNormal];
@@ -138,34 +142,52 @@
     }
 
     self.labelAnswer.hidden = !show;
+    self.labelAnswer2.hidden = !show;
+
     self.labelOperatorBackground.hidden = !show;
+    self.labelOperatorBackground2.hidden = !show;
+
     self.gameCountdownProgress.hidden = show;
     self.deleteButton.hidden = !show;
+    self.deleteButton2.hidden = !show;
+
+    self.player2NoSolutionButton.hidden = show;
+    self.player1NoSolutionButton.hidden = show;
+
+    self.player1Button.hidden = show;
+    self.player2Button.hidden = show;
 
     // Disable the other button
     self.player1Button.enabled = !show;
     self.player2Button.enabled = !show;
-    self.skipButton.enabled = !show;
-    self.buttonGiveUp.enabled = !show;
     
 }
 //
 // Player got the right answer, reward with a point
 // Maybe show them other potential answers
 //
--(void) rightAnswer
+-(void) rightAnswer:(int) playerNumber
 {
     [self.timer invalidate];
-
-    self.labelAnswer.hidden = FALSE;
+    UILabel *label = (playerNumber == 1) ?
+                     self.labelAnswer :
+                     self.labelAnswer2;
+    
+    label.hidden = FALSE;
     if (self.storeAnswerPackage.stringAnswer == nil) {
-        self.labelAnswer.text = @"No answer";
+        label.text = @"No answer";
     } else {
-        self.labelAnswer.text = self.storeAnswerPackage.stringAnswer;
+        label.text = self.storeAnswerPackage.stringAnswer;
     }
+    
+    self.player1Button.hidden = true;
+    self.player2Button.hidden = true;
+    self.player1NoSolutionButton.hidden = true;
+    self.player2NoSolutionButton.hidden = true;
 
-    [self showAnswerControllers:FALSE];
-    [self dealHand];
+
+    //[self showAnswerControllers:FALSE];
+    //[self dealHand];
     [AudioUtil playSound:@"chimes" :@"wav"];
 }
 
@@ -210,6 +232,14 @@
                            self.buttonDivision,
                            nil
                            ];
+    
+    self.operatorLabels2 = [NSArray arrayWithObjects:
+                           self.buttonPlus2,
+                           self.buttonMinus2,
+                           self.buttonMultiplication2,
+                           self.buttonDivision2,
+                           nil
+                           ];
 
     // Deal a new deck of cards
     if (! self._cardDeck) {
@@ -219,11 +249,12 @@
     
     self.hand = [[NSMutableArray alloc] init];
     [self.gameCountdownProgress setProgress:0.0 duration:0.2f];
-    self.gameCountdownProgress.progressArcWidth = 5.0f;
+    self.gameCountdownProgress.progressArcWidth = 8.0f;
     self.gameCountdownProgress.progressColor = [UIColor greenColor];
     [AudioUtil playSound:@"opening" :@"wav"];
-    [self showAnswerControllers:FALSE];
     
+    
+    [self showAnswerControllers:FALSE];
     // Deal a fresh hand
     [self dealHand];
 }
@@ -350,9 +381,9 @@
     [UIView setAnimationDidStopSelector:@selector(showHideDidStop:finished:context:)];
     
     // Make the animatable changes.
-    card.alpha = 0.7;
-    left.alpha = 0.7;
-    right.alpha = 0.7;
+    card.alpha = 1.0;
+    left.alpha = 1.0;
+    right.alpha = 1.0;
     //[card setBackgroundImage:nil forState:UIControlStateNormal];
 
     // Commit the changes and perform the animation.
@@ -372,7 +403,7 @@
     UIButton *card = (__bridge UIButton *)context;
     
     // Make the animatable changes.
-    card.alpha = 0.7;
+    card.alpha = 1.0;
 
     [card setBackgroundImage:nil forState:UIControlStateNormal];
     
@@ -406,13 +437,24 @@
 }
 
 //
-// Say therei no solution, plus points if computer agrees otherwise it's consider
+// Say there i no solution, plus points if computer agrees otherwise it's consider
 // the same as wrong answer
 //
-- (IBAction)noSolution:(id)sender {
+- (IBAction)noSolution1:(id)sender {
     [self.gameCountdownProgress setProgress:0.00 animated:NO];
-    [self rightAnswer];
+    [self rightAnswer:1];
 
+    [AudioUtil playSound:@"beep" :@"wav"];
+}
+
+//
+// Say there no solution, plus points if computer agrees otherwise it's consider
+// the same as wrong answer
+//
+- (IBAction)noSolution2:(id)sender {
+    [self.gameCountdownProgress setProgress:0.00 animated:NO];
+    [self rightAnswer:2];
+    
     [AudioUtil playSound:@"beep" :@"wav"];
 }
 
@@ -465,8 +507,6 @@
     [super viewDidLoad];
     
     // rotate the buttons, labels
-    [self.buttonGiveUp setTransform:CGAffineTransformMakeRotation(-M_PI / 2)];
-    [self.skipButton setTransform:CGAffineTransformMakeRotation(-M_PI / 2)];
 
     [self.player1Button setTransform:CGAffineTransformMakeRotation(-M_PI)];
     [self.player1Score setTransform:CGAffineTransformMakeRotation(-M_PI)];
@@ -476,8 +516,9 @@
     [self.labelNWright setTransform:CGAffineTransformMakeRotation(-M_PI)];
     [self.labelSWright setTransform:CGAffineTransformMakeRotation(-M_PI)];
     [self.labelSEright setTransform:CGAffineTransformMakeRotation(-M_PI)];
-    [self.labelAnswer2 setTransform:CGAffineTransformMakeRotation(-M_PI)];
-    
+    [self.labelAnswer setTransform:CGAffineTransformMakeRotation(-M_PI)];
+    [self.deleteButton setTransform:CGAffineTransformMakeRotation(-M_PI)];
+
     // 2 player game allow 2 players to press buttons at the same time
     [self.view setMultipleTouchEnabled:YES];
     
@@ -510,10 +551,13 @@
     // Don't show them the answers
     [self hideAnswer];	
     [self.labelAnswer setTag:100];
-    [self.labelOperatorBackground setTag:101];
+    [self.labelAnswer2 setTag:101];
+
+    [self.labelOperatorBackground setTag:102];
+    [self.labelOperatorBackground2 setTag:103];
+
     self.deleteButton.hidden = true;
     
-    self.skipButton.contentEdgeInsets = UIEdgeInsetsZero;
     // Get started
     [self startGame];
     
@@ -852,9 +896,10 @@
 -(void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event;
 {
     UITouch *touch = [touches anyObject];
-    [self showAnswerControllers:FALSE];
-    [self dealHand];
-
+    if (touch.view.tag >=  100 && touch.view.tag <= 110) {
+        [self showAnswerControllers:FALSE];
+        [self dealHand];
+    }
 }
 
 - (IBAction)operatorTouched:(id)sender {
@@ -886,10 +931,10 @@
                           forState:UIControlStateNormal ];
         [sender setTitle:[NSString stringWithFormat:@"%d", sender.tag]
                 forState:UIControlStateNormal];
-        
+        [sender setUserInteractionEnabled:FALSE];
+
         self.labelAnswer.text = [NSString stringWithFormat:@"%@ %d", self.labelAnswer.text, sender.tag];
     }
     
-    NSLog(@"%@", sender);
 }
 @end

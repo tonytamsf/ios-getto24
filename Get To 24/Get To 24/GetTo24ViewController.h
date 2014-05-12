@@ -10,9 +10,6 @@
 #import "MRCircularProgressView.h"
 
 @interface GetTo24ViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UIButton *buttonGiveUp;
-@property (weak, nonatomic) IBOutlet UIProgressView *progressBar;
-@property (weak, nonatomic) IBOutlet UIButton *skipButton;
 
 @property (weak, nonatomic) IBOutlet UIButton *cardNE;
 @property (weak, nonatomic) IBOutlet UIButton *cardSW;
@@ -51,7 +48,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelOperatorBackground2;
 @property (weak, nonatomic) IBOutlet UIButton *buttonPlus2;
 @property (weak, nonatomic) IBOutlet UIButton *buttonMinus2;
-@property (weak, nonatomic) IBOutlet UIButton *buttonMultiply2;
+@property (weak, nonatomic) IBOutlet UIButton *buttonMultiplication2;
+@property (weak, nonatomic) IBOutlet UIButton *buttonDivision2;
+@property (weak, nonatomic) IBOutlet UIButton *deleteButton2;
 
+@property (weak, nonatomic) IBOutlet UIButton *player2NoSolutionButton;
+@property (weak, nonatomic) IBOutlet UIButton *player1NoSolutionButton;
 
 @end
