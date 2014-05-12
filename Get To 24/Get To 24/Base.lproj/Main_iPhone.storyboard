@@ -246,8 +246,24 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X2e-IY-RwY">
+                            <label opaque="NO" clipsSubviews="YES" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(select cards)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="245" translatesAutoresizingMaskIntoConstraints="NO" id="KPZ-nb-rup">
+                                <rect key="frame" x="36" y="55" width="245" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X2e-IY-RwY" userLabel="labelOperatorBackground">
                                 <rect key="frame" x="38" y="432" width="245" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MbE-se-f5r" userLabel="labelOperatorBackground">
+                                <rect key="frame" x="36" y="12" width="245" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -257,10 +273,10 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OgP-aB-rYp">
                                 <rect key="frame" x="68" y="432" width="42" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.60062839670000001" green="0.60062839670000001" blue="0.60062839670000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                 <state key="normal" title="+">
-                                    <color key="titleColor" red="0.98968339019999996" green="0.99284903250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.25804365870000001" green="0.32995379409999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="operatorTouched:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="UGw-i3-MnH"/>
@@ -269,10 +285,10 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOd-MI-QOH">
                                 <rect key="frame" x="116" y="432" width="42" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.60062839670000001" green="0.60062839670000001" blue="0.60062839670000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                 <state key="normal" title="-">
-                                    <color key="titleColor" red="0.98968339019999996" green="0.99284903250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.25804365870000001" green="0.32995379409999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="operatorTouched:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Qwi-FS-AnZ"/>
@@ -281,10 +297,10 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aTT-DI-POC">
                                 <rect key="frame" x="163" y="432" width="42" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.60062839670000001" green="0.60062839670000001" blue="0.60062839670000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                 <state key="normal" title="*">
-                                    <color key="titleColor" red="0.98968339019999996" green="0.99284903250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.25804365870000001" green="0.32995379409999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="operatorTouched:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="KjO-Hl-0cA"/>
@@ -293,20 +309,77 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m2t-xX-taw">
                                 <rect key="frame" x="211" y="432" width="42" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.60062839670000001" green="0.60062839670000001" blue="0.60062839670000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                 <state key="normal" title="/">
-                                    <color key="titleColor" red="0.98968339019999996" green="0.99284903250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.25804365870000001" green="0.32995379409999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="operatorTouched:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="NUy-wq-0pe"/>
                                 </connections>
                             </button>
-                            <view alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gdT-ZQ-IgF" customClass="MRCircularProgressView">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NmU-Fz-DJP">
+                                <rect key="frame" x="60" y="14" width="42" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                <state key="normal" title="+">
+                                    <color key="titleColor" red="0.25804365870000001" green="0.32995379409999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="operatorTouched:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="MVM-dy-qHb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fQy-hJ-z2h">
+                                <rect key="frame" x="108" y="14" width="42" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                <state key="normal" title="-">
+                                    <color key="titleColor" red="0.25804365870000001" green="0.32995379409999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="operatorTouched:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="b4F-1F-iHG"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YfI-WP-Roz">
+                                <rect key="frame" x="155" y="14" width="42" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                <state key="normal" title="*">
+                                    <color key="titleColor" red="0.25804365870000001" green="0.32995379409999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="operatorTouched:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="T6Q-9F-MbC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lpo-fw-qwT">
+                                <rect key="frame" x="203" y="14" width="42" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                <state key="normal" title="/">
+                                    <color key="titleColor" red="0.25804365870000001" green="0.32995379409999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="operatorTouched:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ggv-Us-7nd"/>
+                                </connections>
+                            </button>
+                            <view alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gdT-ZQ-IgF" userLabel="circular Progress View" customClass="MRCircularProgressView">
                                 <rect key="frame" x="142" y="225" width="36" height="36"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J1v-iB-VLu" userLabel="buttonDelete">
+                                <rect key="frame" x="259" y="399" width="22" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                <state key="normal" title="&lt;">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -345,19 +418,25 @@
                         <outlet property="buttonDivision" destination="m2t-xX-taw" id="jfF-JS-dmy"/>
                         <outlet property="buttonGiveUp" destination="NLm-bZ-kY2" id="C7U-tR-lrf"/>
                         <outlet property="buttonMinus" destination="vOd-MI-QOH" id="KQr-ks-Y36"/>
+                        <outlet property="buttonMinus2" destination="fQy-hJ-z2h" id="Hfb-nV-6u3"/>
                         <outlet property="buttonMultiplication" destination="aTT-DI-POC" id="Uze-PR-jSY"/>
+                        <outlet property="buttonMultiply2" destination="YfI-WP-Roz" id="0wT-iV-Vau"/>
                         <outlet property="buttonPlus" destination="OgP-aB-rYp" id="au0-Jh-EjC"/>
+                        <outlet property="buttonPlus2" destination="NmU-Fz-DJP" id="mnx-o7-smk"/>
                         <outlet property="cardNE" destination="MOk-DM-pwU" id="Ej2-7i-4c6"/>
                         <outlet property="cardNW" destination="Gj5-hm-bcg" id="03R-JH-R1Y"/>
                         <outlet property="cardSE" destination="pHx-cz-fWE" id="rFc-9R-czy"/>
                         <outlet property="cardSW" destination="cP7-ao-yCE" id="2Q5-c9-6LI"/>
+                        <outlet property="deleteButton" destination="J1v-iB-VLu" id="iT9-MJ-P1E"/>
                         <outlet property="gameCountdownProgress" destination="gdT-ZQ-IgF" id="ytz-9F-jiO"/>
                         <outlet property="labelAnswer" destination="5Eg-ML-33t" id="S71-gv-Ho2"/>
+                        <outlet property="labelAnswer2" destination="KPZ-nb-rup" id="kT9-N6-1hy"/>
                         <outlet property="labelNEleft" destination="RzA-hk-1tw" id="yF0-47-ezx"/>
                         <outlet property="labelNEright" destination="zgk-Aw-bmH" id="Uk9-PV-Gdv"/>
                         <outlet property="labelNWleft" destination="zci-AR-q5d" id="Ojg-PD-GXD"/>
                         <outlet property="labelNWright" destination="uux-az-efu" id="V3b-2V-6qq"/>
                         <outlet property="labelOperatorBackground" destination="X2e-IY-RwY" id="wBi-GE-N3G"/>
+                        <outlet property="labelOperatorBackground2" destination="MbE-se-f5r" id="Cb2-dX-zDd"/>
                         <outlet property="labelSEleft" destination="kSc-2s-X1a" id="NSp-GR-IS9"/>
                         <outlet property="labelSEright" destination="yTo-QE-Ru8" id="QMr-mz-w1i"/>
                         <outlet property="labelSWleft" destination="wV1-EI-ceN" id="9yT-m8-65s"/>

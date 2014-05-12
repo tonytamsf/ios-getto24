@@ -6,8 +6,6 @@
 //  Copyright (c) 2014 Yama Llama. All rights reserved.
 //
 // TODO: local leader board
-// TODO: fix the time transition
-// TODO: the transition of the card label needs work
 //
 
 #import "GetTo24ViewController.h"
@@ -19,41 +17,68 @@
 #import "NSArrayUtil.h"
 #import "AudioUtil.h"
 
+// When the computer figures out the answer
+
 @interface AnswerPackage : NSObject
+// A human readable string
 @property NSString *stringAnswer;
+
+// The strFormat for the answer
+
 @property NSString *stringFormat;
+
+// the list of operators used
 @property NSArray *operators;
+
+// The list of cards for the answer, order is important
 @property NSArray *cards;
+
+// The final answer
 @property NSDecimalNumber *answer;
 @end
 
 @implementation AnswerPackage
+// intentionally empty
 @end
 
+// A card is dealt, but the actually UI card needs to be kept tracked
 @interface CardHand : NSObject
 @property PlayingCard *card;
 @property UILabel *operatorLabel;
 @end
-    
+
 @implementation CardHand
+// intentially empty
 @end
 
 @interface GetTo24ViewController ()
 
-
 @property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
 @property (nonatomic) int flipCount;
 
+// call this once when we are ready to start
 - (void) startGame;
 
+// deal a new hand, will handle all the UI updates
 - (void) dealHand;
 
+// call every second to countdown to the end of the timer
 - (void) countdown;
 
+// put the list o cards back into the deck to be reused
+//should be call before and atfter good answers
 - (void) putInDeck:(NSArray *) cards;
 
+// Given 4 cards, calculate all possible answers, stop
+// and return the answer if at least one is found
+// does not currently return ll possible answers
+// return nil if no answer is found
 - (AnswerPackage *) calculateHand:(NSArray *)cards;
 
+// take a list of 4 cards, without reording them, apply
+// the found operators and return the answer by applying the
+// operators in the order and precendence.  Don't care
+// yet about the right answer
 - (AnswerPackage *) calcuateSimple:(NSArray *)cards  usingOperators:(SEL *)selectors withOperatorChars:(NSArray *)currentOperatorChars;
 - (AnswerPackage *) calcuateGrouping:(NSArray *)cards  usingOperators:(SEL *)selectors withOperatorChars:(NSArray *)currentOperatorChars;
 - (AnswerPackage *) calcuateGroupingOfTwo:(NSArray *)cards usingOperators:(SEL *)selectors withOperatorChars:(NSArray *)currentOperatorChars;
@@ -92,19 +117,37 @@
 // pop up the text field
 - (void) verifyAnswer
 {
-    for (int i = 0; i < 4; i++ ){
-        [((UIButton *)self.cards[i]) setUserInteractionEnabled:TRUE];
-        ((UIButton *)self.operatorLabels[i]).hidden = FALSE;
-    }
-    
-    self.labelAnswer.hidden = FALSE;
-    self.labelOperatorBackground.hidden = FALSE;
-    self.gameCountdownProgress.hidden = TRUE;
-    
+    [self showAnswerControllers:TRUE];
+
     self.labelAnswer.text = @"(select cards)";
 
     [self.timer invalidate];
 
+}
+
+- (void) showAnswerControllers:(Boolean)show
+{
+    
+    for (int i = 0; i < 4; i++ ){
+        [((UIButton *)self.cards[i]) setUserInteractionEnabled:show];
+        ((UIButton *)self.operatorLabels[i]).hidden = !show;
+        if (show == FALSE) {
+            [((UIButton *)self.cards[i]) setTitle:@""
+                                         forState:UIControlStateNormal];
+        }
+    }
+
+    self.labelAnswer.hidden = !show;
+    self.labelOperatorBackground.hidden = !show;
+    self.gameCountdownProgress.hidden = show;
+    self.deleteButton.hidden = !show;
+
+    // Disable the other button
+    self.player1Button.enabled = !show;
+    self.player2Button.enabled = !show;
+    self.skipButton.enabled = !show;
+    self.buttonGiveUp.enabled = !show;
+    
 }
 //
 // Player got the right answer, reward with a point
@@ -120,13 +163,9 @@
     } else {
         self.labelAnswer.text = self.storeAnswerPackage.stringAnswer;
     }
-    
-    // Disable the other button
-    self.player1Button.enabled = FALSE;
-    self.player2Button.enabled = FALSE;
-    self.skipButton.enabled = FALSE;
-    self.buttonGiveUp.enabled = FALSE;
-    
+
+    [self showAnswerControllers:FALSE];
+    [self dealHand];
     [AudioUtil playSound:@"chimes" :@"wav"];
 }
 
@@ -179,10 +218,12 @@
     
     
     self.hand = [[NSMutableArray alloc] init];
-    [self.gameCountdownProgress setProgress:0.0 duration:1.0];
-    self.gameCountdownProgress.progressArcWidth = 3.0f;
+    [self.gameCountdownProgress setProgress:0.0 duration:0.2f];
+    self.gameCountdownProgress.progressArcWidth = 5.0f;
+    self.gameCountdownProgress.progressColor = [UIColor greenColor];
     [AudioUtil playSound:@"opening" :@"wav"];
-
+    [self showAnswerControllers:FALSE];
+    
     // Deal a fresh hand
     [self dealHand];
 }
@@ -211,7 +252,7 @@
         self.gameCountdownProgress.progressColor = [UIColor purpleColor];
     }
 
-    [self.gameCountdownProgress setProgress:percent duration:1.0];
+    [self.gameCountdownProgress setProgress:percent duration:0.2f];
 
 }
 
@@ -272,6 +313,7 @@
     [self calcuateAnswer];
     
     [self.timer invalidate];
+    
     // Start the countdown
      self.timer = [NSTimer scheduledTimerWithTimeInterval:1
                                target:self
@@ -279,8 +321,11 @@
                                userInfo:nil
                                repeats:YES];
 
-    [self.gameCountdownProgress setProgress:0.0 duration:1.0];
-    [AudioUtil playSound:@"relaxing-short" :@"wav"];
+    self.gameCountdownProgress.progressColor = [UIColor greenColor];
+
+    [self.gameCountdownProgress setProgress:0.0 duration:0.2f];
+    self.gameCountdownProgress.hidden = FALSE;
+    //[AudioUtil playSound:@"relaxing-short" :@"wav"];
 }
 
 //
@@ -431,7 +476,8 @@
     [self.labelNWright setTransform:CGAffineTransformMakeRotation(-M_PI)];
     [self.labelSWright setTransform:CGAffineTransformMakeRotation(-M_PI)];
     [self.labelSEright setTransform:CGAffineTransformMakeRotation(-M_PI)];
-
+    [self.labelAnswer2 setTransform:CGAffineTransformMakeRotation(-M_PI)];
+    
     // 2 player game allow 2 players to press buttons at the same time
     [self.view setMultipleTouchEnabled:YES];
     
@@ -465,10 +511,12 @@
     [self hideAnswer];	
     [self.labelAnswer setTag:100];
     [self.labelOperatorBackground setTag:101];
-
+    self.deleteButton.hidden = true;
+    
     self.skipButton.contentEdgeInsets = UIEdgeInsetsZero;
     // Get started
     [self startGame];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -790,25 +838,10 @@
 }
 
 
-- (IBAction)buttonAnswerDismiss:(id)sender {
-    
-    ((UIButton *)sender).hidden = TRUE;
-    self.labelOperatorBackground.hidden = TRUE;
+- (IBAction)buttonAnswerDismiss:(id)sender
+{
 
-    self.player1Button.enabled = TRUE;
-    self.player2Button.enabled = TRUE;
-    self.skipButton.enabled = TRUE;
-    self.buttonGiveUp.enabled = TRUE;
-    
-    // Hide
-    for (int i = 0; i < 4; i++ ){
-        [((UIButton *)self.cards[i]) setUserInteractionEnabled:FALSE];
-        [((UIButton *)self.cards[i]) setTitle:@""
-                forState:UIControlStateNormal];
-        ((UIButton *)self.operatorLabels[i]).hidden = TRUE;
-
-    }
-
+    [self showAnswerControllers:FALSE];
     [self dealHand];
 }
 
@@ -819,13 +852,21 @@
 -(void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event;
 {
     UITouch *touch = [touches anyObject];
-    
-    if(touch.view.tag >= 100 && touch.view.tag < 110)
-        [self buttonAnswerDismiss:self.labelAnswer];
+    [self showAnswerControllers:FALSE];
+    [self dealHand];
+
 }
 
 - (IBAction)operatorTouched:(id)sender {
+    UIButton *operator = (UIButton *) sender;
     
+    if ([self.labelAnswer.text compare:@"(select cards)"] == NSOrderedSame) {
+        self.labelAnswer.text = @"";
+    }
+    self.labelAnswer.text =
+        [NSString stringWithFormat:@"%@ %@",
+                                   self.labelAnswer.text,
+                                   operator.currentTitle];
 }
 
 - (IBAction)touchCardButton:(UIButton *)sender

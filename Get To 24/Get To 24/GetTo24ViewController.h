@@ -43,8 +43,15 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelSWright;
 @property (weak, nonatomic) IBOutlet UILabel *labelSEright;
 @property (weak, nonatomic) IBOutlet UILabel *labelSEleft;
+@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 
 @property (weak, nonatomic) IBOutlet UILabel *labelAnswer;
 @property (weak, nonatomic) IBOutlet UILabel *labelOperatorBackground;
+@property (weak, nonatomic) IBOutlet UILabel *labelAnswer2;
+@property (weak, nonatomic) IBOutlet UILabel *labelOperatorBackground2;
+@property (weak, nonatomic) IBOutlet UIButton *buttonPlus2;
+@property (weak, nonatomic) IBOutlet UIButton *buttonMinus2;
+@property (weak, nonatomic) IBOutlet UIButton *buttonMultiply2;
+
 
 @end
