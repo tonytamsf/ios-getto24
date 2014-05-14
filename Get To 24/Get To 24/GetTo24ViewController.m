@@ -107,11 +107,15 @@
 @property NSArray *operatorChars;
 @property NSArray *operatorLabels;
 @property NSArray *operatorLabels2;
+@property NSArray *labelAnswers;
+
+@property NSMutableArray *answerArray;
 
 @property AnswerPackage *storeAnswerPackage;
 
 - (void) rightAnswer;
 
+@property int answerPlayer;
 @end
 
 @implementation GetTo24ViewController
@@ -246,10 +250,11 @@
         self._cardDeck = [[PlayingCardDeck alloc] init];
     }
     
+    self.labelAnswers = [[NSArray alloc] initWithObjects:self.labelAnswer, self.labelAnswer2, nil];
+    
     
     self.hand = [[NSMutableArray alloc] init];
     [self.gameCountdownProgress setProgress:0.0 duration:0.2f];
-    self.gameCountdownProgress.progressArcWidth = 8.0f;
     self.gameCountdownProgress.progressColor = [UIColor greenColor];
     [AudioUtil playSound:@"opening" :@"wav"];
     
@@ -302,7 +307,8 @@
 //
 - (void) dealHand
 {
-
+    self.answerPlayer = -1;
+    
     // TODO what if we run out of cards, time to call a winner
     self.currentGameTime = 60;
 
@@ -319,6 +325,7 @@
         PlayingCard *newCard = (PlayingCard *)[self._cardDeck drawRandomCard];
         CardHand *singleDeal = [[CardHand alloc] init];
         
+        // tag it for later to get the value back
         [self.cards[i] setTag:MIN(10, newCard.rank)];
         
         singleDeal.card = newCard;
@@ -354,7 +361,7 @@
 
     self.gameCountdownProgress.progressColor = [UIColor greenColor];
 
-    [self.gameCountdownProgress setProgress:0.0 duration:0.2f];
+    [self.gameCountdownProgress setProgress:0.0 duration:1.0f];
     self.gameCountdownProgress.hidden = FALSE;
     //[AudioUtil playSound:@"relaxing-short" :@"wav"];
 }
@@ -463,6 +470,9 @@
 // TODO
 //
 - (IBAction)player1Pressed:(id)sender {
+    
+    self.answerPlayer = 0;
+    
     self.player1ScorePoints += 1;
     self.player1Score.text = [NSString stringWithFormat:@"%d",
                                                         self.player1ScorePoints];
@@ -474,12 +484,12 @@
 // TODO
 //
 - (IBAction)player2Pressed:(id)sender {
+    self.answerPlayer = 1;
+
     self.player2ScorePoints += 1;
     self.player2Score.text = [NSString stringWithFormat:@"%d",
                               self.player2ScorePoints];
     [self verifyAnswer];
-
-
 }
 
 //
@@ -558,6 +568,7 @@
 
     self.deleteButton.hidden = true;
     
+    self.answerArray = [[NSMutableArray alloc] init];
     // Get started
     [self startGame];
     
@@ -902,22 +913,34 @@
     }
 }
 
-- (IBAction)operatorTouched:(id)sender {
+- (IBAction)operatorTouched:(id)sender
+{
     UIButton *operator = (UIButton *) sender;
+    UILabel *labelAnswer = [self.labelAnswers objectAtIndex:self.answerPlayer];
     
     if ([self.labelAnswer.text compare:@"(select cards)"] == NSOrderedSame) {
-        self.labelAnswer.text = @"";
+        labelAnswer.text = @"";
     }
-    self.labelAnswer.text =
+    [self.answerArray addObject:[NSString stringWithFormat:@"%@", operator.currentTitle]];
+
+    labelAnswer.text =
         [NSString stringWithFormat:@"%@ %@",
-                                   self.labelAnswer.text,
+                                   labelAnswer.text,
                                    operator.currentTitle];
 }
 
 - (IBAction)touchCardButton:(UIButton *)sender
 {
+    if (self.answerPlayer < 0 || self.answerPlayer > 1) {
+        // something really wrong, reset everything
+        [self startGame];
+        return;
+    }
+    
+    UILabel *labelAnswer = [self.labelAnswers objectAtIndex:self.answerPlayer];
+    
     if ([self.labelAnswer.text compare:@"(select cards)"] == NSOrderedSame) {
-        self.labelAnswer.text = @"";
+        labelAnswer.text = @"";
     }
     if ([sender.currentTitle length]) {
         UIImage *cardImage = [UIImage imageNamed:@"cardback"];
@@ -932,8 +955,10 @@
         [sender setTitle:[NSString stringWithFormat:@"%d", sender.tag]
                 forState:UIControlStateNormal];
         [sender setUserInteractionEnabled:FALSE];
-
-        self.labelAnswer.text = [NSString stringWithFormat:@"%@ %d", self.labelAnswer.text, sender.tag];
+        
+        [self.answerArray addObject:[NSString stringWithFormat:@"%d", sender.tag]];
+        
+        labelAnswer.text = [NSString stringWithFormat:@"- [%@] %d", labelAnswer.text, sender.tag];
     }
     
 }

@@ -21,6 +21,7 @@
 		D868E2481919C3EE00324698 /* playing.background.png in Resources */ = {isa = PBXBuildFile; fileRef = D868E2471919C3EE00324698 /* playing.background.png */; };
 		D87D283A191B3F160019B493 /* relaxing.wav in Resources */ = {isa = PBXBuildFile; fileRef = D87D2839191B3F160019B493 /* relaxing.wav */; };
 		D87D283C191B415B0019B493 /* relaxing-short.wav in Resources */ = {isa = PBXBuildFile; fileRef = D87D283B191B415B0019B493 /* relaxing-short.wav */; };
+		D8B75D6C1922791A00991892 /* PlayingCardDeckNoFace.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B75D6B1922791A00991892 /* PlayingCardDeckNoFace.m */; };
 		D8C09C5819159AA90057DDEB /* ray.wav in Resources */ = {isa = PBXBuildFile; fileRef = D8C09C5719159AA90057DDEB /* ray.wav */; };
 		D8C09C5A19159AF70057DDEB /* whoosh.wav in Resources */ = {isa = PBXBuildFile; fileRef = D8C09C5919159AF70057DDEB /* whoosh.wav */; };
 		D8C09C761915A0510057DDEB /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D8C09C631915A0510057DDEB /* .gitignore */; };
@@ -78,6 +79,8 @@
 		D868E2471919C3EE00324698 /* playing.background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playing.background.png; sourceTree = "<group>"; };
 		D87D2839191B3F160019B493 /* relaxing.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = relaxing.wav; sourceTree = "<group>"; };
 		D87D283B191B415B0019B493 /* relaxing-short.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "relaxing-short.wav"; sourceTree = "<group>"; };
+		D8B75D6A1922791A00991892 /* PlayingCardDeckNoFace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayingCardDeckNoFace.h; sourceTree = "<group>"; };
+		D8B75D6B1922791A00991892 /* PlayingCardDeckNoFace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingCardDeckNoFace.m; sourceTree = "<group>"; };
 		D8C09C5719159AA90057DDEB /* ray.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ray.wav; sourceTree = "<group>"; };
 		D8C09C5919159AF70057DDEB /* whoosh.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = whoosh.wav; sourceTree = "<group>"; };
 		D8C09C631915A0510057DDEB /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -203,6 +206,8 @@
 				D8C09C6D1915A0510057DDEB /* PlayingCard.m */,
 				D8C09C6E1915A0510057DDEB /* PlayingCardDeck.h */,
 				D8C09C6F1915A0510057DDEB /* PlayingCardDeck.m */,
+				D8B75D6A1922791A00991892 /* PlayingCardDeckNoFace.h */,
+				D8B75D6B1922791A00991892 /* PlayingCardDeckNoFace.m */,
 			);
 			path = cards;
 			sourceTree = "<group>";
@@ -474,6 +479,7 @@
 				D8C09C7D1915A0510057DDEB /* NSArrayUtil.m in Sources */,
 				D8C09C791915A0510057DDEB /* PlayingCard.m in Sources */,
 				D8C09C781915A0510057DDEB /* Deck.m in Sources */,
+				D8B75D6C1922791A00991892 /* PlayingCardDeckNoFace.m in Sources */,
 				D8D369AB187933400092E0F4 /* GetTo24ViewController.m in Sources */,
 				D8D369A2187933400092E0F4 /* GetTo24AppDelegate.m in Sources */,
 				D8C09C7A1915A0510057DDEB /* PlayingCardDeck.m in Sources */,
