@@ -107,7 +107,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q7m-3b-OYd" userLabel="player1GotItButton">
-                                <rect key="frame" x="84" y="14" width="48" height="48"/>
+                                <rect key="frame" x="84" y="20" width="48" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -191,14 +191,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zgk-Aw-bmH" userLabel="labelRightNE">
-                                <rect key="frame" x="213" y="205" width="42" height="21"/>
+                                <rect key="frame" x="213" y="214" width="42" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uux-az-efu" userLabel="labelRightNW">
-                                <rect key="frame" x="107" y="205" width="42" height="21"/>
+                                <rect key="frame" x="107" y="214" width="42" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -239,15 +239,15 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(select cards)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="245" translatesAutoresizingMaskIntoConstraints="NO" id="5Eg-ML-33t">
-                                <rect key="frame" x="38" y="393" width="245" height="42"/>
+                            <label opaque="NO" clipsSubviews="YES" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="(select cards)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="245" translatesAutoresizingMaskIntoConstraints="NO" id="5Eg-ML-33t">
+                                <rect key="frame" x="38" y="394" width="245" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(select cards)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="245" translatesAutoresizingMaskIntoConstraints="NO" id="KPZ-nb-rup">
+                            <label opaque="NO" clipsSubviews="YES" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="(select cards)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="245" translatesAutoresizingMaskIntoConstraints="NO" id="KPZ-nb-rup">
                                 <rect key="frame" x="36" y="55" width="245" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -255,72 +255,8 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X2e-IY-RwY" userLabel="labelOperatorBackground">
-                                <rect key="frame" x="38" y="432" width="245" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MbE-se-f5r" userLabel="labelOperatorBackground2">
-                                <rect key="frame" x="36" y="14" width="245" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OgP-aB-rYp">
-                                <rect key="frame" x="68" y="20" width="42" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
-                                <state key="normal" title="+">
-                                    <color key="titleColor" red="0.25804365870000001" green="0.32995379409999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="operatorTouched:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="UGw-i3-MnH"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOd-MI-QOH">
-                                <rect key="frame" x="116" y="20" width="42" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
-                                <state key="normal" title="-">
-                                    <color key="titleColor" red="0.25804365870000001" green="0.32995379409999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="operatorTouched:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Qwi-FS-AnZ"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aTT-DI-POC">
-                                <rect key="frame" x="163" y="20" width="42" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
-                                <state key="normal" title="*">
-                                    <color key="titleColor" red="0.25804365870000001" green="0.32995379409999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="operatorTouched:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="KjO-Hl-0cA"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m2t-xX-taw">
-                                <rect key="frame" x="211" y="20" width="42" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
-                                <state key="normal" title="/">
-                                    <color key="titleColor" red="0.25804365870000001" green="0.32995379409999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="operatorTouched:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="NUy-wq-0pe"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NmU-Fz-DJP" userLabel="Button - +2">
-                                <rect key="frame" x="68" y="432" width="42" height="36"/>
+                                <rect key="frame" x="268" y="152" width="42" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
@@ -332,7 +268,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fQy-hJ-z2h" userLabel="Button - -2">
-                                <rect key="frame" x="115" y="432" width="42" height="36"/>
+                                <rect key="frame" x="268" y="199" width="42" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
@@ -344,7 +280,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YfI-WP-Roz" userLabel="Button - *2">
-                                <rect key="frame" x="163" y="432" width="42" height="36"/>
+                                <rect key="frame" x="268" y="256" width="42" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
@@ -356,7 +292,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lpo-fw-qwT" userLabel="Button - /2">
-                                <rect key="frame" x="211" y="432" width="42" height="36"/>
+                                <rect key="frame" x="268" y="300" width="42" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
@@ -372,24 +308,6 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J1v-iB-VLu" userLabel="buttonDelete">
-                                <rect key="frame" x="259" y="399" width="22" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
-                                <state key="normal" title="&lt;">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3DD-nu-cPI" userLabel="buttonDelete2">
-                                <rect key="frame" x="36" y="65" width="22" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
-                                <state key="normal" title="&lt;">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -413,9 +331,13 @@
                             <constraint firstItem="yTo-QE-Ru8" firstAttribute="leading" secondItem="pHx-cz-fWE" secondAttribute="trailing" constant="-50" id="abm-Bq-d2j"/>
                             <constraint firstItem="pHx-cz-fWE" firstAttribute="centerY" secondItem="cP7-ao-yCE" secondAttribute="centerY" id="c7D-Vr-Lb5"/>
                             <constraint firstItem="m4s-Sl-Q1R" firstAttribute="leading" secondItem="NSd-Hb-EZb" secondAttribute="trailing" constant="8" id="cXp-Hg-chO"/>
+                            <constraint firstItem="cP7-ao-yCE" firstAttribute="top" secondItem="Gj5-hm-bcg" secondAttribute="bottom" constant="21" id="e6B-Vz-bEW"/>
+                            <constraint firstItem="KPZ-nb-rup" firstAttribute="bottom" secondItem="Gj5-hm-bcg" secondAttribute="top" constant="-3" id="eAP-f5-PV5"/>
                             <constraint firstItem="wV1-EI-ceN" firstAttribute="centerX" secondItem="zci-AR-q5d" secondAttribute="centerX" constant="-3" id="eGs-bx-fVf"/>
                             <constraint firstItem="cP7-ao-yCE" firstAttribute="top" secondItem="wV1-EI-ceN" secondAttribute="bottom" constant="-25" id="eoi-ui-d4r"/>
+                            <constraint firstItem="5Eg-ML-33t" firstAttribute="top" secondItem="cP7-ao-yCE" secondAttribute="bottom" constant="3" id="ksI-YK-PTb"/>
                             <constraint firstItem="Gj5-hm-bcg" firstAttribute="top" secondItem="zci-AR-q5d" secondAttribute="bottom" constant="-25" id="lam-lr-CP2"/>
+                            <constraint firstItem="uux-az-efu" firstAttribute="bottom" secondItem="Gj5-hm-bcg" secondAttribute="bottom" constant="-5" id="s1g-R2-SCb"/>
                             <constraint firstItem="zci-AR-q5d" firstAttribute="centerY" secondItem="RzA-hk-1tw" secondAttribute="centerY" constant="2" id="ueh-Al-wMc"/>
                             <constraint firstItem="whQ-VG-LXX" firstAttribute="top" secondItem="cP7-ao-yCE" secondAttribute="bottom" constant="10" id="uuH-4d-69q"/>
                             <constraint firstItem="MOk-DM-pwU" firstAttribute="leading" secondItem="RzA-hk-1tw" secondAttribute="trailing" constant="-50" id="vLP-cE-3Rr"/>
@@ -424,20 +346,14 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="buttonDivision" destination="m2t-xX-taw" id="jfF-JS-dmy"/>
                         <outlet property="buttonDivision2" destination="lpo-fw-qwT" id="E8v-ez-6os"/>
-                        <outlet property="buttonMinus" destination="vOd-MI-QOH" id="KQr-ks-Y36"/>
                         <outlet property="buttonMinus2" destination="fQy-hJ-z2h" id="Hfb-nV-6u3"/>
-                        <outlet property="buttonMultiplication" destination="aTT-DI-POC" id="Uze-PR-jSY"/>
                         <outlet property="buttonMultiplication2" destination="YfI-WP-Roz" id="kkL-aA-gfZ"/>
-                        <outlet property="buttonPlus" destination="OgP-aB-rYp" id="au0-Jh-EjC"/>
                         <outlet property="buttonPlus2" destination="NmU-Fz-DJP" id="mnx-o7-smk"/>
                         <outlet property="cardNE" destination="MOk-DM-pwU" id="Ej2-7i-4c6"/>
                         <outlet property="cardNW" destination="Gj5-hm-bcg" id="03R-JH-R1Y"/>
                         <outlet property="cardSE" destination="pHx-cz-fWE" id="rFc-9R-czy"/>
                         <outlet property="cardSW" destination="cP7-ao-yCE" id="2Q5-c9-6LI"/>
-                        <outlet property="deleteButton" destination="J1v-iB-VLu" id="iT9-MJ-P1E"/>
-                        <outlet property="deleteButton2" destination="3DD-nu-cPI" id="5i6-lw-1iL"/>
                         <outlet property="gameCountdownProgress" destination="gdT-ZQ-IgF" id="ytz-9F-jiO"/>
                         <outlet property="labelAnswer" destination="KPZ-nb-rup" id="5rb-2d-o5m"/>
                         <outlet property="labelAnswer2" destination="5Eg-ML-33t" id="gyT-27-2k6"/>
@@ -445,8 +361,6 @@
                         <outlet property="labelNEright" destination="zgk-Aw-bmH" id="Uk9-PV-Gdv"/>
                         <outlet property="labelNWleft" destination="zci-AR-q5d" id="Ojg-PD-GXD"/>
                         <outlet property="labelNWright" destination="uux-az-efu" id="V3b-2V-6qq"/>
-                        <outlet property="labelOperatorBackground" destination="MbE-se-f5r" id="8rP-BN-S2y"/>
-                        <outlet property="labelOperatorBackground2" destination="X2e-IY-RwY" id="28E-S0-tyZ"/>
                         <outlet property="labelSEleft" destination="kSc-2s-X1a" id="NSp-GR-IS9"/>
                         <outlet property="labelSEright" destination="yTo-QE-Ru8" id="QMr-mz-w1i"/>
                         <outlet property="labelSWleft" destination="wV1-EI-ceN" id="9yT-m8-65s"/>

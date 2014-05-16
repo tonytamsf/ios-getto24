@@ -15,10 +15,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *cardSW;
 @property (weak, nonatomic) IBOutlet UIButton *cardSE;
 @property (weak, nonatomic) IBOutlet UIButton *cardNW;
-@property (weak, nonatomic) IBOutlet UIButton *buttonPlus;
-@property (weak, nonatomic) IBOutlet UIButton *buttonMinus;
-@property (weak, nonatomic) IBOutlet UIButton *buttonMultiplication;
-@property (weak, nonatomic) IBOutlet UIButton *buttonDivision;
 
 @property (weak, nonatomic) IBOutlet UIButton *player1Button;
 @property (weak, nonatomic) IBOutlet UIButton *player2Button;
@@ -40,17 +36,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelSWright;
 @property (weak, nonatomic) IBOutlet UILabel *labelSEright;
 @property (weak, nonatomic) IBOutlet UILabel *labelSEleft;
-@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 
 @property (weak, nonatomic) IBOutlet UILabel *labelAnswer;
-@property (weak, nonatomic) IBOutlet UILabel *labelOperatorBackground;
 @property (weak, nonatomic) IBOutlet UILabel *labelAnswer2;
-@property (weak, nonatomic) IBOutlet UILabel *labelOperatorBackground2;
 @property (weak, nonatomic) IBOutlet UIButton *buttonPlus2;
 @property (weak, nonatomic) IBOutlet UIButton *buttonMinus2;
 @property (weak, nonatomic) IBOutlet UIButton *buttonMultiplication2;
 @property (weak, nonatomic) IBOutlet UIButton *buttonDivision2;
-@property (weak, nonatomic) IBOutlet UIButton *deleteButton2;
 
 @property (weak, nonatomic) IBOutlet UIButton *player2NoSolutionButton;
 @property (weak, nonatomic) IBOutlet UIButton *player1NoSolutionButton;

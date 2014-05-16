@@ -105,7 +105,6 @@
 @property SEL *selectors;
 
 @property NSArray *operatorChars;
-@property NSArray *operatorLabels;
 @property NSArray *operatorLabels2;
 @property NSArray *labelAnswers;
 
@@ -137,7 +136,6 @@
     
     for (int i = 0; i < 4; i++ ){
         [((UIButton *)self.cards[i]) setUserInteractionEnabled:show];
-        ((UIButton *)self.operatorLabels[i]).hidden = !show;
         ((UIButton *)self.operatorLabels2[i]).hidden = !show;
 
         if (show == FALSE) {
@@ -149,12 +147,9 @@
     self.labelAnswer.hidden = !show;
     self.labelAnswer2.hidden = !show;
 
-    self.labelOperatorBackground.hidden = !show;
-    self.labelOperatorBackground2.hidden = !show;
 
     self.gameCountdownProgress.hidden = show;
-    self.deleteButton.hidden = !show;
-    self.deleteButton2.hidden = !show;
+
 
     self.player2NoSolutionButton.hidden = show;
     self.player1NoSolutionButton.hidden = show;
@@ -236,13 +231,6 @@
                           @"/",
                           nil];
 
-    self.operatorLabels = [NSArray arrayWithObjects:
-                           self.buttonPlus,
-                           self.buttonMinus,
-                           self.buttonMultiplication,
-                           self.buttonDivision,
-                           nil
-                           ];
     
     self.operatorLabels2 = [NSArray arrayWithObjects:
                            self.buttonPlus2,
@@ -336,7 +324,6 @@
         [self.cards[i] setTag:MIN(10, newCard.rank)];
         
         singleDeal.card = newCard;
-        singleDeal.operatorLabel = self.operatorLabels[i];
 
         [self.hand addObject:singleDeal];
         
@@ -504,13 +491,9 @@
 //
 - (void) hideAnswer
 {
-    self.buttonMinus.hidden = TRUE;
-    self.buttonPlus.hidden = TRUE;
-    self.buttonMultiplication.hidden = TRUE;
-    self.buttonDivision.hidden = TRUE;
+
     
     self.labelAnswer.hidden = TRUE;
-    self.labelOperatorBackground.hidden = TRUE;
     self.gameCountdownProgress.hidden = FALSE;
 
 }
@@ -534,7 +517,6 @@
     [self.labelSWright setTransform:CGAffineTransformMakeRotation(-M_PI)];
     [self.labelSEright setTransform:CGAffineTransformMakeRotation(-M_PI)];
     [self.labelAnswer setTransform:CGAffineTransformMakeRotation(-M_PI)];
-    [self.deleteButton setTransform:CGAffineTransformMakeRotation(-M_PI)];
 
     // 2 player game allow 2 players to press buttons at the same time
     [self.view setMultipleTouchEnabled:YES];
@@ -560,20 +542,16 @@
                        nil
                        ];
     //
-    [self.buttonPlus setTag:10];
-    [self.buttonMinus setTag:11];
-    [self.buttonMultiplication setTag:12];
-    [self.buttonDivision setTag:13];
+    [self.buttonPlus2 setTag:10];
+    [self.buttonMinus2 setTag:11];
+    [self.buttonMultiplication2 setTag:12];
+    [self.buttonDivision2 setTag:13];
 
     // Don't show them the answers
     [self hideAnswer];	
     [self.labelAnswer setTag:100];
     [self.labelAnswer2 setTag:101];
 
-    [self.labelOperatorBackground setTag:102];
-    [self.labelOperatorBackground2 setTag:103];
-
-    self.deleteButton.hidden = true;
     
     self.gameCountdownProgress.progressArcWidth = 3.0;
 
