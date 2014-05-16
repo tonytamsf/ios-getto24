@@ -126,6 +126,7 @@
     [self showAnswerControllers:TRUE];
 
     self.labelAnswer.text = @"(select cards)";
+    self.labelAnswer2.text = @"(select cards)";
 
     [self.timer invalidate];
 
@@ -178,10 +179,16 @@
                      self.labelAnswer2;
     
     label.hidden = FALSE;
+    self.labelAnswer2.hidden = FALSE;
+    self.labelAnswer.hidden = FALSE;
+    
     if (self.storeAnswerPackage.stringAnswer == nil) {
-        label.text = @"No answer";
+        self.labelAnswer.text = @"No answer";
+        self.labelAnswer2.text = @"No answer";
+
     } else {
-        label.text = self.storeAnswerPackage.stringAnswer;
+        self.labelAnswer2.text = self.storeAnswerPackage.stringAnswer;
+        self.labelAnswer.text = self.storeAnswerPackage.stringAnswer;
     }
     
     self.player1Button.hidden = true;
@@ -254,7 +261,7 @@
     
     
     self.hand = [[NSMutableArray alloc] init];
-    [self.gameCountdownProgress setProgress:0.0 duration:0.2f];
+    [self.gameCountdownProgress setProgress:0.0 duration:1.0f];
     self.gameCountdownProgress.progressColor = [UIColor greenColor];
     [AudioUtil playSound:@"opening" :@"wav"];
     
@@ -288,7 +295,7 @@
         self.gameCountdownProgress.progressColor = [UIColor purpleColor];
     }
 
-    [self.gameCountdownProgress setProgress:percent duration:0.2f];
+    [self.gameCountdownProgress setProgress:percent duration:1.0f];
 
 }
 
@@ -568,6 +575,8 @@
 
     self.deleteButton.hidden = true;
     
+    self.gameCountdownProgress.progressArcWidth = 3.0;
+
     self.answerArray = [[NSMutableArray alloc] init];
     // Get started
     [self startGame];
@@ -918,7 +927,8 @@
     UIButton *operator = (UIButton *) sender;
     UILabel *labelAnswer = [self.labelAnswers objectAtIndex:self.answerPlayer];
     
-    if ([self.labelAnswer.text compare:@"(select cards)"] == NSOrderedSame) {
+
+    if ([labelAnswer.text compare:@"(select cards)"] == NSOrderedSame) {
         labelAnswer.text = @"";
     }
     [self.answerArray addObject:[NSString stringWithFormat:@"%@", operator.currentTitle]];
@@ -958,7 +968,7 @@
         
         [self.answerArray addObject:[NSString stringWithFormat:@"%d", sender.tag]];
         
-        labelAnswer.text = [NSString stringWithFormat:@"- [%@] %d", labelAnswer.text, sender.tag];
+        labelAnswer.text = [NSString stringWithFormat:@"% %d", labelAnswer.text, sender.tag];
     }
     
 }
