@@ -264,7 +264,7 @@
 //
 - (void) countdown
 {
-    float percent = (60 - self.currentGameTime) / 60.0;
+    float percent = (30 - self.currentGameTime) / 30.0;
 
     DLog("Countdown %d %f", self.currentGameTime, percent);
     self.currentGameTime -= 1;
@@ -305,7 +305,7 @@
     self.answerPlayer = -1;
     
     // TODO what if we run out of cards, time to call a winner
-    self.currentGameTime = 60;
+    self.currentGameTime = 30;
 
     // clear the current hand about put back into the deck in random order?
     [self putInDeck:self.hand];
@@ -927,27 +927,20 @@
     
     UILabel *labelAnswer = [self.labelAnswers objectAtIndex:self.answerPlayer];
     
-    if ([self.labelAnswer.text compare:@"(select cards)"] == NSOrderedSame) {
+    if ([labelAnswer.text compare:@"(select cards)"] == NSOrderedSame) {
         labelAnswer.text = @"";
     }
-    if ([sender.currentTitle length]) {
-        UIImage *cardImage = [UIImage imageNamed:@"cardback"];
-        [sender setBackgroundImage:cardImage
-                          forState:UIControlStateNormal ];
-        [sender setTitle:@""
-                forState:UIControlStateNormal];
-    } else {
-        UIImage *cardImage = [UIImage imageNamed:@"cardfront"];
-        [sender setBackgroundImage:cardImage
-                          forState:UIControlStateNormal ];
-        [sender setTitle:[NSString stringWithFormat:@"%d", sender.tag]
-                forState:UIControlStateNormal];
-        [sender setUserInteractionEnabled:FALSE];
-        
-        [self.answerArray addObject:[NSString stringWithFormat:@"%d", sender.tag]];
-        
-        labelAnswer.text = [NSString stringWithFormat:@"% %d", labelAnswer.text, sender.tag];
-    }
+    
+    UIImage *cardImage = [UIImage imageNamed:@"cardfront"];
+    [sender setBackgroundImage:cardImage
+                      forState:UIControlStateNormal ];
+    [sender setTitle:[NSString stringWithFormat:@"%d", sender.tag]
+            forState:UIControlStateNormal];
+    [sender setUserInteractionEnabled:FALSE];
+    
+    [self.answerArray addObject:[NSString stringWithFormat:@"%d", sender.tag]];
+    
+    labelAnswer.text = [NSString stringWithFormat:@"%@ %d", (NSString *)labelAnswer.text, sender.tag];
     
 }
 @end
