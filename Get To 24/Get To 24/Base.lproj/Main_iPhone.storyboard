@@ -315,11 +315,6 @@
                                     <action selector="operatorTouched:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ggv-Us-7nd"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gdT-ZQ-IgF" userLabel="circular Progress View" customClass="MRCircularProgressView">
-                                <rect key="frame" x="20" y="226" width="36" height="0.0"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -366,7 +361,6 @@
                         <outlet property="cardNW" destination="Gj5-hm-bcg" id="03R-JH-R1Y"/>
                         <outlet property="cardSE" destination="pHx-cz-fWE" id="rFc-9R-czy"/>
                         <outlet property="cardSW" destination="cP7-ao-yCE" id="2Q5-c9-6LI"/>
-                        <outlet property="gameCountdownProgress" destination="gdT-ZQ-IgF" id="ytz-9F-jiO"/>
                         <outlet property="labelAnswer" destination="KPZ-nb-rup" id="5rb-2d-o5m"/>
                         <outlet property="labelAnswer2" destination="5Eg-ML-33t" id="gyT-27-2k6"/>
                         <outlet property="labelNEleft" destination="RzA-hk-1tw" id="yF0-47-ezx"/>
