@@ -9,7 +9,6 @@
 //
 
 #import "GetTo24ViewController.h"
-#import "MRCircularProgressView.h"
 
 #import "PlayingCardDeck.h"
 #import "Deck.h"
@@ -148,9 +147,6 @@
     self.labelAnswer2.hidden = !show;
 
 
-    self.gameCountdownProgress.hidden = show;
-
-
     self.player2NoSolutionButton.hidden = show;
     self.player1NoSolutionButton.hidden = show;
 
@@ -249,8 +245,6 @@
     
     
     self.hand = [[NSMutableArray alloc] init];
-    [self.gameCountdownProgress setProgress:0.0 duration:1.0f];
-    self.gameCountdownProgress.progressColor = [UIColor greenColor];
     [AudioUtil playSound:@"opening" :@"wav"];
     
     
@@ -272,18 +266,6 @@
         [self timesUp];
         return;
     }
-
-    if (self.currentGameTime < 40) {
-        self.gameCountdownProgress.progressColor = [UIColor yellowColor];
-    }
-    if (self.currentGameTime < 20) {
-        self.gameCountdownProgress.progressColor = [UIColor redColor];
-    }
-    if (self.currentGameTime < 5) {
-        self.gameCountdownProgress.progressColor = [UIColor purpleColor];
-    }
-
-    [self.gameCountdownProgress setProgress:percent duration:1.0f];
 
 }
 
@@ -353,10 +335,7 @@
                                userInfo:nil
                                repeats:YES];
 
-    self.gameCountdownProgress.progressColor = [UIColor greenColor];
 
-    [self.gameCountdownProgress setProgress:0.0 duration:1.0f];
-    self.gameCountdownProgress.hidden = FALSE;
     //[AudioUtil playSound:@"relaxing-short" :@"wav"];
 }
 
@@ -417,7 +396,6 @@
 // the player has to find the answer, skip or say there is no answer
 //
 - (void)timesUp {
-    [self.gameCountdownProgress setProgress:0.00 animated:NO];
     //[AudioUtil playSound:@"whoosh" :@"wav"];
     // Stop the previous timer
     [self.timer invalidate];
@@ -431,7 +409,6 @@
 // Give up without saying anything, any dock points from both players
 //
 - (IBAction)giveUp:(id)sender {
-    [self.gameCountdownProgress setProgress:0.00 animated:NO];
     [self dealHand];
 
     [AudioUtil playSound:@"whoosh" :@"wav"];
@@ -442,7 +419,6 @@
 // the same as wrong answer
 //
 - (IBAction)noSolution1:(id)sender {
-    [self.gameCountdownProgress setProgress:0.00 animated:NO];
     [self rightAnswer:1];
 
     [AudioUtil playSound:@"beep" :@"wav"];
@@ -453,7 +429,6 @@
 // the same as wrong answer
 //
 - (IBAction)noSolution2:(id)sender {
-    [self.gameCountdownProgress setProgress:0.00 animated:NO];
     [self rightAnswer:2];
     
     [AudioUtil playSound:@"beep" :@"wav"];
@@ -494,7 +469,6 @@
 
     
     self.labelAnswer.hidden = TRUE;
-    self.gameCountdownProgress.hidden = FALSE;
 
 }
 
@@ -551,9 +525,6 @@
     [self hideAnswer];	
     [self.labelAnswer setTag:100];
     [self.labelAnswer2 setTag:101];
-
-    
-    self.gameCountdownProgress.progressArcWidth = 3.0;
 
     self.answerArray = [[NSMutableArray alloc] init];
     // Get started

@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MRCircularProgressView.h"
 
 @interface GetTo24ViewController : UIViewController
 
@@ -21,8 +20,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *player1Score;
 @property (weak, nonatomic) IBOutlet UILabel *player2Score;
-
-@property (weak, nonatomic) IBOutlet MRCircularProgressView *gameCountdownProgress;
 
 @property (weak, nonatomic) IBOutlet UILabel *player1NameLabel;
 
