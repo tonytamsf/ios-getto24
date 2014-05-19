@@ -40,8 +40,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *buttonMinus2;
 @property (weak, nonatomic) IBOutlet UIButton *buttonMultiplication2;
 @property (weak, nonatomic) IBOutlet UIButton *buttonDivision2;
-
-@property (weak, nonatomic) IBOutlet UIButton *player2NoSolutionButton;
-@property (weak, nonatomic) IBOutlet UIButton *player1NoSolutionButton;
+@property (weak, nonatomic) IBOutlet UILabel *labelTime;
+@property (weak, nonatomic) IBOutlet UILabel *labelTimeStatic;
 
 @end

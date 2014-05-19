@@ -146,10 +146,6 @@
     self.labelAnswer.hidden = !show;
     self.labelAnswer2.hidden = !show;
 
-
-    self.player2NoSolutionButton.hidden = show;
-    self.player1NoSolutionButton.hidden = show;
-
     self.player1Button.hidden = show;
     self.player2Button.hidden = show;
 
@@ -184,9 +180,6 @@
     
     self.player1Button.hidden = true;
     self.player2Button.hidden = true;
-    self.player1NoSolutionButton.hidden = true;
-    self.player2NoSolutionButton.hidden = true;
-
 
     //[self showAnswerControllers:FALSE];
     //[self dealHand];
@@ -258,8 +251,8 @@
 //
 - (void) countdown
 {
-    float percent = (30 - self.currentGameTime) / 30.0;
-
+    self.labelTime.text = [NSString stringWithFormat:@"%d", self.currentGameTime];
+    
     DLog("Countdown %d %f", self.currentGameTime, percent);
     self.currentGameTime -= 1;
     if (self.currentGameTime <= 0) {
@@ -287,7 +280,7 @@
     self.answerPlayer = -1;
     
     // TODO what if we run out of cards, time to call a winner
-    self.currentGameTime = 30;
+    self.currentGameTime = 300;
 
     // clear the current hand about put back into the deck in random order?
     [self putInDeck:self.hand];
@@ -324,7 +317,10 @@
     }
 
     // We the answer before the user
-    [self calcuateAnswer];
+    if ([self calcuateAnswer] == nil) {
+        NSLog(@"Re-deal hand with no answer");
+        [self dealHand];
+    }
     
     [self.timer invalidate];
     
@@ -402,7 +398,7 @@
     
     [AudioUtil playSound:@"ray" :@"wav"];
     
-    [self dealHand];
+    // [self dealHand];
 }
 
 //
@@ -414,25 +410,7 @@
     [AudioUtil playSound:@"whoosh" :@"wav"];
 }
 
-//
-// Say there i no solution, plus points if computer agrees otherwise it's consider
-// the same as wrong answer
-//
-- (IBAction)noSolution1:(id)sender {
-    [self rightAnswer:1];
 
-    [AudioUtil playSound:@"beep" :@"wav"];
-}
-
-//
-// Say there no solution, plus points if computer agrees otherwise it's consider
-// the same as wrong answer
-//
-- (IBAction)noSolution2:(id)sender {
-    [self rightAnswer:2];
-    
-    [AudioUtil playSound:@"beep" :@"wav"];
-}
 
 //
 // Player1 thinks he has it, need to validate the answer
@@ -491,7 +469,9 @@
     [self.labelSWright setTransform:CGAffineTransformMakeRotation(-M_PI)];
     [self.labelSEright setTransform:CGAffineTransformMakeRotation(-M_PI)];
     [self.labelAnswer setTransform:CGAffineTransformMakeRotation(-M_PI)];
-
+    [self.labelTime setTransform:CGAffineTransformMakeRotation(-M_PI / 2)];
+    [self.labelTimeStatic setTransform:CGAffineTransformMakeRotation(-M_PI / 2)];
+    
     // 2 player game allow 2 players to press buttons at the same time
     [self.view setMultipleTouchEnabled:YES];
     
