@@ -866,8 +866,39 @@
         [NSString stringWithFormat:@"%@ %@",
                                    labelAnswer.text,
                                    operator.currentTitle];
+    
+    [self disableOperators:TRUE];
+    [self disableCards:FALSE];
+
 }
 
+- (IBAction)disableCards:(BOOL) bDisabled
+{
+    UIColor *color = [UIColor grayColor];
+    if (!bDisabled) {
+        color = [UIColor blackColor];
+    }
+    
+    for (int i = 0; i < 4; i++ ) {
+        [((UIButton *)self.cards[i]) setUserInteractionEnabled:!bDisabled];
+        
+        [((UIButton *)self.cards[i])
+         setTitleColor:color
+         forState:UIControlStateNormal];
+    }
+}
+- (IBAction)disableOperators:(BOOL) bDisabled
+{
+    for (int i = 0; i < 4; i++ ) {
+            //  [((UIButton *)self.cards[i]) setUserInteractionEnabled:!bDisabled];
+            //((UIButton *)self.operatorLabels2[i]).hidden = bDisabled;
+        [((UIButton *)self.operatorLabels2[i]) setUserInteractionEnabled:! bDisabled];
+
+        [((UIButton *)self.operatorLabels2[i])
+         setTitleColor:(bDisabled) ? [UIColor grayColor] : [UIColor blackColor]
+         forState:UIControlStateNormal];
+    }
+}
 - (IBAction)touchCardButton:(UIButton *)sender
 {
     if (self.answerPlayer < 0 || self.answerPlayer > 1) {
@@ -893,5 +924,8 @@
     
     labelAnswer.text = [NSString stringWithFormat:@"%@ %d", (NSString *)labelAnswer.text, sender.tag];
     
+    [self disableCards:TRUE];
+    [self disableOperators:FALSE];
+
 }
 @end
