@@ -396,9 +396,13 @@
         // Make the animatable changes.
     card.alpha = 1.0;
     
-    [card setBackgroundImage:nil
+    [card setBackgroundImage:[UIImage imageNamed:@"card-front.png"]
                     forState:UIControlStateNormal];
     
+    /*
+    [card setBackgroundImage:nil
+                    forState:UIControlStateNormal];
+    */
     DLog(@"showHideDidStop");
     [UIView commitAnimations];
 }
