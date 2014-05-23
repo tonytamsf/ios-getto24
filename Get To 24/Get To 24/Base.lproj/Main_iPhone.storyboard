@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -232,12 +232,16 @@
                                 <rect key="frame" x="0.0" y="386" width="320" height="85"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.41525135869565222" green="0.41525135869565222" blue="0.41525135869565222" alpha="1" colorSpace="calibratedRGB"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="w1m-pQ-hTH"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="5As-Wo-tG7" appends="YES" id="27R-94-t1q"/>
+                                </connections>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="(select cards)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KPZ-nb-rup">
                                 <rect key="frame" x="0.0" y="3" width="320" height="80"/>
@@ -249,6 +253,9 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="ADz-4w-7HL" appends="YES" id="Ty8-Dp-2Xk"/>
+                                </connections>
                             </label>
                             <button contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NmU-Fz-DJP" userLabel="Button - +2">
                                 <rect key="frame" x="268" y="142" width="42" height="42"/>
@@ -389,8 +396,8 @@
                         <outlet property="cardNW" destination="Gj5-hm-bcg" id="03R-JH-R1Y"/>
                         <outlet property="cardSE" destination="pHx-cz-fWE" id="rFc-9R-czy"/>
                         <outlet property="cardSW" destination="cP7-ao-yCE" id="2Q5-c9-6LI"/>
-                        <outlet property="labelAnswer" destination="KPZ-nb-rup" id="5rb-2d-o5m"/>
-                        <outlet property="labelAnswer2" destination="5Eg-ML-33t" id="gyT-27-2k6"/>
+                        <outlet property="labelAnswer" destination="KPZ-nb-rup" id="NAw-zd-WRD"/>
+                        <outlet property="labelAnswer2" destination="5Eg-ML-33t" id="aR9-Sz-zbH"/>
                         <outlet property="labelNEleft" destination="RzA-hk-1tw" id="yF0-47-ezx"/>
                         <outlet property="labelNEright" destination="zgk-Aw-bmH" id="Uk9-PV-Gdv"/>
                         <outlet property="labelNWleft" destination="zci-AR-q5d" id="Ojg-PD-GXD"/>
@@ -407,9 +414,21 @@
                         <outlet property="player2Button" destination="yr7-Ae-bzI" id="vya-Ej-2SV"/>
                         <outlet property="player2NameLabel" destination="EW9-NQ-mF4" id="KBY-N5-onW"/>
                         <outlet property="player2Score" destination="whQ-VG-LXX" id="iSp-dB-w2H"/>
+                        <outlet property="swipeGesture" destination="5As-Wo-tG7" id="ht3-vl-zyd"/>
+                        <outlet property="swipeGesture1" destination="ADz-4w-7HL" id="duR-Eg-eaI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="left" id="5As-Wo-tG7">
+                    <connections>
+                        <action selector="swipeAway:" destination="vXZ-lx-hvc" id="2BO-He-M0r"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="ADz-4w-7HL">
+                    <connections>
+                        <action selector="swipeAway1:" destination="vXZ-lx-hvc" id="Wq2-46-m77"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="81" y="18"/>
         </scene>

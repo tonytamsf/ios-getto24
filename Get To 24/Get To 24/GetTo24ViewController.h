@@ -43,4 +43,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelTime;
 @property (weak, nonatomic) IBOutlet UILabel *labelTimeStatic;
 
+@property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeGesture1;
+
+@property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeGesture;
 @end
