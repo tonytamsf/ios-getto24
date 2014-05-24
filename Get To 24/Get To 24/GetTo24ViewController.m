@@ -360,6 +360,8 @@
         [self dealHand];
     }
     
+    [self.answerArray removeAllObjects];
+
     [self.timer invalidate];
     
     // Start the countdown
@@ -965,6 +967,12 @@
     labelAnswer.text = [NSString stringWithFormat:@"%@ %d", (NSString *)labelAnswer.text, sender.tag];
     
     
+    if ([self.answerArray count] == 7) {
+        // TODO
+        [self dealHand];
+        return;
+    }
+        
     [self disableCards:TRUE];
     [self disableOperators:FALSE];
     
