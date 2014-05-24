@@ -169,6 +169,11 @@
         self.labelAnswer.text = @"(select cards)";
         self.labelAnswer2.text = @"(select cards)";
     }
+    
+    if (show == TRUE) {
+        [self disableOperators:TRUE];
+        [self disableCards:FALSE];
+    }
 }
 //
 // Player got the right answer, reward with a point
@@ -202,6 +207,21 @@
     [AudioUtil playSound:@"chimes" :@"wav"];
 }
 
+- (void) clearAnswer
+{
+    self.labelAnswer.text = @"";
+    self.labelAnswer2.text = @"";
+    
+    // the cards and the operatdors
+    for (int i = 0; i < 4; i++ ){
+        [((UIButton *)self.cards[i]) setUserInteractionEnabled:TRUE];
+        
+        [((UIButton *)self.cards[i]) setTitle:@""
+                                     forState:UIControlStateNormal];
+    }
+    
+    [self.answerArray removeAllObjects];
+}
 //
 // Player choose to skip the card
 //
@@ -899,7 +919,6 @@
     UIButton *operator = (UIButton *) sender;
     UILabel *labelAnswer = [self.labelAnswers objectAtIndex:self.answerPlayer];
     
-    
     if ([labelAnswer.text compare:@"(select cards)"] == NSOrderedSame) {
         labelAnswer.text = @"";
     }
@@ -942,8 +961,7 @@
     
     [sender setUserInteractionEnabled:FALSE];
     
-    [self.answerArray addObject:[NSString stringWithFormat:@"%d", sender.tag]];
-    
+    [self.answerArray addObject:sender];
     labelAnswer.text = [NSString stringWithFormat:@"%@ %d", (NSString *)labelAnswer.text, sender.tag];
     
     
@@ -960,11 +978,16 @@
     }
     
     for (int i = 0; i < 4; i++ ) {
-        [((UIButton *)self.cards[i]) setUserInteractionEnabled:!bDisabled];
+        UIButton *card = (UIButton *)self.cards[i];
         
-        [((UIButton *)self.cards[i])
-         setTitleColor:color
-         forState:UIControlStateNormal];
+        if (bDisabled == FALSE && [self.answerArray containsObject:card]) {
+            NSLog(@"not enabling %@", card);
+            continue;
+        }
+        [card setUserInteractionEnabled:!bDisabled];
+        [card setTitleColor:color
+                   forState:UIControlStateNormal];
+
     }
 }
 
@@ -982,10 +1005,12 @@
 }
 - (IBAction)swipeAway:(UISwipeGestureRecognizer *)sender {
     NSLog(@"swipe");
+    [self clearAnswer];
 }
 
 - (IBAction)swipeAway1:(UISwipeGestureRecognizer *)sender {
     NSLog(@"swipe1");
+    [self clearAnswer];
 }
 
 @end
