@@ -16,6 +16,7 @@
 #import "NSArrayUtil.h"
 #import "AudioUtil.h"
 
+
 // When the computer figures out the answer
 
 @interface AnswerPackage : NSObject
@@ -94,6 +95,7 @@
                             usingOperators:(SEL *)selectors
                          withOperatorChars:(NSArray *)currentOperatorChars;
 
+
 @property PlayingCardDeck *_cardDeck;
 
 @property NSArray *cards;
@@ -119,6 +121,10 @@
 @property NSArray *labelAnswers;
 
 @property NSMutableArray *answerArray;
+@property NSMutableArray *answerCardArray;
+@property SEL *answerOperators;
+@property int numAnswerOperators;
+@property NSMutableArray *operatorStrings;
 
 @property AnswerPackage *storeAnswerPackage;
 
@@ -209,6 +215,15 @@
 
 - (void) clearAnswer
 {
+    NSLog(@"answer cards %@", self.answerCardArray);
+    NSLog(@"opers %@", self.answerOperators);
+    NSLog(@"num %@", self.numAnswerOperators);
+
+    if ([self.answerCardArray count] == 4) {
+        [self dealHand];
+        return;
+    }
+    
     self.labelAnswer.text = @"";
     self.labelAnswer2.text = @"";
     
@@ -248,6 +263,10 @@
     self.selectors[1] = self.minusSel;
     self.selectors[2] = self.mulSel;
     self.selectors[3] = self.divSel;
+    
+    self.answerOperators = malloc(sizeof(SEL) * 3);
+    self.operatorStrings = [[NSMutableArray alloc] init];
+    self.answerCardArray = [[NSMutableArray alloc] init];
     
     self.operatorChars = [NSArray arrayWithObjects:
                           @"+",
@@ -325,6 +344,8 @@
     
     // clear the hand
     [self.hand removeAllObjects];
+    self.numAnswerOperators = 0;
+    [self.answerCardArray removeAllObjects];
     
     UIButton *card;
     
@@ -334,7 +355,7 @@
         CardHand *singleDeal = [[CardHand alloc] init];
         
         // tag it for later to get the value back
-        [self.cards[i] setTag:MIN(10, newCard.rank)];
+        [self.cards[i] setTag:i];
         
         singleDeal.card = newCard;
         
@@ -543,10 +564,10 @@
                        nil
                        ];
     //
-    [self.buttonPlus2 setTag:10];
-    [self.buttonMinus2 setTag:11];
-    [self.buttonMultiplication2 setTag:12];
-    [self.buttonDivision2 setTag:13];
+    [self.buttonPlus2 setTag:0];
+    [self.buttonMinus2 setTag:1];
+    [self.buttonMultiplication2 setTag:2];
+    [self.buttonDivision2 setTag:3];
     
     // Don't show them the answers
     [self hideAnswer];
@@ -600,6 +621,8 @@
     }
     return nil;
 }
+
+
 
 //
 // Apply all the possible operators on the 4 cards, keeping them in the same order
@@ -692,6 +715,72 @@
     }
 }
 
+// Using the cards in the given sequence and operators in the sequence
+// calculate whether there is an answer.  This can be used
+// to verify the human players answer
+//
+// RETURN the answerPackage or nil if 24 is not found
+//
+- (AnswerPackage *) calculateHand:(NSArray *)cards
+                   usingOperators:(SEL [])selectors
+                withOperatorChars:(NSArray *)currentOperatorChars
+{
+    AnswerPackage *storeAnswerPackage;
+    NSDecimalNumber *rightAnswer = (NSDecimalNumber *)[NSDecimalNumber numberWithInt:24];
+    
+    // NSInvocation , very ugly
+    SEL currentOperators[] = {
+        @selector(calcuateSimple:usingOperators:withOperatorChars:),
+        @selector(calcuateGrouping:usingOperators:withOperatorChars:),
+        @selector(calcuateGroupingOfTwo:usingOperators:withOperatorChars:),
+        @selector(calcuateGroupingSecond:usingOperators:withOperatorChars:)
+    };
+    
+    BOOL found = false;
+
+    
+    storeAnswerPackage = [self calcuateSimple:cards
+                               usingOperators:selectors
+                            withOperatorChars:currentOperatorChars];
+
+    if ([storeAnswerPackage.answer compare:rightAnswer] == NSOrderedSame) {
+        NSLog(@"answer %@", storeAnswerPackage.stringAnswer);
+        
+        found = TRUE;
+        return storeAnswerPackage;
+    }
+    
+    storeAnswerPackage = [self calcuateGrouping:cards
+                                 usingOperators:selectors
+                              withOperatorChars:currentOperatorChars];
+    if ([storeAnswerPackage.answer compare:rightAnswer] == NSOrderedSame) {
+        NSLog(@"answer %@", storeAnswerPackage.stringAnswer);
+        
+        found = TRUE;
+        return storeAnswerPackage;
+    }
+    storeAnswerPackage = [self calcuateGroupingOfTwo:cards
+                                      usingOperators:selectors
+                                   withOperatorChars:currentOperatorChars];
+    if ([storeAnswerPackage.answer compare:rightAnswer] == NSOrderedSame) {
+        NSLog(@"answer %@", storeAnswerPackage.stringAnswer);
+        
+        found = TRUE;
+        return storeAnswerPackage;
+    }
+    storeAnswerPackage = [self calcuateGroupingSecond:cards
+                                       usingOperators:selectors
+                                    withOperatorChars:currentOperatorChars];
+    if ([storeAnswerPackage.answer compare:rightAnswer] == NSOrderedSame) {
+        NSLog(@"answer %@", storeAnswerPackage.stringAnswer);
+        
+        found = TRUE;
+        return storeAnswerPackage;
+    }
+    
+    return nil;
+}
+
 // ((a op b) op c) op d
 - (AnswerPackage *) calcuateSimple:(NSArray *) cards
                     usingOperators:(SEL [])selectors
@@ -709,18 +798,28 @@
     PlayingCard *card2 = (PlayingCard *)((CardHand *)cards[2]).card;
     PlayingCard *card3 = (PlayingCard *)((CardHand *)cards[3]).card;
     
-    subtotal = [[NSDecimalNumber numberWithInt:MIN(card0.rank, 10)]
-                performSelector:selector0
-                withObject:[NSDecimalNumber numberWithInt:MIN(card1.rank, 10)]];
-    
-    
-    subtotal = [subtotal
-                performSelector:selector1
-                withObject:[NSDecimalNumber numberWithInt:MIN(card2.rank, 10)]];
-    
-    subtotal = [subtotal
-                performSelector:selector2
-                withObject:[NSDecimalNumber numberWithInt:MIN(card3.rank, 10)]];
+    @try {
+        
+        subtotal = [[NSDecimalNumber numberWithInt:MIN(card0.rank, 10)]
+                    performSelector:selector0
+                    withObject:[NSDecimalNumber numberWithInt:MIN(card1.rank, 10)]];
+        
+        
+        subtotal = [subtotal
+                    performSelector:selector1
+                    withObject:[NSDecimalNumber numberWithInt:MIN(card2.rank, 10)]];
+        
+        subtotal = [subtotal
+                    performSelector:selector2
+                    withObject:[NSDecimalNumber numberWithInt:MIN(card3.rank, 10)]];
+    }
+    @catch (NSException *e) {
+        answer.answer = [NSDecimalNumber numberWithInt:-1];
+        
+        answer.stringAnswer = @"Divide by zero";
+        return answer;
+    }
+
     answer.answer = subtotal;
     answer.stringFormat = @"((%d %@ %d) %@ %d) %@ %d";
     answer.stringAnswer = [NSString stringWithFormat:answer.stringFormat,
@@ -756,20 +855,30 @@
     PlayingCard *card2 = (PlayingCard *)((CardHand *)cards[2]).card;
     PlayingCard *card3 = (PlayingCard *)((CardHand *)cards[3]).card;
     
-    subtotal = [[NSDecimalNumber numberWithInt:MIN(card0.rank, 10)]
-                performSelector:selector0
-                withObject:[NSDecimalNumber numberWithInt:MIN(card1.rank, 10)]];
-    
-    
-    subtotal1 = [[NSDecimalNumber numberWithInt:MIN(card2.rank, 10)]
-                 performSelector:selector2
-                 withObject:[NSDecimalNumber numberWithInt:MIN(card3.rank, 10)]];
-    
-    
-    subtotal = [subtotal
-                performSelector:selector1
-                withObject:subtotal1];
-    
+    @try {
+        
+        subtotal = [[NSDecimalNumber numberWithInt:MIN(card0.rank, 10)]
+                    performSelector:selector0
+                    withObject:[NSDecimalNumber numberWithInt:MIN(card1.rank, 10)]];
+        
+        
+        subtotal1 = [[NSDecimalNumber numberWithInt:MIN(card2.rank, 10)]
+                     performSelector:selector2
+                     withObject:[NSDecimalNumber numberWithInt:MIN(card3.rank, 10)]];
+        
+        
+        subtotal = [subtotal
+                    performSelector:selector1
+                    withObject:subtotal1];
+        
+    }
+    @catch (NSException *e) {
+        answer.answer = [NSDecimalNumber numberWithInt:-1];
+        
+        answer.stringAnswer = @"Divide by zero";
+        return answer;
+        
+    }
     answer.answer = subtotal;
     answer.stringFormat = @"(%d %@ %d) %@ (%d %@ %d)";
     answer.stringAnswer = [NSString stringWithFormat:answer.stringFormat,
@@ -805,21 +914,30 @@
     PlayingCard *card1 = (PlayingCard *)((CardHand *)cards[1]).card;
     PlayingCard *card2 = (PlayingCard *)((CardHand *)cards[2]).card;
     PlayingCard *card3 = (PlayingCard *)((CardHand *)cards[3]).card;
-    
-    subtotal = [[NSDecimalNumber numberWithInt:MIN(card0.rank, 10)]
-                performSelector:selector0
-                withObject:[NSDecimalNumber numberWithInt:MIN(card1.rank, 10)]];
-    
-    
-    subtotal = [subtotal
-                performSelector:selector1
-                withObject:[NSDecimalNumber numberWithInt:MIN(card2.rank, 10)]];
-    
-    
-    subtotal = [subtotal
-                performSelector:selector2
-                withObject:[NSDecimalNumber numberWithInt:MIN(card3.rank, 10)]];
-    
+    @try {
+        
+        subtotal = [[NSDecimalNumber numberWithInt:MIN(card0.rank, 10)]
+                    performSelector:selector0
+                    withObject:[NSDecimalNumber numberWithInt:MIN(card1.rank, 10)]];
+        
+        
+        subtotal = [subtotal
+                    performSelector:selector1
+                    withObject:[NSDecimalNumber numberWithInt:MIN(card2.rank, 10)]];
+        
+        
+        subtotal = [subtotal
+                    performSelector:selector2
+                    withObject:[NSDecimalNumber numberWithInt:MIN(card3.rank, 10)]];
+        
+    }
+    @catch (NSException *e) {
+        answer.answer = [NSDecimalNumber numberWithInt:-1];
+        
+        answer.stringAnswer = @"Divide by zero";
+        return answer;
+        
+    }
     answer.answer = subtotal;
     answer.stringFormat = @"(%d %@ %d) %@ %d %@ %d";
     answer.stringAnswer = [NSString stringWithFormat:answer.stringFormat,
@@ -855,19 +973,30 @@
     PlayingCard *card2 = (PlayingCard *)((CardHand *)cards[2]).card;
     PlayingCard *card3 = (PlayingCard *)((CardHand *)cards[3]).card;
     
-    subtotal = [[NSDecimalNumber numberWithInt:MIN(card1.rank, 10)]
-                performSelector:selector1
-                withObject:[NSDecimalNumber numberWithInt:MIN(card2.rank, 10)]];
-    
-    
-    subtotal = [[NSDecimalNumber numberWithInt:MIN(card0.rank, 10)]
-                performSelector:selector0
-                withObject:subtotal];
-    
-    
-    subtotal = [subtotal
-                performSelector:selector2
-                withObject:[NSDecimalNumber numberWithInt:MIN(card3.rank, 10)]];
+    @try {
+        
+        subtotal = [[NSDecimalNumber numberWithInt:MIN(card1.rank, 10)]
+                    performSelector:selector1
+                    withObject:[NSDecimalNumber numberWithInt:MIN(card2.rank, 10)]];
+        
+        
+        subtotal = [[NSDecimalNumber numberWithInt:MIN(card0.rank, 10)]
+                    performSelector:selector0
+                    withObject:subtotal];
+        
+        
+        subtotal = [subtotal
+                    performSelector:selector2
+                    withObject:[NSDecimalNumber numberWithInt:MIN(card3.rank, 10)]];
+
+    }
+    @catch (NSException *e) {
+        answer.answer = [NSDecimalNumber numberWithInt:-1];
+
+        answer.stringAnswer = @"Divide by zero";
+        return answer;
+
+    }
     answer.answer = subtotal;
     answer.stringFormat = @"%d %@ (%d %@ %d) %@ %d";
     answer.stringAnswer = [NSString stringWithFormat:answer.stringFormat,
@@ -925,11 +1054,12 @@
         labelAnswer.text = @"";
     }
     [self.answerArray addObject:[NSString stringWithFormat:@"%@", operator.currentTitle]];
+    self.answerOperators[self.numAnswerOperators++ ] = self.selectors[operator.tag];
+    [self.operatorStrings addObject:self.operatorChars[operator.tag]];
     
-    labelAnswer.text =
-    [NSString stringWithFormat:@"%@ %@",
-     labelAnswer.text,
-     operator.currentTitle];
+    labelAnswer.text = [NSString stringWithFormat:@"%@ %@",
+                        labelAnswer.text,
+                        operator.currentTitle];
     
     [self disableOperators:TRUE];
     [self disableCards:FALSE];
@@ -943,6 +1073,8 @@
 //
 - (IBAction)touchCardButton:(UIButton *)sender
 {
+    NSDecimalNumber *rightAnswer = (NSDecimalNumber *)[NSDecimalNumber numberWithInt:24];
+
     if (self.answerPlayer < 0 || self.answerPlayer > 1) {
         // something really wrong, reset everything
         [self startGame];
@@ -955,21 +1087,36 @@
         labelAnswer.text = @"";
     }
     
+    CardHand * cardHand = [self.hand objectAtIndex:sender.tag];
     UIImage *cardImage = [UIImage imageNamed:@"cardfront"];
     [sender setBackgroundImage:cardImage
                       forState:UIControlStateNormal ];
-    [sender setTitle:[NSString stringWithFormat:@"%d", sender.tag]
+    [sender setTitle:[NSString stringWithFormat:@"%d",
+                      MIN( 10, (int)cardHand.card.rank)]
             forState:UIControlStateNormal];
     
     [sender setUserInteractionEnabled:FALSE];
     
     [self.answerArray addObject:sender];
-    labelAnswer.text = [NSString stringWithFormat:@"%@ %d", (NSString *)labelAnswer.text, sender.tag];
-    
+    // TODO: this is wrong, need to be a Playing card?
+    [self.answerCardArray addObject:sender];
+
+    labelAnswer.text = [NSString stringWithFormat:@"%@ %d",
+                        (NSString *)labelAnswer.text,
+                        MIN(10, (int)cardHand.card.rank)];
     
     if ([self.answerArray count] == 7) {
-        // TODO
-        [self dealHand];
+        
+        AnswerPackage *answer = [self calculateHand:self.answerCardArray
+                                  usingOperators:self.answerOperators
+                               withOperatorChars:self.operatorStrings];
+        if (answer != nil && [answer.answer compare:rightAnswer] == NSOrderedSame) {
+            NSLog(@"Player got it right: %@", answer.stringAnswer);
+            labelAnswer.text = [NSString stringWithFormat:@"Yay!! %@", answer.stringAnswer];
+        } else {
+            NSLog(@"result %d", [answer.answer intValue]);
+            labelAnswer.text = [NSString stringWithFormat:@"Wrong!! %@", self.storeAnswerPackage.stringAnswer];
+        }
         return;
     }
         
