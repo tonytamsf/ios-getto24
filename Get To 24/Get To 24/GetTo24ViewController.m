@@ -216,8 +216,6 @@
 - (void) clearAnswer
 {
     NSLog(@"answer cards %@", self.answerCardArray);
-    NSLog(@"opers %@", self.answerOperators);
-    NSLog(@"num %@", self.numAnswerOperators);
 
     if ([self.answerCardArray count] == 4) {
         [self dealHand];
@@ -236,6 +234,8 @@
     }
     
     [self.answerArray removeAllObjects];
+    [self.answerCardArray removeAllObjects];
+    self.numAnswerOperators = 0;
 }
 //
 // Player choose to skip the card
@@ -1098,8 +1098,7 @@
     [sender setUserInteractionEnabled:FALSE];
     
     [self.answerArray addObject:sender];
-    // TODO: this is wrong, need to be a Playing card?
-    [self.answerCardArray addObject:sender];
+    [self.answerCardArray addObject:cardHand];
 
     labelAnswer.text = [NSString stringWithFormat:@"%@ %d",
                         (NSString *)labelAnswer.text,
@@ -1114,8 +1113,7 @@
             NSLog(@"Player got it right: %@", answer.stringAnswer);
             labelAnswer.text = [NSString stringWithFormat:@"Yay!! %@", answer.stringAnswer];
         } else {
-            NSLog(@"result %d", [answer.answer intValue]);
-            labelAnswer.text = [NSString stringWithFormat:@"Wrong!! %@", self.storeAnswerPackage.stringAnswer];
+            labelAnswer.text = [NSString stringWithFormat:@"Sorry, correct answer is !!\n%@", self.storeAnswerPackage.stringAnswer];
         }
         return;
     }
@@ -1136,7 +1134,7 @@
         UIButton *card = (UIButton *)self.cards[i];
         
         if (bDisabled == FALSE && [self.answerArray containsObject:card]) {
-            NSLog(@"not enabling %@", card);
+            DLog(@"not enabling %@", card);
             continue;
         }
         [card setUserInteractionEnabled:!bDisabled];
