@@ -158,7 +158,7 @@
 		D8C112CD19158F6E00864A23 /* tick.tock.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = tick.tock.wav; sourceTree = "<group>"; };
 		D8C112D2191591B500864A23 /* opening.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = opening.wav; sourceTree = "<group>"; };
 		D8C112D41915926700864A23 /* chimes.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = chimes.wav; sourceTree = "<group>"; };
-		D8D3698E187933400092E0F4 /* Get To 24.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Get To 24.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8D3698E187933400092E0F4 /* Math 24.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Math 24.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8D36991187933400092E0F4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D8D36993187933400092E0F4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		D8D36995187933400092E0F4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -178,6 +178,7 @@
 		D8D369BD187933400092E0F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D8D369BF187933400092E0F4 /* Get_To_24Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Get_To_24Tests.m; sourceTree = "<group>"; };
 		D8E4985C187B2157005A32D6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		D8FCE17B193302A4001D3EB1 /* Get To 24.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Get To 24.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -356,7 +357,7 @@
 		D8D3698F187933400092E0F4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D8D3698E187933400092E0F4 /* Get To 24.app */,
+				D8D3698E187933400092E0F4 /* Math 24.app */,
 				D8D369B2187933400092E0F4 /* Get To 24Tests.xctest */,
 			);
 			name = Products;
@@ -377,6 +378,7 @@
 		D8D36997187933400092E0F4 /* Get To 24 */ = {
 			isa = PBXGroup;
 			children = (
+				D8FCE17B193302A4001D3EB1 /* Get To 24.entitlements */,
 				D8D369A3187933400092E0F4 /* Main_iPhone.storyboard */,
 				D8D369A6187933400092E0F4 /* Main_iPad.storyboard */,
 				D8D369A9187933400092E0F4 /* GetTo24ViewController.h */,
@@ -437,7 +439,7 @@
 			);
 			name = "Get To 24";
 			productName = "Get To 24";
-			productReference = D8D3698E187933400092E0F4 /* Get To 24.app */;
+			productReference = D8D3698E187933400092E0F4 /* Math 24.app */;
 			productType = "com.apple.product-type.application";
 		};
 		D8D369B1187933400092E0F4 /* Get To 24Tests */ = {
@@ -470,6 +472,14 @@
 				TargetAttributes = {
 					D8D3698D187933400092E0F4 = {
 						DevelopmentTeam = 7Y42PCRAD9;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 0;
+							};
+							com.apple.iCloud = {
+								enabled = 0;
+							};
+						};
 					};
 					D8D369B1187933400092E0F4 = {
 						TestTargetID = D8D3698D187933400092E0F4;
@@ -703,7 +713,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -736,7 +746,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -754,7 +764,7 @@
 				GCC_PREFIX_HEADER = "Get To 24/Get To 24-Prefix.pch";
 				INFOPLIST_FILE = "Get To 24/Get To 24-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Math 24";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -772,7 +782,7 @@
 				GCC_PREFIX_HEADER = "Get To 24/Get To 24-Prefix.pch";
 				INFOPLIST_FILE = "Get To 24/Get To 24-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Math 24";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;

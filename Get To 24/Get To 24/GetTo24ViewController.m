@@ -7,6 +7,10 @@
 //
 // TODO: local leader board
 // TODO: swipe away the answer use has to change it
+// TODO: wrong answer
+//2014-05-25 22:30:45.419 Math 24[1298:60b] answer ((8 + 7) - 1) + 10
+// 2014-05-25 22:31:11.298 Math 24[1298:60b] answer ((10 * 8) * 7) + 1
+// 2014-05-25 22:31:11.298 Math 24[1298:60b] Player got it right: ((10 * 8) * 7) + 1
 
 #import "GetTo24ViewController.h"
 
@@ -1048,18 +1052,25 @@
 - (IBAction)operatorTouched:(id)sender
 {
     UIButton *operator = (UIButton *) sender;
-    UILabel *labelAnswer = [self.labelAnswers objectAtIndex:self.answerPlayer];
-    
-    if ([labelAnswer.text compare:@"(select cards)"] == NSOrderedSame) {
-        labelAnswer.text = @"";
-    }
+
     [self.answerArray addObject:[NSString stringWithFormat:@"%@", operator.currentTitle]];
+    
     self.answerOperators[self.numAnswerOperators++ ] = self.selectors[operator.tag];
     [self.operatorStrings addObject:self.operatorChars[operator.tag]];
     
-    labelAnswer.text = [NSString stringWithFormat:@"%@ %@",
-                        labelAnswer.text,
-                        operator.currentTitle];
+
+    for (int i = 0; i < 2; i++) {
+        UILabel *labelAnswer = [self.labelAnswers objectAtIndex:i];
+        
+        if ([labelAnswer.text compare:@"(select cards)"] == NSOrderedSame) {
+            labelAnswer.text = @"";
+        }
+        
+        labelAnswer.text = [NSString stringWithFormat:@"%@ %@",
+                            labelAnswer.text,
+                            operator.currentTitle];
+        
+    }
     
     [self disableOperators:TRUE];
     [self disableCards:FALSE];
@@ -1083,10 +1094,6 @@
     
     UILabel *labelAnswer = [self.labelAnswers objectAtIndex:self.answerPlayer];
     
-    if ([labelAnswer.text compare:@"(select cards)"] == NSOrderedSame) {
-        labelAnswer.text = @"";
-    }
-    
     CardHand * cardHand = [self.hand objectAtIndex:sender.tag];
     UIImage *cardImage = [UIImage imageNamed:@"cardfront"];
     [sender setBackgroundImage:cardImage
@@ -1100,27 +1107,39 @@
     [self.answerArray addObject:sender];
     [self.answerCardArray addObject:cardHand];
 
-    labelAnswer.text = [NSString stringWithFormat:@"%@ %d",
-                        (NSString *)labelAnswer.text,
-                        MIN(10, (int)cardHand.card.rank)];
+    for (int i = 0; i < 2; i++) {
+        UILabel *labelAnswer = [self.labelAnswers objectAtIndex:i];
+        if ([labelAnswer.text compare:@"(select cards)"] == NSOrderedSame) {
+            labelAnswer.text = @"";
+        }
+        labelAnswer.text = [NSString stringWithFormat:@"%@ %d",
+                                  (NSString *)labelAnswer.text,
+                                  MIN(10, (int)cardHand.card.rank)];
+    }
     
     if ([self.answerArray count] == 7) {
+        NSString * finalText = [[NSString alloc] init];
         
         AnswerPackage *answer = [self calculateHand:self.answerCardArray
                                   usingOperators:self.answerOperators
                                withOperatorChars:self.operatorStrings];
         if (answer != nil && [answer.answer compare:rightAnswer] == NSOrderedSame) {
             NSLog(@"Player got it right: %@", answer.stringAnswer);
-            labelAnswer.text = [NSString stringWithFormat:@"Yay!! %@", answer.stringAnswer];
+            finalText = [NSString stringWithFormat:@"Yay!! %@", answer.stringAnswer];
         } else {
-            labelAnswer.text = [NSString stringWithFormat:@"Sorry, correct answer is !!\n%@", self.storeAnswerPackage.stringAnswer];
+            finalText = [NSString stringWithFormat:@"Sorry, correct answer is !!\n%@", self.storeAnswerPackage.stringAnswer];
+        }
+        
+        for (int i = 0; i < 2; i++) {
+            UILabel *labelAnswer = [self.labelAnswers objectAtIndex:i];
+
+            labelAnswer.text = finalText;
         }
         return;
     }
         
     [self disableCards:TRUE];
     [self disableOperators:FALSE];
-    
 }
 
 - (IBAction)disableCards:(BOOL) bDisabled
@@ -1156,6 +1175,8 @@
          forState:UIControlStateNormal];
     }
 }
+
+// Swipe away and try answer againr
 - (IBAction)swipeAway:(UISwipeGestureRecognizer *)sender {
     NSLog(@"swipe");
     [self clearAnswer];
