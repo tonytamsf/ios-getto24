@@ -160,7 +160,9 @@
     // the cards and the operators
     for (int i = 0; i < 4; i++ ){
         [((UIButton *)self.cards[i]) setUserInteractionEnabled:show];
-        ((UIButton *)self.operatorLabels2[i]).hidden = !show;
+        ((UIButton *)self.cards[i]).alpha = show ? 1 : 0.2;
+
+        ((UIButton *)self.operatorLabels2[i]).alpha = show ? 1 : .2;
         
         if (show == FALSE) {
             [((UIButton *)self.cards[i]) setTitle:@""
@@ -174,6 +176,17 @@
     
     self.player1Button.hidden = show;
     self.player2Button.hidden = show;
+
+    self.labelTime.hidden = show;
+    self.labelTime1.hidden = show;
+    self.labelTimeStatic.hidden = show;
+    self.labelTimeStatic1.hidden = show;
+    self.player2NameLabel.hidden = show;
+    self.player1NameLabel.hidden = show;
+    self.player1Score.hidden = show;
+    self.player2Score.hidden = show;
+    self.labelBackground1.hidden = show;
+    self.labelBackground2.hidden = show;
 
     if (show) {
         self.labelAnswer.text = @"(select cards)";
@@ -232,7 +245,8 @@
     // the cards and the operatdors
     for (int i = 0; i < 4; i++ ){
         [((UIButton *)self.cards[i]) setUserInteractionEnabled:TRUE];
-        
+        ((UIButton *)self.cards[i]).alpha =  1;
+
         [((UIButton *)self.cards[i]) setTitle:@""
                                      forState:UIControlStateNormal];
     }
@@ -254,7 +268,8 @@
 //
 - (void) startGame
 {
-    
+    self.currentGameTime = 300;
+
     // The valid operators
     self.plusSel  = @selector(decimalNumberByAdding:);
     self.minusSel = @selector(decimalNumberBySubtracting:);
@@ -311,7 +326,8 @@
 - (void) countdown
 {
     self.labelTime.text = [NSString stringWithFormat:@"%d", self.currentGameTime];
-    
+    self.labelTime1.text = [NSString stringWithFormat:@"%d", self.currentGameTime];
+
     DLog("Countdown %d %f", self.currentGameTime, percent);
     self.currentGameTime -= 1;
     if (self.currentGameTime <= 0) {
@@ -341,7 +357,7 @@
     [self showAnswerControllers:FALSE];
     
     // TODO what if we run out of cards, time to call a winner
-    self.currentGameTime = 300;
+    //self.currentGameTime = 300;
     
     // clear the current hand about put back into the deck in random order?
     [self putInDeck:self.hand];
@@ -377,6 +393,9 @@
         right.TextColor = [newCard cardColor];
         
         [self showCard:card label:left label:right];
+        [card setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"num-%d.png", MIN(10, newCard.rank)]]
+                        forState:UIControlStateNormal];
+        
     }
     
     // We the answer before the user
@@ -412,8 +431,8 @@
     card.alpha = 0.0;
     left.alpha = 0.0;
     right.alpha = 0.0;
-    [card setBackgroundImage:[UIImage imageNamed:@"red.card.background.png"]
-                    forState:UIControlStateNormal];
+    //[card setBackgroundImage:[UIImage imageNamed:@"num-1.png"]
+    //                forState:UIControlStateNormal];
     
     
     [UIView beginAnimations:@"ShowHideView" context:(void*)card];
@@ -449,8 +468,8 @@
     // Make the animatable changes.
     card.alpha = 1.0;
     
-    [card setBackgroundImage:[UIImage imageNamed:@"card-front.png"]
-                    forState:UIControlStateNormal];
+    //[card setBackgroundImage:[UIImage imageNamed:@"num-1.png"]
+    //                forState:UIControlStateNormal];
     
     /*
      [card setBackgroundImage:nil
@@ -541,8 +560,8 @@
     [self.labelSWright setTransform:CGAffineTransformMakeRotation(-M_PI)];
     [self.labelSEright setTransform:CGAffineTransformMakeRotation(-M_PI)];
     [self.labelAnswer setTransform:CGAffineTransformMakeRotation(-M_PI)];
-    [self.labelTime setTransform:CGAffineTransformMakeRotation(-M_PI / 2)];
-    [self.labelTimeStatic setTransform:CGAffineTransformMakeRotation(-M_PI / 2)];
+    [self.labelTime1 setTransform:CGAffineTransformMakeRotation(-M_PI)];
+    [self.labelTimeStatic1 setTransform:CGAffineTransformMakeRotation(-M_PI)];
     
     // 2 player game allow 2 players to press buttons at the same time
     [self.view setMultipleTouchEnabled:YES];
@@ -1053,7 +1072,7 @@
 {
     UIButton *operator = (UIButton *) sender;
 
-    [self.answerArray addObject:[NSString stringWithFormat:@"%@", operator.currentTitle]];
+    [self.answerArray addObject:[NSString stringWithFormat:@"%@", self.operatorChars[operator.tag]]];
     
     self.answerOperators[self.numAnswerOperators++ ] = self.selectors[operator.tag];
     [self.operatorStrings addObject:self.operatorChars[operator.tag]];
@@ -1068,7 +1087,7 @@
         
         labelAnswer.text = [NSString stringWithFormat:@"%@ %@",
                             labelAnswer.text,
-                            operator.currentTitle];
+                            self.operatorChars[operator.tag]];
         
     }
     
@@ -1095,15 +1114,17 @@
     UILabel *labelAnswer = [self.labelAnswers objectAtIndex:self.answerPlayer];
     
     CardHand * cardHand = [self.hand objectAtIndex:sender.tag];
-    UIImage *cardImage = [UIImage imageNamed:@"cardfront"];
-    [sender setBackgroundImage:cardImage
-                      forState:UIControlStateNormal ];
-    [sender setTitle:[NSString stringWithFormat:@"%d",
-                      MIN( 10, (int)cardHand.card.rank)]
-            forState:UIControlStateNormal];
+    //UIImage *cardImage = [UIImage imageNamed:@"cardfront"];
+    //[sender setBackgroundImage:cardImage
+    //                   forState:UIControlStateNormal ];
+    
+    //[sender setTitle:[NSString stringWithFormat:@"%d",
+    //                  MIN( 10, (int)cardHand.card.rank)]
+    //        forState:UIControlStateNormal];
     
     [sender setUserInteractionEnabled:FALSE];
-    
+    sender.alpha = 0.2;
+
     [self.answerArray addObject:sender];
     [self.answerCardArray addObject:cardHand];
 
@@ -1127,7 +1148,7 @@
             NSLog(@"Player got it right: %@", answer.stringAnswer);
             finalText = [NSString stringWithFormat:@"Yay!! %@", answer.stringAnswer];
         } else {
-            finalText = [NSString stringWithFormat:@"Sorry, correct answer is !!\n%@", self.storeAnswerPackage.stringAnswer];
+            finalText = [NSString stringWithFormat:@"Sorry, correct answer is: \n%@", self.storeAnswerPackage.stringAnswer];
         }
         
         for (int i = 0; i < 2; i++) {
@@ -1157,6 +1178,14 @@
             continue;
         }
         [card setUserInteractionEnabled:!bDisabled];
+        
+        if (bDisabled == TRUE && [self.answerArray containsObject:card]) {
+            card.alpha = bDisabled ? 0.2 : 1;
+
+        } else {
+            card.alpha = bDisabled ? 0.5 : 1;
+        }
+
         [card setTitleColor:color
                    forState:UIControlStateNormal];
 
@@ -1169,7 +1198,7 @@
         //  [((UIButton *)self.cards[i]) setUserInteractionEnabled:!bDisabled];
         //((UIButton *)self.operatorLabels2[i]).hidden = bDisabled;
         [((UIButton *)self.operatorLabels2[i]) setUserInteractionEnabled:! bDisabled];
-        
+        ((UIButton *)self.operatorLabels2[i]).alpha =  bDisabled ? 0.2 : 1;
         [((UIButton *)self.operatorLabels2[i])
          setTitleColor:(bDisabled) ? [UIColor grayColor] : [UIColor blackColor]
          forState:UIControlStateNormal];

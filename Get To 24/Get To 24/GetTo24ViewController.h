@@ -42,8 +42,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *buttonDivision2;
 @property (weak, nonatomic) IBOutlet UILabel *labelTime;
 @property (weak, nonatomic) IBOutlet UILabel *labelTimeStatic;
+@property (weak, nonatomic) IBOutlet UILabel *labelTime1;
 
+@property (weak, nonatomic) IBOutlet UILabel *labelTimeStatic1;
 @property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeGesture1;
+@property (weak, nonatomic) IBOutlet UILabel *labelBackground2;
+@property (weak, nonatomic) IBOutlet UILabel *labelBackground1;
 
 @property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeGesture;
 @end

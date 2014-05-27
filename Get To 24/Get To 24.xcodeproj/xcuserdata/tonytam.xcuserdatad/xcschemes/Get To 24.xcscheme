@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D8D3698D187933400092E0F4"
-               BuildableName = "Get To 24.app"
+               BuildableName = "Math 24.app"
                BlueprintName = "Get To 24"
                ReferencedContainer = "container:Get To 24.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D8D3698D187933400092E0F4"
-            BuildableName = "Get To 24.app"
+            BuildableName = "Math 24.app"
             BlueprintName = "Get To 24"
             ReferencedContainer = "container:Get To 24.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D8D3698D187933400092E0F4"
-            BuildableName = "Get To 24.app"
+            BuildableName = "Math 24.app"
             BlueprintName = "Get To 24"
             ReferencedContainer = "container:Get To 24.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D8D3698D187933400092E0F4"
-            BuildableName = "Get To 24.app"
+            BuildableName = "Math 24.app"
             BlueprintName = "Get To 24"
             ReferencedContainer = "container:Get To 24.xcodeproj">
          </BuildableReference>
