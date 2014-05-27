@@ -2,7 +2,7 @@ Get to 24
 ===========
 A fun math game to make 4 playing cards come out to 24 using **addition**, **subtraction**, **multiplication** and **division**
 
-![New UI from Cate](https://cloud.githubusercontent.com/assets/149837/3087845/6f09ddf4-e562-11e3-88cf-027ea0f0010d.png)
+![New UI from Cate](https://cloud.githubusercontent.com/assets/149837/3087856/afd201b8-e562-11e3-9261-5bb20586e985.png)
 
 ### Online versions
    * http://www.coolmath-games.com/0-make24/index.html
