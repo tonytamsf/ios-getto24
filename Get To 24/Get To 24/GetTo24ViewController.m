@@ -147,7 +147,6 @@
     [self showAnswerControllers:TRUE];
     
     [self.timer invalidate];
-    
 }
 
 //
@@ -188,6 +187,8 @@
     self.labelBackground1.hidden = show;
     self.labelBackground2.hidden = show;
 
+    [self.imageViewCenter setUserInteractionEnabled:!show];
+    
     if (show) {
         self.labelAnswer.text = @"(select cards)";
         self.labelAnswer2.text = @"(select cards)";
@@ -253,6 +254,7 @@
     
     [self.answerArray removeAllObjects];
     [self.answerCardArray removeAllObjects];
+    [self.operatorStrings removeAllObjects];
     self.numAnswerOperators = 0;
 }
 //
@@ -286,15 +288,18 @@
     self.answerOperators = malloc(sizeof(SEL) * 3);
     self.operatorStrings = [[NSMutableArray alloc] init];
     self.answerCardArray = [[NSMutableArray alloc] init];
-    
+    self.answerArray = [[NSMutableArray alloc] init];
+
+    // just because it's hard to map SEL, we have the string representations
     self.operatorChars = [NSArray arrayWithObjects:
                           @"+",
                           @"-",
-                          @"*",
-                          @"/",
+                          @"×",
+                          @"÷",
                           nil];
     
     
+    // Keep track of the UIButtons where the operators are
     self.operatorLabels2 = [NSArray arrayWithObjects:
                             self.buttonPlus2,
                             self.buttonMinus2,
@@ -308,16 +313,17 @@
         self._cardDeck = [[PlayingCardDeck alloc] init];
     }
     
+    // Keep track of the labels used to display the status/answers to both players
     self.labelAnswers = [[NSArray alloc] initWithObjects:self.labelAnswer, self.labelAnswer2, nil];
     
     
-    self.hand = [[NSMutableArray alloc] init];
-    [AudioUtil playSound:@"opening" :@"wav"];
-    
-    
+    // Start off with no answer controllers
     [self showAnswerControllers:FALSE];
+    
     // Deal a fresh hand
+    self.hand = [[NSMutableArray alloc] init];
     [self dealHand];
+    [AudioUtil playSound:@"opening" :@"wav"];
 }
 
 //
@@ -325,16 +331,17 @@
 //
 - (void) countdown
 {
+    // Update both timers
     self.labelTime.text = [NSString stringWithFormat:@"%d", self.currentGameTime];
     self.labelTime1.text = [NSString stringWithFormat:@"%d", self.currentGameTime];
 
     DLog("Countdown %d %f", self.currentGameTime, percent);
     self.currentGameTime -= 1;
     if (self.currentGameTime <= 0) {
+        self.currentGameTime = 0;
         [self timesUp];
         return;
     }
-    
 }
 
 //
@@ -361,11 +368,13 @@
     
     // clear the current hand about put back into the deck in random order?
     [self putInDeck:self.hand];
+    [self.hand removeAllObjects];
     
     // clear the hand
-    [self.hand removeAllObjects];
-    self.numAnswerOperators = 0;
+    [self.answerArray removeAllObjects];
     [self.answerCardArray removeAllObjects];
+    [self.operatorStrings removeAllObjects];
+    self.numAnswerOperators = 0;
     
     UIButton *card;
     
@@ -393,19 +402,11 @@
         right.TextColor = [newCard cardColor];
         
         [self showCard:card label:left label:right];
-        [card setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"num-%d.png", MIN(10, newCard.rank)]]
+        [card setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"num-%d.png", MIN(10, (int) newCard.rank)]]
                         forState:UIControlStateNormal];
-        
+        NSLog(@"deal %d", newCard.rank);
     }
     
-    // We the answer before the user
-    if ([self calcuateAnswer] == nil) {
-        NSLog(@"Re-deal hand with no answer");
-        [self dealHand];
-    }
-    
-    [self.answerArray removeAllObjects];
-
     [self.timer invalidate];
     
     // Start the countdown
@@ -414,7 +415,13 @@
                                                 selector:@selector(countdown)
                                                 userInfo:nil
                                                  repeats:YES];
-    
+    // We the answer before the user
+    if ([self calcuateAnswer] == nil) {
+        NSLog(@"Re-deal hand with no answer");
+        [self dealHand];
+        return;
+    }
+
     
     //[AudioUtil playSound:@"relaxing-short" :@"wav"];
 }
@@ -479,7 +486,7 @@
     [UIView commitAnimations];
 }
 
-//
+// TODO: declare winner!
 // Dock points from both players
 // the player has to find the answer, skip or say there is no answer
 //
@@ -498,6 +505,7 @@
 //
 - (IBAction)giveUp:(id)sender {
     [self dealHand];
+    self.currentGameTime = self.currentGameTime - 30;
     
     [AudioUtil playSound:@"whoosh" :@"wav"];
 }
@@ -550,7 +558,6 @@
     [super viewDidLoad];
     
     // rotate the buttons, labels
-    
     [self.player1Button setTransform:CGAffineTransformMakeRotation(-M_PI)];
     [self.player1Score setTransform:CGAffineTransformMakeRotation(-M_PI)];
     [self.player1NameLabel setTransform:CGAffineTransformMakeRotation(-M_PI)];
@@ -565,7 +572,7 @@
     
     // 2 player game allow 2 players to press buttons at the same time
     [self.view setMultipleTouchEnabled:YES];
-    
+
     // The list of cards and the labels on them
     self.cards = [NSArray arrayWithObjects:
                   self.cardNW,
@@ -586,7 +593,8 @@
                        self.labelNEright,
                        nil
                        ];
-    //
+    
+    // tag the buttons so we can map it to self.operators
     [self.buttonPlus2 setTag:0];
     [self.buttonMinus2 setTag:1];
     [self.buttonMultiplication2 setTag:2];
@@ -597,16 +605,17 @@
     [self.labelAnswer setTag:100];
     [self.labelAnswer2 setTag:101];
     
-    self.answerArray = [[NSMutableArray alloc] init];
-    
     // Swipe
     self.swipeGesture.direction = UISwipeGestureRecognizerDirectionRight | UISwipeGestureRecognizerDirectionLeft;
     self.swipeGesture1.direction = UISwipeGestureRecognizerDirectionRight | UISwipeGestureRecognizerDirectionLeft;
+    self.swipeGestureGiveUp.direction = UISwipeGestureRecognizerDirectionRight | UISwipeGestureRecognizerDirectionLeft;
+
     // Get started
     [self startGame];
     
 }
 
+// TODO, nada to clear
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -647,7 +656,7 @@
 
 
 
-//
+// TODO, refactor this into calculateHand
 // Apply all the possible operators on the 4 cards, keeping them in the same order
 //
 // Solve for these combination
@@ -751,13 +760,7 @@
     AnswerPackage *storeAnswerPackage;
     NSDecimalNumber *rightAnswer = (NSDecimalNumber *)[NSDecimalNumber numberWithInt:24];
     
-    // NSInvocation , very ugly
-    SEL currentOperators[] = {
-        @selector(calcuateSimple:usingOperators:withOperatorChars:),
-        @selector(calcuateGrouping:usingOperators:withOperatorChars:),
-        @selector(calcuateGroupingOfTwo:usingOperators:withOperatorChars:),
-        @selector(calcuateGroupingSecond:usingOperators:withOperatorChars:)
-    };
+
     
     BOOL found = false;
 
@@ -1038,22 +1041,8 @@
     return answer;
 }
 
-- (void) setFlipCount:(int)flipCount
-{
-    _flipCount = flipCount;
-    [self.flipsLabel setText:[NSString stringWithFormat:@"Flips %d", self.flipCount]];
-    
-}
 
-
-- (IBAction)buttonAnswerDismiss:(id)sender
-{
-    
-    [self showAnswerControllers:FALSE];
-    [self dealHand];
-}
-
-//
+// TODO nothing to do right now
 // Handle UILabel touch events
 // http://stackoverflow.com/questions/18459322/how-to-get-uilabel-tags-in-iphone
 //
@@ -1068,16 +1057,21 @@
     }
 }
 
+// An operator is touched, enable the cards, disable the operators
+//
 - (IBAction)operatorTouched:(id)sender
 {
     UIButton *operator = (UIButton *) sender;
 
+    // This keeps track of the current state of the answers
+    // TODO this can be a struct?
+    //
     [self.answerArray addObject:[NSString stringWithFormat:@"%@", self.operatorChars[operator.tag]]];
-    
     self.answerOperators[self.numAnswerOperators++ ] = self.selectors[operator.tag];
     [self.operatorStrings addObject:self.operatorChars[operator.tag]];
     
-
+    // Show the players where we are
+    //
     for (int i = 0; i < 2; i++) {
         UILabel *labelAnswer = [self.labelAnswers objectAtIndex:i];
         
@@ -1091,9 +1085,9 @@
         
     }
     
+    // Enable cards, disable operators
     [self disableOperators:TRUE];
     [self disableCards:FALSE];
-    
 }
 
 //
@@ -1107,6 +1101,7 @@
 
     if (self.answerPlayer < 0 || self.answerPlayer > 1) {
         // something really wrong, reset everything
+        NSLog(@"should be fatal error here, only 2 players are supported");
         [self startGame];
         return;
     }
@@ -1114,13 +1109,6 @@
     UILabel *labelAnswer = [self.labelAnswers objectAtIndex:self.answerPlayer];
     
     CardHand * cardHand = [self.hand objectAtIndex:sender.tag];
-    //UIImage *cardImage = [UIImage imageNamed:@"cardfront"];
-    //[sender setBackgroundImage:cardImage
-    //                   forState:UIControlStateNormal ];
-    
-    //[sender setTitle:[NSString stringWithFormat:@"%d",
-    //                  MIN( 10, (int)cardHand.card.rank)]
-    //        forState:UIControlStateNormal];
     
     [sender setUserInteractionEnabled:FALSE];
     sender.alpha = 0.2;
@@ -1128,6 +1116,7 @@
     [self.answerArray addObject:sender];
     [self.answerCardArray addObject:cardHand];
 
+    // Keep the players informed about what has been selected, both players need to know
     for (int i = 0; i < 2; i++) {
         UILabel *labelAnswer = [self.labelAnswers objectAtIndex:i];
         if ([labelAnswer.text compare:@"(select cards)"] == NSOrderedSame) {
@@ -1138,6 +1127,8 @@
                                   MIN(10, (int)cardHand.card.rank)];
     }
     
+    // TODO: add or remove points
+    // We have 4 cards and 3 operators, we are done
     if ([self.answerArray count] == 7) {
         NSString * finalText = [[NSString alloc] init];
         
@@ -1145,6 +1136,8 @@
                                   usingOperators:self.answerOperators
                                withOperatorChars:self.operatorStrings];
         if (answer != nil && [answer.answer compare:rightAnswer] == NSOrderedSame) {
+            
+            // Internationalize these strings
             NSLog(@"Player got it right: %@", answer.stringAnswer);
             finalText = [NSString stringWithFormat:@"Yay!! %@", answer.stringAnswer];
         } else {
@@ -1158,62 +1151,67 @@
         }
         return;
     }
-        
+    
+    // Disable cards, enable operators
     [self disableCards:TRUE];
     [self disableOperators:FALSE];
 }
 
+// We are selecting operators, so deselect the cards, but let the user know
+// via the alpha level which cards were already selected
+//
 - (IBAction)disableCards:(BOOL) bDisabled
 {
-    UIColor *color = [UIColor grayColor];
-    if (!bDisabled) {
-        color = [UIColor blackColor];
-    }
-    
+
     for (int i = 0; i < 4; i++ ) {
         UIButton *card = (UIButton *)self.cards[i];
         
+        // Never enable a card once it's been selected
         if (bDisabled == FALSE && [self.answerArray containsObject:card]) {
             DLog(@"not enabling %@", card);
             continue;
         }
+        
         [card setUserInteractionEnabled:!bDisabled];
         
+        // If the card has already been selected, dime it even more
         if (bDisabled == TRUE && [self.answerArray containsObject:card]) {
             card.alpha = bDisabled ? 0.2 : 1;
 
         } else {
             card.alpha = bDisabled ? 0.5 : 1;
         }
-
-        [card setTitleColor:color
-                   forState:UIControlStateNormal];
-
     }
 }
 
+// We are selectings cards, so disable the operators
 - (IBAction)disableOperators:(BOOL) bDisabled
 {
     for (int i = 0; i < 4; i++ ) {
-        //  [((UIButton *)self.cards[i]) setUserInteractionEnabled:!bDisabled];
-        //((UIButton *)self.operatorLabels2[i]).hidden = bDisabled;
         [((UIButton *)self.operatorLabels2[i]) setUserInteractionEnabled:! bDisabled];
         ((UIButton *)self.operatorLabels2[i]).alpha =  bDisabled ? 0.2 : 1;
-        [((UIButton *)self.operatorLabels2[i])
-         setTitleColor:(bDisabled) ? [UIColor grayColor] : [UIColor blackColor]
-         forState:UIControlStateNormal];
     }
 }
 
-// Swipe away and try answer againr
+// Swipe away and try answer again
 - (IBAction)swipeAway:(UISwipeGestureRecognizer *)sender {
     NSLog(@"swipe");
     [self clearAnswer];
 }
 
+// Swipe away and try answer again
+
 - (IBAction)swipeAway1:(UISwipeGestureRecognizer *)sender {
     NSLog(@"swipe1");
     [self clearAnswer];
 }
+
+// Skp the current hand, you loose a few precious seconds
+- (IBAction)swipeAwayGiveUp:(id)sender {
+    NSLog(@"swipeAwayGiveUp");
+
+    [self giveUp:sender];
+}
+
 
 @end

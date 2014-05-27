@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		109EB46442FA4E4F93E666D8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88695D9F7F664F069AE8C6B0 /* libPods.a */; };
 		D80C81D61926F481004D2BAD /* polish-button.png in Resources */ = {isa = PBXBuildFile; fileRef = D80C81D51926F481004D2BAD /* polish-button.png */; };
+		D816ACBA1934FBF700C9D93B /* go-button.png in Resources */ = {isa = PBXBuildFile; fileRef = D816ACB91934FBF700C9D93B /* go-button.png */; };
 		D81CFC0419341B42005AB7D7 /* math-24-icon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D81CFC0319341B42005AB7D7 /* math-24-icon.pdf */; };
 		D81CFC14193434B0005AB7D7 /* num-10.png in Resources */ = {isa = PBXBuildFile; fileRef = D81CFC0A193434B0005AB7D7 /* num-10.png */; };
 		D81CFC15193434B0005AB7D7 /* num-9.png in Resources */ = {isa = PBXBuildFile; fileRef = D81CFC0B193434B0005AB7D7 /* num-9.png */; };
@@ -26,7 +27,6 @@
 		D81CFC3019344663005AB7D7 /* num-2.png in Resources */ = {isa = PBXBuildFile; fileRef = D81CFC2F19344663005AB7D7 /* num-2.png */; };
 		D81CFC3219344FCA005AB7D7 /* player-area.png in Resources */ = {isa = PBXBuildFile; fileRef = D81CFC3119344FCA005AB7D7 /* player-area.png */; };
 		D81CFC3419345AD1005AB7D7 /* 24-got-it.png in Resources */ = {isa = PBXBuildFile; fileRef = D81CFC3319345AD1005AB7D7 /* 24-got-it.png */; };
-		D81CFC3619345D66005AB7D7 /* go-button.png in Resources */ = {isa = PBXBuildFile; fileRef = D81CFC3519345D66005AB7D7 /* go-button.png */; };
 		D8265148192D0DAB00679910 /* card-front.png in Resources */ = {isa = PBXBuildFile; fileRef = D8265147192D0DAB00679910 /* card-front.png */; };
 		D847ECE0192099EB005F60CC /* felt.background.png in Resources */ = {isa = PBXBuildFile; fileRef = D847ECDF192099EB005F60CC /* felt.background.png */; };
 		D847ECE219209D5A005F60CC /* 24.button.png in Resources */ = {isa = PBXBuildFile; fileRef = D847ECE119209D5A005F60CC /* 24.button.png */; };
@@ -87,6 +87,7 @@
 		35D2D39FA0B94F0B8A6AF88C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		88695D9F7F664F069AE8C6B0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D80C81D51926F481004D2BAD /* polish-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "polish-button.png"; sourceTree = "<group>"; };
+		D816ACB91934FBF700C9D93B /* go-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "go-button.png"; sourceTree = "<group>"; };
 		D81CFC0319341B42005AB7D7 /* math-24-icon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "math-24-icon.pdf"; sourceTree = "<group>"; };
 		D81CFC0A193434B0005AB7D7 /* num-10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "num-10.png"; sourceTree = "<group>"; };
 		D81CFC0B193434B0005AB7D7 /* num-9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "num-9.png"; sourceTree = "<group>"; };
@@ -104,7 +105,6 @@
 		D81CFC2F19344663005AB7D7 /* num-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "num-2.png"; sourceTree = "<group>"; };
 		D81CFC3119344FCA005AB7D7 /* player-area.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "player-area.png"; sourceTree = "<group>"; };
 		D81CFC3319345AD1005AB7D7 /* 24-got-it.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "24-got-it.png"; sourceTree = "<group>"; };
-		D81CFC3519345D66005AB7D7 /* go-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "go-button.png"; sourceTree = "<group>"; };
 		D8265147192D0DAB00679910 /* card-front.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card-front.png"; sourceTree = "<group>"; };
 		D847ECDF192099EB005F60CC /* felt.background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = felt.background.png; sourceTree = "<group>"; };
 		D847ECE119209D5A005F60CC /* 24.button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 24.button.png; sourceTree = "<group>"; };
@@ -193,6 +193,7 @@
 		D8599D3F187B1ACB0033E51C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				D816ACB91934FBF700C9D93B /* go-button.png */,
 				D81CFC3319345AD1005AB7D7 /* 24-got-it.png */,
 				D81CFC3119344FCA005AB7D7 /* player-area.png */,
 				D81CFC2F19344663005AB7D7 /* num-2.png */,
@@ -207,7 +208,6 @@
 				D81CFC0D193434B0005AB7D7 /* num-8.png */,
 				D81CFC0E193434B0005AB7D7 /* num-6.png */,
 				D81CFC0F193434B0005AB7D7 /* num-5.png */,
-				D81CFC3519345D66005AB7D7 /* go-button.png */,
 				D81CFC10193434B0005AB7D7 /* num-4.png */,
 				D81CFC11193434B0005AB7D7 /* num-3.png */,
 				D81CFC0319341B42005AB7D7 /* math-24-icon.pdf */,
@@ -494,7 +494,7 @@
 				D81CFC15193434B0005AB7D7 /* num-9.png in Resources */,
 				D81CFC19193434B0005AB7D7 /* num-5.png in Resources */,
 				D81CFC2C19344498005AB7D7 /* multiply.png in Resources */,
-				D81CFC3619345D66005AB7D7 /* go-button.png in Resources */,
+				D816ACBA1934FBF700C9D93B /* go-button.png in Resources */,
 				D81CFC2E19344498005AB7D7 /* divide.png in Resources */,
 				D8599D45187B1AF00033E51C /* getto24-icon-58.png in Resources */,
 				D81CFC2D19344498005AB7D7 /* plus.png in Resources */,

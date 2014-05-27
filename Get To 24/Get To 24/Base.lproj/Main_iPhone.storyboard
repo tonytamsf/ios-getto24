@@ -18,13 +18,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1lO-Mv-bMn">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="574"/>
+                            <imageView multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1lO-Mv-bMn">
+                                <rect key="frame" x="0.0" y="84" width="320" height="301"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.12743224604027439" green="0.23290512565997301" blue="0.27812924592391308" alpha="1" colorSpace="calibratedRGB"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES" image="YES" updatesFrequently="YES"/>
+                                </accessibility>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="tao-WI-gKW" appends="YES" id="sKQ-ml-ZtG"/>
+                                </connections>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qea-EK-Lck" userLabel="LabelBackground2">
-                                <rect key="frame" x="0.0" y="386" width="320" height="85"/>
+                                <rect key="frame" x="0.0" y="386" width="320" height="86"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.16807381007941488" green="0.30842190988428925" blue="0.37066915760869568" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -142,12 +148,12 @@
                                 <color key="highlightedColor" red="0.98968339019999996" green="0.99284903250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </label>
                             <button opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q7m-3b-OYd" userLabel="player1GotItButton">
-                                <rect key="frame" x="136" y="13" width="48" height="48"/>
+                                <rect key="frame" x="120" y="3" width="80" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="48" id="PoZ-WA-bPm"/>
-                                    <constraint firstAttribute="height" constant="48" id="Zni-KU-J0b"/>
+                                    <constraint firstAttribute="width" constant="80" id="PoZ-WA-bPm"/>
+                                    <constraint firstAttribute="height" constant="80" id="Zni-KU-J0b"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                 <state key="normal" title="24" image="go-button.png">
@@ -159,12 +165,12 @@
                                 </connections>
                             </button>
                             <button opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yr7-Ae-bzI" userLabel="player2GotItButton">
-                                <rect key="frame" x="136" y="400" width="48" height="48"/>
+                                <rect key="frame" x="120" y="386" width="80" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="48" id="NxN-fL-8A9"/>
-                                    <constraint firstAttribute="height" constant="48" id="Oud-Ox-8x5"/>
+                                    <constraint firstAttribute="width" constant="75" id="NxN-fL-8A9"/>
+                                    <constraint firstAttribute="height" constant="75" id="Oud-Ox-8x5"/>
                                 </constraints>
                                 <state key="normal" title="24" image="go-button.png">
                                     <color key="titleColor" red="0.98968339019999996" green="0.99284903250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -370,7 +376,6 @@
                             <constraint firstItem="kSc-2s-X1a" firstAttribute="centerY" secondItem="wV1-EI-ceN" secondAttribute="centerY" id="Ifv-WJ-0LU"/>
                             <constraint firstItem="zgk-Aw-bmH" firstAttribute="centerY" secondItem="uux-az-efu" secondAttribute="centerY" id="J8b-bV-fpM"/>
                             <constraint firstItem="Gj5-hm-bcg" firstAttribute="leading" secondItem="zci-AR-q5d" secondAttribute="trailing" constant="-45" id="KL5-dm-TbJ"/>
-                            <constraint firstItem="XTM-ZA-O5p" firstAttribute="top" secondItem="1lO-Mv-bMn" secondAttribute="bottom" id="L2n-yl-il3"/>
                             <constraint firstAttribute="trailing" secondItem="m4s-Sl-Q1R" secondAttribute="trailing" constant="10" id="MMP-X7-Vkx"/>
                             <constraint firstItem="lpo-fw-qwT" firstAttribute="centerX" secondItem="YfI-WP-Roz" secondAttribute="centerX" id="MVE-Tl-7Pq"/>
                             <constraint firstItem="lpo-fw-qwT" firstAttribute="top" secondItem="YfI-WP-Roz" secondAttribute="bottom" constant="20" id="N1a-wm-a1Z"/>
@@ -378,8 +383,10 @@
                             <constraint firstItem="zgk-Aw-bmH" firstAttribute="leading" secondItem="MOk-DM-pwU" secondAttribute="trailing" constant="-50" id="NmF-0d-8dn"/>
                             <constraint firstItem="whQ-VG-LXX" firstAttribute="top" secondItem="EW9-NQ-mF4" secondAttribute="bottom" constant="3" id="O5X-P9-7xb"/>
                             <constraint firstItem="yxP-gq-MBa" firstAttribute="top" secondItem="whQ-VG-LXX" secondAttribute="top" id="Q6A-45-aHG"/>
-                            <constraint firstItem="yr7-Ae-bzI" firstAttribute="bottom" secondItem="Qea-EK-Lck" secondAttribute="bottom" constant="-20" id="QCc-sh-uoX"/>
+                            <constraint firstItem="yr7-Ae-bzI" firstAttribute="bottom" secondItem="Qea-EK-Lck" secondAttribute="bottom" constant="-5" id="QCc-sh-uoX"/>
+                            <constraint firstItem="1lO-Mv-bMn" firstAttribute="top" secondItem="KPZ-nb-rup" secondAttribute="bottom" id="QTD-LC-WzD"/>
                             <constraint firstItem="cP7-ao-yCE" firstAttribute="centerX" secondItem="Gj5-hm-bcg" secondAttribute="centerX" id="TRn-qB-ibr"/>
+                            <constraint firstItem="5Eg-ML-33t" firstAttribute="top" secondItem="1lO-Mv-bMn" secondAttribute="bottom" constant="1" id="UWt-cA-ogv"/>
                             <constraint firstItem="pHx-cz-fWE" firstAttribute="leading" secondItem="cP7-ao-yCE" secondAttribute="trailing" constant="5" id="Yzw-ys-59w"/>
                             <constraint firstItem="yTo-QE-Ru8" firstAttribute="leading" secondItem="pHx-cz-fWE" secondAttribute="trailing" constant="-50" id="abm-Bq-d2j"/>
                             <constraint firstItem="MOk-DM-pwU" firstAttribute="bottom" secondItem="fQy-hJ-z2h" secondAttribute="bottom" id="awe-Gq-Eij"/>
@@ -405,10 +412,11 @@
                             <constraint firstItem="MOk-DM-pwU" firstAttribute="leading" secondItem="Gj5-hm-bcg" secondAttribute="trailing" constant="5" id="wzs-uR-W9P"/>
                             <constraint firstItem="53k-en-hR1" firstAttribute="centerY" secondItem="KPZ-nb-rup" secondAttribute="centerY" id="zFq-rA-mGC"/>
                             <constraint firstItem="m4s-Sl-Q1R" firstAttribute="top" secondItem="NSd-Hb-EZb" secondAttribute="bottom" priority="500" constant="-3" id="zcO-Mz-acE"/>
-                            <constraint firstItem="Q7m-3b-OYd" firstAttribute="top" secondItem="e15-do-E3F" secondAttribute="bottom" constant="20" id="zzT-Wl-W3s"/>
+                            <constraint firstItem="Q7m-3b-OYd" firstAttribute="top" secondItem="e15-do-E3F" secondAttribute="bottom" constant="5" id="zzT-Wl-W3s"/>
                             <constraint firstItem="zgk-Aw-bmH" firstAttribute="centerX" secondItem="yTo-QE-Ru8" secondAttribute="centerX" id="zzv-F6-JBG"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="fA4-kp-cG9"/>
                     <connections>
                         <outlet property="buttonDivision2" destination="lpo-fw-qwT" id="E8v-ez-6os"/>
                         <outlet property="buttonMinus2" destination="fQy-hJ-z2h" id="Hfb-nV-6u3"/>
@@ -418,6 +426,7 @@
                         <outlet property="cardNW" destination="Gj5-hm-bcg" id="03R-JH-R1Y"/>
                         <outlet property="cardSE" destination="pHx-cz-fWE" id="rFc-9R-czy"/>
                         <outlet property="cardSW" destination="cP7-ao-yCE" id="2Q5-c9-6LI"/>
+                        <outlet property="imageViewCenter" destination="1lO-Mv-bMn" id="ot3-eB-HVv"/>
                         <outlet property="labelAnswer" destination="KPZ-nb-rup" id="NAw-zd-WRD"/>
                         <outlet property="labelAnswer2" destination="5Eg-ML-33t" id="aR9-Sz-zbH"/>
                         <outlet property="labelBackground1" destination="53k-en-hR1" id="BLO-IU-XwL"/>
@@ -442,6 +451,7 @@
                         <outlet property="player2Score" destination="whQ-VG-LXX" id="iSp-dB-w2H"/>
                         <outlet property="swipeGesture" destination="5As-Wo-tG7" id="ht3-vl-zyd"/>
                         <outlet property="swipeGesture1" destination="ADz-4w-7HL" id="duR-Eg-eaI"/>
+                        <outlet property="swipeGestureGiveUp" destination="tao-WI-gKW" id="k5j-QJ-2vH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -455,13 +465,18 @@
                         <action selector="swipeAway1:" destination="vXZ-lx-hvc" id="Wq2-46-m77"/>
                     </connections>
                 </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="tao-WI-gKW" userLabel="give up swipe Gesture Recognizer">
+                    <connections>
+                        <action selector="swipeAwayGiveUp:" destination="vXZ-lx-hvc" id="PPF-ia-2Im"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="81" y="18"/>
+            <point key="canvasLocation" x="-265" y="-212"/>
         </scene>
     </scenes>
     <resources>
         <image name="divide.png" width="50" height="50"/>
-        <image name="go-button.png" width="56" height="51"/>
+        <image name="go-button.png" width="80" height="72"/>
         <image name="minus.png" width="50" height="50"/>
         <image name="multiply.png" width="50" height="50"/>
         <image name="num-1.png" width="180" height="180"/>
