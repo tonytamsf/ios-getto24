@@ -146,7 +146,6 @@
 {
     [self showAnswerControllers:TRUE];
     
-    [self.timer invalidate];
 }
 
 //
@@ -205,35 +204,45 @@
 //
 -(void) rightAnswer:(int) playerNumber
 {
-    [self.timer invalidate];
-    UILabel *label = (playerNumber == 1) ?
-    self.labelAnswer :
-    self.labelAnswer2;
-    
-    label.hidden = FALSE;
-    self.labelAnswer2.hidden = FALSE;
-    self.labelAnswer.hidden = FALSE;
-    
-    if (self.storeAnswerPackage.stringAnswer == nil) {
-        self.labelAnswer.text = @"No answer";
-        self.labelAnswer2.text = @"No answer";
+    if (playerNumber == 0) {
         
+        self.player1ScorePoints += 1;
+        self.player1Score.text = [NSString stringWithFormat:@"%d",
+                                  self.player1ScorePoints];
     } else {
-        self.labelAnswer2.text = self.storeAnswerPackage.stringAnswer;
-        self.labelAnswer.text = self.storeAnswerPackage.stringAnswer;
+        
+        self.player2ScorePoints += 1;
+        self.player2Score.text = [NSString stringWithFormat:@"%d",
+                                  self.player2ScorePoints];
+    }
+
+    [AudioUtil playSound:@"chimes" :@"wav"];
+}
+
+//
+// Player got the right answer, reward with a point
+// Maybe show them other potential answers
+//
+-(void) wrongAnswer:(int) playerNumber
+{
+    if (playerNumber == 0) {
+        
+        self.player1ScorePoints -= 1;
+        self.player1Score.text = [NSString stringWithFormat:@"%d",
+                                  self.player1ScorePoints];
+    } else {
+        
+        self.player2ScorePoints -= 1;
+        self.player2Score.text = [NSString stringWithFormat:@"%d",
+                                  self.player2ScorePoints];
     }
     
-    self.player1Button.hidden = true;
-    self.player2Button.hidden = true;
-    
-    //[self showAnswerControllers:FALSE];
-    //[self dealHand];
     [AudioUtil playSound:@"chimes" :@"wav"];
 }
 
 - (void) clearAnswer
 {
-    NSLog(@"answer cards %@", self.answerCardArray);
+    DLog(@"answer cards %@", self.answerCardArray);
 
     if ([self.answerCardArray count] == 4) {
         [self dealHand];
@@ -323,6 +332,14 @@
     // Deal a fresh hand
     self.hand = [[NSMutableArray alloc] init];
     [self dealHand];
+    
+    
+    // Start the countdown
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1
+                                                  target:self
+                                                selector:@selector(countdown)
+                                                userInfo:nil
+                                                 repeats:YES];
     [AudioUtil playSound:@"opening" :@"wav"];
 }
 
@@ -331,14 +348,19 @@
 //
 - (void) countdown
 {
+    self.currentGameTime -= 1;
+    if (self.currentGameTime <= 0) {
+        self.currentGameTime = 0;
+    }
+    DLog("Countdown %d %f", self.currentGameTime, percent);
+
     // Update both timers
     self.labelTime.text = [NSString stringWithFormat:@"%d", self.currentGameTime];
     self.labelTime1.text = [NSString stringWithFormat:@"%d", self.currentGameTime];
 
-    DLog("Countdown %d %f", self.currentGameTime, percent);
     self.currentGameTime -= 1;
     if (self.currentGameTime <= 0) {
-        self.currentGameTime = 0;
+
         [self timesUp];
         return;
     }
@@ -404,20 +426,13 @@
         [self showCard:card label:left label:right];
         [card setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"num-%d.png", MIN(10, (int) newCard.rank)]]
                         forState:UIControlStateNormal];
-        NSLog(@"deal %d", newCard.rank);
+        DLog(@"deal %d", newCard.rank);
     }
     
-    [self.timer invalidate];
-    
-    // Start the countdown
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1
-                                                  target:self
-                                                selector:@selector(countdown)
-                                                userInfo:nil
-                                                 repeats:YES];
+
     // We the answer before the user
     if ([self calcuateAnswer] == nil) {
-        NSLog(@"Re-deal hand with no answer");
+        DLog(@"Re-deal hand with no answer");
         [self dealHand];
         return;
     }
@@ -493,11 +508,11 @@
 - (void)timesUp {
     //[AudioUtil playSound:@"whoosh" :@"wav"];
     // Stop the previous timer
-    [self.timer invalidate];
     
     [AudioUtil playSound:@"ray" :@"wav"];
     
     // [self dealHand];
+    [self.timer invalidate];
 }
 
 //
@@ -514,28 +529,20 @@
 
 //
 // Player1 thinks he has it, need to validate the answer
-// TODO
 //
 - (IBAction)player1Pressed:(id)sender {
     
     self.answerPlayer = 0;
-    
-    self.player1ScorePoints += 1;
-    self.player1Score.text = [NSString stringWithFormat:@"%d",
-                              self.player1ScorePoints];
+
     [self verifyAnswer];
 }
 
 //
 // Player2 thinks he has it, need to validate the answer
-// TODO
 //
 - (IBAction)player2Pressed:(id)sender {
     self.answerPlayer = 1;
-    
-    self.player2ScorePoints += 1;
-    self.player2Score.text = [NSString stringWithFormat:@"%d",
-                              self.player2ScorePoints];
+
     [self verifyAnswer];
 }
 
@@ -615,7 +622,7 @@
     
 }
 
-// TODO, nada to clear
+// nada to clear
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -648,7 +655,7 @@
         }
         @catch (NSException *e) {
             // Just catch division by zero, ignore
-            //NSLog(@"%@", e);
+            //DLog(@"%@", e);
         }
     }
     return nil;
@@ -695,7 +702,7 @@
                                            usingOperators:currentOperators
                                         withOperatorChars:currentOperatorChars];
                 if ([storeAnswerPackage.answer compare:rightAnswer] == NSOrderedSame) {
-                    NSLog(@"answer %@", storeAnswerPackage.stringAnswer);
+                    DLog(@"answer %@", storeAnswerPackage.stringAnswer);
                     
                     found = TRUE;
                     break;
@@ -704,7 +711,7 @@
                                              usingOperators:currentOperators
                                           withOperatorChars:currentOperatorChars];
                 if ([storeAnswerPackage.answer compare:rightAnswer] == NSOrderedSame) {
-                    NSLog(@"answer %@", storeAnswerPackage.stringAnswer);
+                    DLog(@"answer %@", storeAnswerPackage.stringAnswer);
                     
                     found = TRUE;
                     break;
@@ -713,7 +720,7 @@
                                                   usingOperators:currentOperators
                                                withOperatorChars:currentOperatorChars];
                 if ([storeAnswerPackage.answer compare:rightAnswer] == NSOrderedSame) {
-                    NSLog(@"answer %@", storeAnswerPackage.stringAnswer);
+                    DLog(@"answer %@", storeAnswerPackage.stringAnswer);
                     
                     found = TRUE;
                     break;
@@ -722,7 +729,7 @@
                                                    usingOperators:currentOperators
                                                 withOperatorChars:currentOperatorChars];
                 if ([storeAnswerPackage.answer compare:rightAnswer] == NSOrderedSame) {
-                    NSLog(@"answer %@", storeAnswerPackage.stringAnswer);
+                    DLog(@"answer %@", storeAnswerPackage.stringAnswer);
                     
                     found = TRUE;
                     break;
@@ -770,7 +777,7 @@
                             withOperatorChars:currentOperatorChars];
 
     if ([storeAnswerPackage.answer compare:rightAnswer] == NSOrderedSame) {
-        NSLog(@"answer %@", storeAnswerPackage.stringAnswer);
+        DLog(@"answer %@", storeAnswerPackage.stringAnswer);
         
         found = TRUE;
         return storeAnswerPackage;
@@ -780,7 +787,7 @@
                                  usingOperators:selectors
                               withOperatorChars:currentOperatorChars];
     if ([storeAnswerPackage.answer compare:rightAnswer] == NSOrderedSame) {
-        NSLog(@"answer %@", storeAnswerPackage.stringAnswer);
+        DLog(@"answer %@", storeAnswerPackage.stringAnswer);
         
         found = TRUE;
         return storeAnswerPackage;
@@ -789,7 +796,7 @@
                                       usingOperators:selectors
                                    withOperatorChars:currentOperatorChars];
     if ([storeAnswerPackage.answer compare:rightAnswer] == NSOrderedSame) {
-        NSLog(@"answer %@", storeAnswerPackage.stringAnswer);
+        DLog(@"answer %@", storeAnswerPackage.stringAnswer);
         
         found = TRUE;
         return storeAnswerPackage;
@@ -798,7 +805,7 @@
                                        usingOperators:selectors
                                     withOperatorChars:currentOperatorChars];
     if ([storeAnswerPackage.answer compare:rightAnswer] == NSOrderedSame) {
-        NSLog(@"answer %@", storeAnswerPackage.stringAnswer);
+        DLog(@"answer %@", storeAnswerPackage.stringAnswer);
         
         found = TRUE;
         return storeAnswerPackage;
@@ -1101,7 +1108,7 @@
 
     if (self.answerPlayer < 0 || self.answerPlayer > 1) {
         // something really wrong, reset everything
-        NSLog(@"should be fatal error here, only 2 players are supported");
+        DLog(@"should be fatal error here, only 2 players are supported");
         [self startGame];
         return;
     }
@@ -1138,10 +1145,12 @@
         if (answer != nil && [answer.answer compare:rightAnswer] == NSOrderedSame) {
             
             // Internationalize these strings
-            NSLog(@"Player got it right: %@", answer.stringAnswer);
+            DLog(@"Player got it right: %@", answer.stringAnswer);
             finalText = [NSString stringWithFormat:@"Yay!! %@", answer.stringAnswer];
+            [self rightAnswer:self.answerPlayer];
         } else {
             finalText = [NSString stringWithFormat:@"Sorry, correct answer is: \n%@", self.storeAnswerPackage.stringAnswer];
+            [self wrongAnswer:self.answerPlayer];
         }
         
         for (int i = 0; i < 2; i++) {
@@ -1195,20 +1204,20 @@
 
 // Swipe away and try answer again
 - (IBAction)swipeAway:(UISwipeGestureRecognizer *)sender {
-    NSLog(@"swipe");
+    DLog(@"swipe");
     [self clearAnswer];
 }
 
 // Swipe away and try answer again
 
 - (IBAction)swipeAway1:(UISwipeGestureRecognizer *)sender {
-    NSLog(@"swipe1");
+    DLog(@"swipe1");
     [self clearAnswer];
 }
 
 // Skp the current hand, you loose a few precious seconds
 - (IBAction)swipeAwayGiveUp:(id)sender {
-    NSLog(@"swipeAwayGiveUp");
+    DLog(@"swipeAwayGiveUp");
 
     [self giveUp:sender];
 }
