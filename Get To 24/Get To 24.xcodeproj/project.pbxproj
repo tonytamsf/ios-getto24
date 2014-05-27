@@ -10,6 +10,7 @@
 		109EB46442FA4E4F93E666D8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88695D9F7F664F069AE8C6B0 /* libPods.a */; };
 		D80C81D61926F481004D2BAD /* polish-button.png in Resources */ = {isa = PBXBuildFile; fileRef = D80C81D51926F481004D2BAD /* polish-button.png */; };
 		D816ACBA1934FBF700C9D93B /* go-button.png in Resources */ = {isa = PBXBuildFile; fileRef = D816ACB91934FBF700C9D93B /* go-button.png */; };
+		D816ACBD1934FF9300C9D93B /* dad's app.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D816ACBC1934FF9300C9D93B /* dad's app.pdf */; };
 		D81CFC0419341B42005AB7D7 /* math-24-icon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D81CFC0319341B42005AB7D7 /* math-24-icon.pdf */; };
 		D81CFC14193434B0005AB7D7 /* num-10.png in Resources */ = {isa = PBXBuildFile; fileRef = D81CFC0A193434B0005AB7D7 /* num-10.png */; };
 		D81CFC15193434B0005AB7D7 /* num-9.png in Resources */ = {isa = PBXBuildFile; fileRef = D81CFC0B193434B0005AB7D7 /* num-9.png */; };
@@ -88,6 +89,7 @@
 		88695D9F7F664F069AE8C6B0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D80C81D51926F481004D2BAD /* polish-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "polish-button.png"; sourceTree = "<group>"; };
 		D816ACB91934FBF700C9D93B /* go-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "go-button.png"; sourceTree = "<group>"; };
+		D816ACBC1934FF9300C9D93B /* dad's app.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "dad's app.pdf"; sourceTree = "<group>"; };
 		D81CFC0319341B42005AB7D7 /* math-24-icon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "math-24-icon.pdf"; sourceTree = "<group>"; };
 		D81CFC0A193434B0005AB7D7 /* num-10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "num-10.png"; sourceTree = "<group>"; };
 		D81CFC0B193434B0005AB7D7 /* num-9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "num-9.png"; sourceTree = "<group>"; };
@@ -190,6 +192,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D816ACBB1934FF8800C9D93B /* artwork */ = {
+			isa = PBXGroup;
+			children = (
+				D816ACBC1934FF9300C9D93B /* dad's app.pdf */,
+			);
+			name = artwork;
+			sourceTree = "<group>";
+		};
 		D8599D3F187B1ACB0033E51C /* images */ = {
 			isa = PBXGroup;
 			children = (
@@ -318,6 +328,7 @@
 		D8D36985187933400092E0F4 = {
 			isa = PBXGroup;
 			children = (
+				D816ACBB1934FF8800C9D93B /* artwork */,
 				D8C09C621915A0510057DDEB /* ios-libs */,
 				D8C112CA19158A6F00864A23 /* sounds */,
 				D8E4985C187B2157005A32D6 /* Default-568h@2x.png */,
@@ -517,6 +528,7 @@
 				D81CFC1B193434B0005AB7D7 /* num-3.png in Resources */,
 				D81CFC3019344663005AB7D7 /* num-2.png in Resources */,
 				D8C09C7B1915A0510057DDEB /* README.md in Resources */,
+				D816ACBD1934FF9300C9D93B /* dad's app.pdf in Resources */,
 				D847ECE41920A105005F60CC /* noanswer.button.gif in Resources */,
 				D8D369A5187933400092E0F4 /* Main_iPhone.storyboard in Resources */,
 				D868E2461919C26E00324698 /* red.card.background.png in Resources */,
