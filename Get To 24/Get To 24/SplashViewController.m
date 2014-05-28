@@ -22,7 +22,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSLog(@"SplashViewController.h");
+    DLog(@"SplashViewController.h");
     
     PBJVideoPlayerController *_videoPlayerController = [[PBJVideoPlayerController alloc] init];
     _videoPlayerController.delegate = self;

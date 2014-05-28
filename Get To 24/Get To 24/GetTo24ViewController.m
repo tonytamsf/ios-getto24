@@ -532,7 +532,8 @@
     [self.timer invalidate];
     self.labelGameOver.hidden = FALSE;
     [self showAnswerControllers:FALSE];
-    
+    self.player1Button.hidden = TRUE;
+    self.player2Button.hidden = TRUE;
 }
 
 //
@@ -1078,7 +1079,7 @@
 -(void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event;
 {
     UITouch *touch = [touches anyObject];
-    NSLog(@"touch %@", touch);
+    DLog(@"touch %@", touch);
     if (touch.view.tag >=  100 && touch.view.tag <= 110) {
         //[self showAnswerControllers:FALSE];
         //[self rightAnswer:1];
