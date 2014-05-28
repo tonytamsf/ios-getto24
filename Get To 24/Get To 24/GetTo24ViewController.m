@@ -295,7 +295,7 @@
 //
 - (void) startGame
 {
-    self.currentGameTime = 300;
+    self.currentGameTime = 600;
 
     // The valid operators
     self.plusSel  = @selector(decimalNumberByAdding:);
