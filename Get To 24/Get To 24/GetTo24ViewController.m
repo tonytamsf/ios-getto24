@@ -1,3 +1,4 @@
+
 //
 //  GetTo24ViewController.m
 //  Get To 24
@@ -132,6 +133,8 @@
 
 @property AnswerPackage *storeAnswerPackage;
 
+
+
 - (void) rightAnswer:(int) playerNumber;
 
 @property int answerPlayer;
@@ -139,6 +142,14 @@
 
 @implementation GetTo24ViewController
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
 //
 // pop up the answer area for the player to verify
 //
@@ -189,8 +200,13 @@
     [self.imageViewCenter setUserInteractionEnabled:!show];
     
     if (show) {
-        self.labelAnswer.text = @"(select cards)";
-        self.labelAnswer2.text = @"(select cards)";
+        if (self.answerPlayer == 0) {
+            self.labelAnswer.text = @"(select cards)";
+            self.labelAnswer2.text = @"";
+        } else {
+            self.labelAnswer.text = @"";
+            self.labelAnswer2.text = @"(select cards)";
+        }
     }
     
     if (show == TRUE) {
@@ -328,6 +344,7 @@
     
     // Start off with no answer controllers
     [self showAnswerControllers:FALSE];
+    self.labelGameOver.hidden = TRUE;
     
     // Deal a fresh hand
     self.hand = [[NSMutableArray alloc] init];
@@ -513,6 +530,9 @@
     
     // [self dealHand];
     [self.timer invalidate];
+    self.labelGameOver.hidden = FALSE;
+    [self showAnswerControllers:FALSE];
+    
 }
 
 //
@@ -520,7 +540,7 @@
 //
 - (IBAction)giveUp:(id)sender {
     [self dealHand];
-    self.currentGameTime = self.currentGameTime - 30;
+    self.currentGameTime = self.currentGameTime - 10;
     
     [AudioUtil playSound:@"whoosh" :@"wav"];
 }
@@ -611,6 +631,8 @@
     [self hideAnswer];
     [self.labelAnswer setTag:100];
     [self.labelAnswer2 setTag:101];
+    
+    [self.labelGameOver setTag:200];
     
     // Swipe
     self.swipeGesture.direction = UISwipeGestureRecognizerDirectionRight | UISwipeGestureRecognizerDirectionLeft;
@@ -1056,11 +1078,16 @@
 -(void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event;
 {
     UITouch *touch = [touches anyObject];
+    NSLog(@"touch %@", touch);
     if (touch.view.tag >=  100 && touch.view.tag <= 110) {
         //[self showAnswerControllers:FALSE];
         //[self rightAnswer:1];
         //[self hideAnswer];
         //[self dealHand];
+    }
+    
+    if (touch.view.tag == 200) {
+        [self startGame];
     }
 }
 
@@ -1146,10 +1173,10 @@
             
             // Internationalize these strings
             DLog(@"Player got it right: %@", answer.stringAnswer);
-            finalText = [NSString stringWithFormat:@"Yay!! %@", answer.stringAnswer];
+            finalText = [NSString stringWithFormat:@"Yay, You Got 24!!\n %@", answer.stringAnswer];
             [self rightAnswer:self.answerPlayer];
         } else {
-            finalText = [NSString stringWithFormat:@"Sorry, correct answer is: \n%@", self.storeAnswerPackage.stringAnswer];
+            finalText = [NSString stringWithFormat:@"Sorry, Get To 24 with: \n%@", self.storeAnswerPackage.stringAnswer];
             [self wrongAnswer:self.answerPlayer];
         }
         

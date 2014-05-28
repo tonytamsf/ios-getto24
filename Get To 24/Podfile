@@ -1,3 +1,4 @@
 platform :ios, '7.0'
 
 pod 'MRCircularProgressView',  :git => 'git@github.com:martinezdelariva/MRCircularProgressView.git'
+pod 'PBJVideoPlayer'

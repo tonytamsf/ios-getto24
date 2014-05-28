@@ -51,5 +51,7 @@
 @property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeGestureGiveUp;
 @property (weak, nonatomic) IBOutlet UIImageView *imageViewCenter;
 
+@property (weak, nonatomic) IBOutlet UILabel *labelGameOver;
+
 @property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeGesture;
 @end

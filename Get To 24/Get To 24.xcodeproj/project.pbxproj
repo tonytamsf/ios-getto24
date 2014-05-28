@@ -33,6 +33,8 @@
 		D847ECE219209D5A005F60CC /* 24.button.png in Resources */ = {isa = PBXBuildFile; fileRef = D847ECE119209D5A005F60CC /* 24.button.png */; };
 		D847ECE41920A105005F60CC /* noanswer.button.gif in Resources */ = {isa = PBXBuildFile; fileRef = D847ECE31920A105005F60CC /* noanswer.button.gif */; };
 		D847ECE61920A8E5005F60CC /* star.background.png in Resources */ = {isa = PBXBuildFile; fileRef = D847ECE51920A8E5005F60CC /* star.background.png */; };
+		D84AE50E1935826300513F84 /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D84AE50D1935826300513F84 /* SplashViewController.m */; };
+		D84AE510193593DF00513F84 /* 24-video.mov in Resources */ = {isa = PBXBuildFile; fileRef = D84AE50F193593DF00513F84 /* 24-video.mov */; };
 		D8599D3E187B1A7B0033E51C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8599D3D187B1A7B0033E51C /* Images.xcassets */; };
 		D8599D41187B1AE30033E51C /* 24app.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D8599D40187B1AE30033E51C /* 24app.pdf */; };
 		D8599D45187B1AF00033E51C /* getto24-icon-58.png in Resources */ = {isa = PBXBuildFile; fileRef = D8599D42187B1AF00033E51C /* getto24-icon-58.png */; };
@@ -112,6 +114,9 @@
 		D847ECE119209D5A005F60CC /* 24.button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 24.button.png; sourceTree = "<group>"; };
 		D847ECE31920A105005F60CC /* noanswer.button.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = noanswer.button.gif; sourceTree = "<group>"; };
 		D847ECE51920A8E5005F60CC /* star.background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.background.png; sourceTree = "<group>"; };
+		D84AE50C1935826300513F84 /* SplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashViewController.h; sourceTree = "<group>"; };
+		D84AE50D1935826300513F84 /* SplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashViewController.m; sourceTree = "<group>"; };
+		D84AE50F193593DF00513F84 /* 24-video.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "24-video.mov"; sourceTree = "<group>"; };
 		D8599D3D187B1A7B0033E51C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D8599D40187B1AE30033E51C /* 24app.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 24app.pdf; sourceTree = "<group>"; };
 		D8599D42187B1AF00033E51C /* getto24-icon-58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "getto24-icon-58.png"; sourceTree = "<group>"; };
@@ -198,6 +203,14 @@
 				D816ACBC1934FF9300C9D93B /* dad's app.pdf */,
 			);
 			name = artwork;
+			sourceTree = "<group>";
+		};
+		D84AE50719357F0600513F84 /* video */ = {
+			isa = PBXGroup;
+			children = (
+				D84AE50F193593DF00513F84 /* 24-video.mov */,
+			);
+			name = video;
 			sourceTree = "<group>";
 		};
 		D8599D3F187B1ACB0033E51C /* images */ = {
@@ -328,6 +341,7 @@
 		D8D36985187933400092E0F4 = {
 			isa = PBXGroup;
 			children = (
+				D84AE50719357F0600513F84 /* video */,
 				D816ACBB1934FF8800C9D93B /* artwork */,
 				D8C09C621915A0510057DDEB /* ios-libs */,
 				D8C112CA19158A6F00864A23 /* sounds */,
@@ -365,6 +379,8 @@
 		D8D36997187933400092E0F4 /* Get To 24 */ = {
 			isa = PBXGroup;
 			children = (
+				D84AE50C1935826300513F84 /* SplashViewController.h */,
+				D84AE50D1935826300513F84 /* SplashViewController.m */,
 				D8FCE17B193302A4001D3EB1 /* Get To 24.entitlements */,
 				D8D369A3187933400092E0F4 /* Main_iPhone.storyboard */,
 				D8D369A6187933400092E0F4 /* Main_iPad.storyboard */,
@@ -507,6 +523,7 @@
 				D81CFC2C19344498005AB7D7 /* multiply.png in Resources */,
 				D816ACBA1934FBF700C9D93B /* go-button.png in Resources */,
 				D81CFC2E19344498005AB7D7 /* divide.png in Resources */,
+				D84AE510193593DF00513F84 /* 24-video.mov in Resources */,
 				D8599D45187B1AF00033E51C /* getto24-icon-58.png in Resources */,
 				D81CFC2D19344498005AB7D7 /* plus.png in Resources */,
 				D8599D46187B1AF00033E51C /* getto24-icon.png in Resources */,
@@ -600,6 +617,7 @@
 				D8B75D6C1922791A00991892 /* PlayingCardDeckNoFace.m in Sources */,
 				D8D369AB187933400092E0F4 /* GetTo24ViewController.m in Sources */,
 				D8D369A2187933400092E0F4 /* GetTo24AppDelegate.m in Sources */,
+				D84AE50E1935826300513F84 /* SplashViewController.m in Sources */,
 				D8C09C7A1915A0510057DDEB /* PlayingCardDeck.m in Sources */,
 				D8D3699E187933400092E0F4 /* main.m in Sources */,
 				D8C09C7C1915A0510057DDEB /* AudioUtil.m in Sources */,
