@@ -54,7 +54,7 @@
 
 - (void)videoPlayerReady:(PBJVideoPlayerController *)videoPlayer
 {
-    //NSLog(@"Max duration of the video: %f", videoPlayer.maxDuration);
+    //DLog(@"Max duration of the video: %f", videoPlayer.maxDuration);
 }
 
 

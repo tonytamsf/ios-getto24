@@ -109,7 +109,7 @@
                                     <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="touchCardButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="xvM-W2-UgT"/>
+                                    <action selector="touchCardButton:" destination="vXZ-lx-hvc" eventType="touchDown" id="6RZ-o9-2iJ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MOk-DM-pwU" userLabel="cardNEfront">
@@ -126,7 +126,7 @@
                                     <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="touchCardButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="hRR-zE-b62"/>
+                                    <action selector="touchCardButton:" destination="vXZ-lx-hvc" eventType="touchDown" id="8Yf-0N-Csk"/>
                                 </connections>
                             </button>
                             <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cP7-ao-yCE" userLabel="cardSWfront">
@@ -143,7 +143,7 @@
                                     <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="touchCardButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="C1q-hT-CTM"/>
+                                    <action selector="touchCardButton:" destination="vXZ-lx-hvc" eventType="touchDown" id="AIg-7n-wlI"/>
                                 </connections>
                             </button>
                             <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pHx-cz-fWE" userLabel="cardSEfront">
@@ -160,7 +160,7 @@
                                     <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="touchCardButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Drg-6J-qKv"/>
+                                    <action selector="touchCardButton:" destination="vXZ-lx-hvc" eventType="touchDown" id="36L-Ez-a0X"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NSd-Hb-EZb" userLabel="scorePlayer1">
@@ -191,7 +191,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="player1Pressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="qBt-aO-Fan"/>
+                                    <action selector="player1Pressed:" destination="vXZ-lx-hvc" eventType="touchDown" id="6cH-rF-48o"/>
                                 </connections>
                             </button>
                             <button opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yr7-Ae-bzI" userLabel="player2GotItButton">
@@ -206,7 +206,7 @@
                                     <color key="titleColor" red="0.98968339019999996" green="0.99284903250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="player2Pressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="pX9-nb-wzx"/>
+                                    <action selector="player2Pressed:" destination="vXZ-lx-hvc" eventType="touchDown" id="dJF-gQ-043"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Player 2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EW9-NQ-mF4" userLabel="player2Name">
@@ -306,7 +306,7 @@
                                     <color key="titleColor" red="0.82986582880000004" green="0.050463866269999998" blue="0.54943306110000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="operatorTouched:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="MVM-dy-qHb"/>
+                                    <action selector="operatorTouched:" destination="vXZ-lx-hvc" eventType="touchDown" id="zJO-Yh-0gT"/>
                                 </connections>
                             </button>
                             <button contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fQy-hJ-z2h" userLabel="Button - -2">
@@ -322,7 +322,7 @@
                                     <color key="titleColor" red="0.82986582880000004" green="0.050463866269999998" blue="0.54943306110000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="operatorTouched:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="b4F-1F-iHG"/>
+                                    <action selector="operatorTouched:" destination="vXZ-lx-hvc" eventType="touchDown" id="DkM-AN-F1K"/>
                                 </connections>
                             </button>
                             <button contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YfI-WP-Roz" userLabel="Button - *2">
@@ -338,7 +338,7 @@
                                     <color key="titleColor" red="0.82986582880000004" green="0.050463866269999998" blue="0.54943306110000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="operatorTouched:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="T6Q-9F-MbC"/>
+                                    <action selector="operatorTouched:" destination="vXZ-lx-hvc" eventType="touchDown" id="aaZ-mG-W3L"/>
                                 </connections>
                             </button>
                             <button contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lpo-fw-qwT" userLabel="Button - /2">
@@ -354,7 +354,7 @@
                                     <color key="titleColor" red="0.82986582880000004" green="0.050463866269999998" blue="0.54943306110000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="operatorTouched:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ggv-Us-7nd"/>
+                                    <action selector="operatorTouched:" destination="vXZ-lx-hvc" eventType="touchDown" id="PA2-5Z-XX0"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="300" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yxP-gq-MBa" userLabel="labelTime">
