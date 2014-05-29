@@ -299,6 +299,16 @@
 {
     self.currentGameTime = 600;
 
+    // Scores
+    self.player1ScorePoints = 0;
+    
+    self.player1Score.text = [NSString stringWithFormat:@"%d",
+                              self.player1ScorePoints];
+    
+    self.player2ScorePoints = 0;
+    self.player2Score.text = [NSString stringWithFormat:@"%d",
+                              self.player1ScorePoints];
+    
     // The valid operators
     self.plusSel  = @selector(decimalNumberByAdding:);
     self.minusSel = @selector(decimalNumberBySubtracting:);
@@ -395,8 +405,8 @@
 - (void) putInDeck:(NSArray *) cards
 {
     for (CardHand *card in cards ) {
-        [self._cardDeck addCard:card.card];
-        //[self._easyDeck addCard:card.card];
+        //[self._cardDeck addCard:card.card];
+        [self._easyDeck addCard:card.card];
 
     }
 }
@@ -427,8 +437,8 @@
     
     // deal 4 cards
     for (int i = 0; i < [self.cards count]; i++) {
-        PlayingCard *newCard = (PlayingCard *)[self._cardDeck drawRandomCard];
-        //PlayingCard *newCard = (PlayingCard *)[self._easyDeck drawRandomCard];
+        //PlayingCard *newCard = (PlayingCard *)[self._cardDeck drawRandomCard];
+        PlayingCard *newCard = (PlayingCard *)[self._easyDeck drawRandomCard];
 
         CardHand *singleDeal = [[CardHand alloc] init];
         
