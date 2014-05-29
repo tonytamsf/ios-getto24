@@ -15,7 +15,8 @@
 
 #import "GetTo24ViewController.h"
 
-#import "PlayingCardDeck.h"
+#import "PlayingCardDeckNoFace.h"
+#import "PlayingCardDeckEasy24.h"
 #import "Deck.h"
 #import "Debug.h"
 #import "NSArrayUtil.h"
@@ -101,7 +102,8 @@
                          withOperatorChars:(NSArray *)currentOperatorChars;
 
 
-@property PlayingCardDeck *_cardDeck;
+@property PlayingCardDeckNoFace *_cardDeck;
+@property PlayingCardDeckEasy24 *_easyDeck;
 
 @property NSArray *cards;
 
@@ -335,7 +337,11 @@
     
     // Deal a new deck of cards
     if (! self._cardDeck) {
-        self._cardDeck = [[PlayingCardDeck alloc] init];
+        self._cardDeck = [[PlayingCardDeckNoFace alloc] init];
+    }
+    
+    if (! self._easyDeck) {
+        self._easyDeck = [[PlayingCardDeckEasy24 alloc] init];
     }
     
     // Keep track of the labels used to display the status/answers to both players
@@ -390,6 +396,8 @@
 {
     for (CardHand *card in cards ) {
         [self._cardDeck addCard:card.card];
+        //[self._easyDeck addCard:card.card];
+
     }
 }
 
@@ -420,6 +428,8 @@
     // deal 4 cards
     for (int i = 0; i < [self.cards count]; i++) {
         PlayingCard *newCard = (PlayingCard *)[self._cardDeck drawRandomCard];
+        //PlayingCard *newCard = (PlayingCard *)[self._easyDeck drawRandomCard];
+
         CardHand *singleDeal = [[CardHand alloc] init];
         
         // tag it for later to get the value back
@@ -441,7 +451,7 @@
         right.TextColor = [newCard cardColor];
         
         [self showCard:card label:left label:right];
-        [card setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"num-%d.png", MIN(10, (int) newCard.rank)]]
+        [card setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"num-%d.png",  (int) newCard.rank]]
                         forState:UIControlStateNormal];
         DLog(@"deal %d", newCard.rank);
     }
@@ -758,13 +768,13 @@
                     break;
                 }
                 DLog(@"--- try %d %s %d %s %d %s %d",
-                     MIN(card0.rank, 10),
+                     card0.rank,
                      selector0,
-                     MIN(card1.rank, 10),
+                     card1.rank,
                      selector1,
-                     MIN(card2.rank, 10),
+                     card2.rank,
                      selector2,
-                     MIN(card3.rank, 10));
+                     card3.rank);
             }
             if (found) { break; };
         }
@@ -856,18 +866,18 @@
     
     @try {
         
-        subtotal = [[NSDecimalNumber numberWithInt:MIN(card0.rank, 10)]
+        subtotal = [[NSDecimalNumber numberWithInt:card0.rank]
                     performSelector:selector0
-                    withObject:[NSDecimalNumber numberWithInt:MIN(card1.rank, 10)]];
+                    withObject:[NSDecimalNumber numberWithInt:card1.rank]];
         
         
         subtotal = [subtotal
                     performSelector:selector1
-                    withObject:[NSDecimalNumber numberWithInt:MIN(card2.rank, 10)]];
+                    withObject:[NSDecimalNumber numberWithInt:card2.rank]];
         
         subtotal = [subtotal
                     performSelector:selector2
-                    withObject:[NSDecimalNumber numberWithInt:MIN(card3.rank, 10)]];
+                    withObject:[NSDecimalNumber numberWithInt:card3.rank]];
     }
     @catch (NSException *e) {
         answer.answer = [NSDecimalNumber numberWithInt:-1];
@@ -879,13 +889,13 @@
     answer.answer = subtotal;
     answer.stringFormat = @"((%d %@ %d) %@ %d) %@ %d";
     answer.stringAnswer = [NSString stringWithFormat:answer.stringFormat,
-                           MIN(card0.rank, 10),
+                           card0.rank,
                            [currentOperatorChars objectAtIndex:0],
-                           MIN(card1.rank, 10),
+                           card1.rank,
                            [currentOperatorChars objectAtIndex:1],
-                           MIN(card2.rank, 10),
+                           card2.rank,
                            [currentOperatorChars objectAtIndex:2],
-                           MIN(card3.rank, 10)
+                           card3.rank
                            ];
     answer.operators = [NSArray arrayWithArray:currentOperatorChars];
     answer.cards = [NSArray arrayWithArray:cards];
@@ -913,14 +923,14 @@
     
     @try {
         
-        subtotal = [[NSDecimalNumber numberWithInt:MIN(card0.rank, 10)]
+        subtotal = [[NSDecimalNumber numberWithInt:card0.rank]
                     performSelector:selector0
-                    withObject:[NSDecimalNumber numberWithInt:MIN(card1.rank, 10)]];
+                    withObject:[NSDecimalNumber numberWithInt:card1.rank]];
         
         
-        subtotal1 = [[NSDecimalNumber numberWithInt:MIN(card2.rank, 10)]
+        subtotal1 = [[NSDecimalNumber numberWithInt:card2.rank]
                      performSelector:selector2
-                     withObject:[NSDecimalNumber numberWithInt:MIN(card3.rank, 10)]];
+                     withObject:[NSDecimalNumber numberWithInt:card3.rank]];
         
         
         subtotal = [subtotal
@@ -938,13 +948,13 @@
     answer.answer = subtotal;
     answer.stringFormat = @"(%d %@ %d) %@ (%d %@ %d)";
     answer.stringAnswer = [NSString stringWithFormat:answer.stringFormat,
-                           MIN(card0.rank, 10),
+                           card0.rank,
                            [currentOperatorChars objectAtIndex:0],
-                           MIN(card1.rank, 10),
+                           card1.rank,
                            [currentOperatorChars objectAtIndex:1],
-                           MIN(card2.rank, 10),
+                           card2.rank,
                            [currentOperatorChars objectAtIndex:2],
-                           MIN(card3.rank, 10)
+                           card3.rank
                            ];
     
     answer.operators = [NSArray arrayWithArray:currentOperatorChars];
@@ -972,19 +982,19 @@
     PlayingCard *card3 = (PlayingCard *)((CardHand *)cards[3]).card;
     @try {
         
-        subtotal = [[NSDecimalNumber numberWithInt:MIN(card0.rank, 10)]
+        subtotal = [[NSDecimalNumber numberWithInt:card0.rank]
                     performSelector:selector0
-                    withObject:[NSDecimalNumber numberWithInt:MIN(card1.rank, 10)]];
+                    withObject:[NSDecimalNumber numberWithInt:card1.rank]];
         
         
         subtotal = [subtotal
                     performSelector:selector1
-                    withObject:[NSDecimalNumber numberWithInt:MIN(card2.rank, 10)]];
+                    withObject:[NSDecimalNumber numberWithInt:card2.rank]];
         
         
         subtotal = [subtotal
                     performSelector:selector2
-                    withObject:[NSDecimalNumber numberWithInt:MIN(card3.rank, 10)]];
+                    withObject:[NSDecimalNumber numberWithInt:card3.rank]];
         
     }
     @catch (NSException *e) {
@@ -997,13 +1007,13 @@
     answer.answer = subtotal;
     answer.stringFormat = @"(%d %@ %d) %@ %d %@ %d";
     answer.stringAnswer = [NSString stringWithFormat:answer.stringFormat,
-                           MIN(card0.rank, 10),
+                           card0.rank,
                            [currentOperatorChars objectAtIndex:0],
-                           MIN(card1.rank, 10),
+                           card1.rank,
                            [currentOperatorChars objectAtIndex:1],
-                           MIN(card2.rank, 10),
+                           card2.rank,
                            [currentOperatorChars objectAtIndex:2],
-                           MIN(card3.rank, 10)
+                           card3.rank
                            ];
     
     answer.operators = [NSArray arrayWithArray:currentOperatorChars];
@@ -1031,19 +1041,19 @@
     
     @try {
         
-        subtotal = [[NSDecimalNumber numberWithInt:MIN(card1.rank, 10)]
+        subtotal = [[NSDecimalNumber numberWithInt:card1.rank]
                     performSelector:selector1
-                    withObject:[NSDecimalNumber numberWithInt:MIN(card2.rank, 10)]];
+                    withObject:[NSDecimalNumber numberWithInt:card2.rank]];
         
         
-        subtotal = [[NSDecimalNumber numberWithInt:MIN(card0.rank, 10)]
+        subtotal = [[NSDecimalNumber numberWithInt:card0.rank]
                     performSelector:selector0
                     withObject:subtotal];
         
         
         subtotal = [subtotal
                     performSelector:selector2
-                    withObject:[NSDecimalNumber numberWithInt:MIN(card3.rank, 10)]];
+                    withObject:[NSDecimalNumber numberWithInt:card3.rank]];
 
     }
     @catch (NSException *e) {
@@ -1056,13 +1066,13 @@
     answer.answer = subtotal;
     answer.stringFormat = @"%d %@ (%d %@ %d) %@ %d";
     answer.stringAnswer = [NSString stringWithFormat:answer.stringFormat,
-                           MIN(card0.rank, 10),
+                           card0.rank,
                            [currentOperatorChars objectAtIndex:0],
-                           MIN(card1.rank, 10),
+                           card1.rank,
                            [currentOperatorChars objectAtIndex:1],
-                           MIN(card2.rank, 10),
+                           card2.rank,
                            [currentOperatorChars objectAtIndex:2],
-                           MIN(card3.rank, 10)
+                           card3.rank
                            ];
     
     answer.operators = [NSArray arrayWithArray:currentOperatorChars];
@@ -1159,7 +1169,7 @@
         }
         labelAnswer.text = [NSString stringWithFormat:@"%@ %d",
                                   (NSString *)labelAnswer.text,
-                                  MIN(10, (int)cardHand.card.rank)];
+                                  (int)cardHand.card.rank];
     }
     
     // TODO: add or remove points

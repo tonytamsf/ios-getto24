@@ -74,6 +74,9 @@
 		D8D369BE187933400092E0F4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8D369BC187933400092E0F4 /* InfoPlist.strings */; };
 		D8D369C0187933400092E0F4 /* Get_To_24Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D369BF187933400092E0F4 /* Get_To_24Tests.m */; };
 		D8E4985D187B2157005A32D6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E4985C187B2157005A32D6 /* Default-568h@2x.png */; };
+		D8FC2C78193641E0009593AA /* PlayingCardNoFace.m in Sources */ = {isa = PBXBuildFile; fileRef = D8FC2C77193641E0009593AA /* PlayingCardNoFace.m */; };
+		D8FC2C7B193644F4009593AA /* PlayingCardDeckEasy24.m in Sources */ = {isa = PBXBuildFile; fileRef = D8FC2C7A193644F4009593AA /* PlayingCardDeckEasy24.m */; };
+		D8FC2C7E1936450C009593AA /* PlayingCardEasy24.m in Sources */ = {isa = PBXBuildFile; fileRef = D8FC2C7D1936450C009593AA /* PlayingCardEasy24.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -169,6 +172,12 @@
 		D8D369BD187933400092E0F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D8D369BF187933400092E0F4 /* Get_To_24Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Get_To_24Tests.m; sourceTree = "<group>"; };
 		D8E4985C187B2157005A32D6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		D8FC2C76193641E0009593AA /* PlayingCardNoFace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayingCardNoFace.h; sourceTree = "<group>"; };
+		D8FC2C77193641E0009593AA /* PlayingCardNoFace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingCardNoFace.m; sourceTree = "<group>"; };
+		D8FC2C79193644F4009593AA /* PlayingCardDeckEasy24.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayingCardDeckEasy24.h; sourceTree = "<group>"; };
+		D8FC2C7A193644F4009593AA /* PlayingCardDeckEasy24.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingCardDeckEasy24.m; sourceTree = "<group>"; };
+		D8FC2C7C1936450C009593AA /* PlayingCardEasy24.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayingCardEasy24.h; sourceTree = "<group>"; };
+		D8FC2C7D1936450C009593AA /* PlayingCardEasy24.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingCardEasy24.m; sourceTree = "<group>"; };
 		D8FCE17B193302A4001D3EB1 /* Get To 24.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Get To 24.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -302,12 +311,18 @@
 				D8C09C691915A0510057DDEB /* Card.m */,
 				D8C09C6A1915A0510057DDEB /* Deck.h */,
 				D8C09C6B1915A0510057DDEB /* Deck.m */,
-				D8C09C6C1915A0510057DDEB /* PlayingCard.h */,
 				D8C09C6D1915A0510057DDEB /* PlayingCard.m */,
+				D8C09C6C1915A0510057DDEB /* PlayingCard.h */,
+				D8FC2C76193641E0009593AA /* PlayingCardNoFace.h */,
+				D8FC2C77193641E0009593AA /* PlayingCardNoFace.m */,
+				D8FC2C7C1936450C009593AA /* PlayingCardEasy24.h */,
+				D8FC2C7D1936450C009593AA /* PlayingCardEasy24.m */,
 				D8C09C6E1915A0510057DDEB /* PlayingCardDeck.h */,
 				D8C09C6F1915A0510057DDEB /* PlayingCardDeck.m */,
 				D8B75D6A1922791A00991892 /* PlayingCardDeckNoFace.h */,
 				D8B75D6B1922791A00991892 /* PlayingCardDeckNoFace.m */,
+				D8FC2C79193644F4009593AA /* PlayingCardDeckEasy24.h */,
+				D8FC2C7A193644F4009593AA /* PlayingCardDeckEasy24.m */,
 			);
 			path = cards;
 			sourceTree = "<group>";
@@ -617,8 +632,11 @@
 				D8B75D6C1922791A00991892 /* PlayingCardDeckNoFace.m in Sources */,
 				D8D369AB187933400092E0F4 /* GetTo24ViewController.m in Sources */,
 				D8D369A2187933400092E0F4 /* GetTo24AppDelegate.m in Sources */,
+				D8FC2C7E1936450C009593AA /* PlayingCardEasy24.m in Sources */,
 				D84AE50E1935826300513F84 /* SplashViewController.m in Sources */,
 				D8C09C7A1915A0510057DDEB /* PlayingCardDeck.m in Sources */,
+				D8FC2C78193641E0009593AA /* PlayingCardNoFace.m in Sources */,
+				D8FC2C7B193644F4009593AA /* PlayingCardDeckEasy24.m in Sources */,
 				D8D3699E187933400092E0F4 /* main.m in Sources */,
 				D8C09C7C1915A0510057DDEB /* AudioUtil.m in Sources */,
 				D8C09C771915A0510057DDEB /* Card.m in Sources */,
