@@ -543,10 +543,10 @@
 // the player has to find the answer, skip or say there is no answer
 //
 - (void)timesUp {
-    //[AudioUtil playSound:@"whoosh" :@"wav"];
+    [AudioUtil playSound:@"whoosh" :@"wav"];
     // Stop the previous timer
     
-    [AudioUtil playSound:@"ray" :@"wav"];
+    // [AudioUtil playSound:@"ray" :@"wav"];
     
     // [self dealHand];
     [self.timer invalidate];
@@ -1161,8 +1161,6 @@
         return;
     }
     
-    UILabel *labelAnswer = [self.labelAnswers objectAtIndex:self.answerPlayer];
-    
     CardHand * cardHand = [self.hand objectAtIndex:sender.tag];
     
     [sender setUserInteractionEnabled:FALSE];
@@ -1257,7 +1255,6 @@
 }
 
 // Swipe away and try answer again
-
 - (IBAction)swipeAway1:(UISwipeGestureRecognizer *)sender {
     DLog(@"swipe1");
     [self clearAnswer];
