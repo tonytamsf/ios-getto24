@@ -158,7 +158,7 @@
 - (void) verifyAnswer
 {
     [self showAnswerControllers:TRUE];
-    
+    [self.timer invalidate];
 }
 
 //
@@ -180,6 +180,8 @@
                                          forState:UIControlStateNormal];
         }
     }
+    
+    self.labelMiddleInfo.hidden = TRUE;
     
     // Show the area where the answers are shown
     self.labelAnswer.hidden = !show;
@@ -273,7 +275,7 @@
     // the cards and the operatdors
     for (int i = 0; i < 4; i++ ){
         [((UIButton *)self.cards[i]) setUserInteractionEnabled:TRUE];
-        ((UIButton *)self.cards[i]).alpha =  1;
+        ((UIButton *)self.cards[i]).alpha =  0.6;
 
         [((UIButton *)self.cards[i]) setTitle:@""
                                      forState:UIControlStateNormal];
@@ -297,7 +299,10 @@
 //
 - (void) startGame
 {
-    self.currentGameTime = 600;
+    self.currentGameTime = 20;
+    // Update both timers
+    self.labelTime.text = [NSString stringWithFormat:@"%d", self.currentGameTime];
+    self.labelTime1.text = [NSString stringWithFormat:@"%d", self.currentGameTime];
 
     // Scores
     self.player1ScorePoints = 0;
@@ -360,19 +365,14 @@
     
     // Start off with no answer controllers
     [self showAnswerControllers:FALSE];
-    self.labelGameOver.hidden = TRUE;
+    self.labelMiddleInfo.hidden = TRUE;
     
     // Deal a fresh hand
     self.hand = [[NSMutableArray alloc] init];
     [self dealHand];
     
     
-    // Start the countdown
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1
-                                                  target:self
-                                                selector:@selector(countdown)
-                                                userInfo:nil
-                                                 repeats:YES];
+
     [AudioUtil playSound:@"opening" :@"wav"];
 }
 
@@ -391,9 +391,8 @@
     self.labelTime.text = [NSString stringWithFormat:@"%d", self.currentGameTime];
     self.labelTime1.text = [NSString stringWithFormat:@"%d", self.currentGameTime];
 
-    self.currentGameTime -= 1;
     if (self.currentGameTime <= 0) {
-
+        [self.timer invalidate];
         [self timesUp];
         return;
     }
@@ -473,9 +472,15 @@
         [self dealHand];
         return;
     }
-
-    
-    //[AudioUtil playSound:@"relaxing-short" :@"wav"];
+    if (![self.timer isValid]) {
+        // Start the countdown
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:1
+                                                      target:self
+                                                    selector:@selector(countdown)
+                                                    userInfo:nil
+                                                     repeats:YES];
+        //[AudioUtil playSound:@"relaxing-short" :@"wav"];
+    }
 }
 
 //
@@ -501,13 +506,15 @@
     [UIView setAnimationDidStopSelector:@selector(showHideDidStop:finished:context:)];
     
     // Make the animatable changes.
-    card.alpha = 1.0;
-    left.alpha = 1.0;
-    right.alpha = 1.0;
+    card.alpha = 0.4;
+    left.alpha = 0.4;
+    right.alpha = 0.4;
     //[card setBackgroundImage:nil forState:UIControlStateNormal];
     
     // Commit the changes and perform the animation.
     [UIView commitAnimations];
+    
+    
 }
 
 // Called at the end of the preceding animation.
@@ -525,7 +532,7 @@
     UIButton *card = (__bridge UIButton *)context;
     
     // Make the animatable changes.
-    card.alpha = 1.0;
+    card.alpha = 0.4;
     
     //[card setBackgroundImage:[UIImage imageNamed:@"num-1.png"]
     //                forState:UIControlStateNormal];
@@ -548,12 +555,13 @@
     
     // [AudioUtil playSound:@"ray" :@"wav"];
     
-    // [self dealHand];
     [self.timer invalidate];
-    self.labelGameOver.hidden = FALSE;
+    self.labelMiddleInfo.hidden = FALSE;
+    self.labelMiddleInfo.text = @"Game Over";
     [self showAnswerControllers:FALSE];
     self.player1Button.hidden = TRUE;
     self.player2Button.hidden = TRUE;
+    NSLog(@"timesup");
 }
 
 //
@@ -653,12 +661,13 @@
     [self.labelAnswer setTag:100];
     [self.labelAnswer2 setTag:101];
     
-    [self.labelGameOver setTag:200];
+    [self.labelMiddleInfo setTag:200];
     
     // Swipe
     self.swipeGesture.direction = UISwipeGestureRecognizerDirectionRight | UISwipeGestureRecognizerDirectionLeft;
     self.swipeGesture1.direction = UISwipeGestureRecognizerDirectionRight | UISwipeGestureRecognizerDirectionLeft;
     self.swipeGestureGiveUp.direction = UISwipeGestureRecognizerDirectionRight | UISwipeGestureRecognizerDirectionLeft;
+    
 
     // Get started
     [self startGame];
@@ -1108,7 +1117,11 @@
     }
     
     if (touch.view.tag == 200) {
-        [self startGame];
+        if (self.currentGameTime <= 0) {
+            [self startGame];
+        } else {
+            [self dealHand];
+        }
     }
 }
 
@@ -1199,11 +1212,11 @@
             [self wrongAnswer:self.answerPlayer];
         }
         
-        for (int i = 0; i < 2; i++) {
-            UILabel *labelAnswer = [self.labelAnswers objectAtIndex:i];
-
-            labelAnswer.text = finalText;
+        if (self.answerPlayer == 0) {
+            [self.labelMiddleInfo setTransform:CGAffineTransformMakeRotation(-M_PI)];
         }
+        self.labelMiddleInfo.text = finalText;
+        self.labelMiddleInfo.hidden = FALSE;
         return;
     }
     
