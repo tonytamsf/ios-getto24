@@ -499,6 +499,7 @@
                         <outlet property="player2Button" destination="yr7-Ae-bzI" id="vya-Ej-2SV"/>
                         <outlet property="player2NameLabel" destination="EW9-NQ-mF4" id="KBY-N5-onW"/>
                         <outlet property="player2Score" destination="whQ-VG-LXX" id="iSp-dB-w2H"/>
+                        <outlet property="segmentLevels" destination="7uo-ze-2Np" id="88I-8u-e7f"/>
                         <outlet property="swipeGesture" destination="5As-Wo-tG7" id="ht3-vl-zyd"/>
                         <outlet property="swipeGesture1" destination="ADz-4w-7HL" id="duR-Eg-eaI"/>
                         <outlet property="swipeGestureGiveUp" destination="tao-WI-gKW" id="k5j-QJ-2vH"/>
