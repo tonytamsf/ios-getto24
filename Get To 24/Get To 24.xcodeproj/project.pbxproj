@@ -75,7 +75,7 @@
 		D8D369B6187933400092E0F4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D36995187933400092E0F4 /* UIKit.framework */; };
 		D8D369BE187933400092E0F4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8D369BC187933400092E0F4 /* InfoPlist.strings */; };
 		D8D369C0187933400092E0F4 /* Get_To_24Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D369BF187933400092E0F4 /* Get_To_24Tests.m */; };
-		D8E4985D187B2157005A32D6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E4985C187B2157005A32D6 /* Default-568h@2x.png */; };
+		D8E4985D187B2157005A32D6 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E4985C187B2157005A32D6 /* Default.png */; };
 		D8FC2C78193641E0009593AA /* PlayingCardNoFace.m in Sources */ = {isa = PBXBuildFile; fileRef = D8FC2C77193641E0009593AA /* PlayingCardNoFace.m */; };
 		D8FC2C7B193644F4009593AA /* PlayingCardDeckEasy24.m in Sources */ = {isa = PBXBuildFile; fileRef = D8FC2C7A193644F4009593AA /* PlayingCardDeckEasy24.m */; };
 		D8FC2C7E1936450C009593AA /* PlayingCardEasy24.m in Sources */ = {isa = PBXBuildFile; fileRef = D8FC2C7D1936450C009593AA /* PlayingCardEasy24.m */; };
@@ -177,7 +177,7 @@
 		D8D369BB187933400092E0F4 /* Get To 24Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Get To 24Tests-Info.plist"; sourceTree = "<group>"; };
 		D8D369BD187933400092E0F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D8D369BF187933400092E0F4 /* Get_To_24Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Get_To_24Tests.m; sourceTree = "<group>"; };
-		D8E4985C187B2157005A32D6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		D8E4985C187B2157005A32D6 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		D8FC2C76193641E0009593AA /* PlayingCardNoFace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayingCardNoFace.h; sourceTree = "<group>"; };
 		D8FC2C77193641E0009593AA /* PlayingCardNoFace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingCardNoFace.m; sourceTree = "<group>"; };
 		D8FC2C79193644F4009593AA /* PlayingCardDeckEasy24.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayingCardDeckEasy24.h; sourceTree = "<group>"; };
@@ -370,7 +370,7 @@
 				D816ACBB1934FF8800C9D93B /* artwork */,
 				D8C09C621915A0510057DDEB /* ios-libs */,
 				D8C112CA19158A6F00864A23 /* sounds */,
-				D8E4985C187B2157005A32D6 /* Default-568h@2x.png */,
+				D8E4985C187B2157005A32D6 /* Default.png */,
 				D8599D3F187B1ACB0033E51C /* images */,
 				D8D36997187933400092E0F4 /* Get To 24 */,
 				D8D369B9187933400092E0F4 /* Get To 24Tests */,
@@ -557,7 +557,7 @@
 				D81CFC1A193434B0005AB7D7 /* num-4.png in Resources */,
 				D81CFC3219344FCA005AB7D7 /* player-area.png in Resources */,
 				D8C09C5A19159AF70057DDEB /* whoosh.wav in Resources */,
-				D8E4985D187B2157005A32D6 /* Default-568h@2x.png in Resources */,
+				D8E4985D187B2157005A32D6 /* Default.png in Resources */,
 				D847ECE61920A8E5005F60CC /* star.background.png in Resources */,
 				D8C112D51915926700864A23 /* chimes.wav in Resources */,
 				D8C112D3191591B500864A23 /* opening.wav in Resources */,
@@ -791,10 +791,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Get To 24/Get To 24-Prefix.pch";
 				INFOPLIST_FILE = "Get To 24/Get To 24-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "Math 24";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -809,10 +809,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Get To 24/Get To 24-Prefix.pch";
 				INFOPLIST_FILE = "Get To 24/Get To 24-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "Math 24";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
