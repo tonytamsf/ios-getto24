@@ -279,7 +279,7 @@
     // the cards and the operatdors
     for (int i = 0; i < 4; i++ ){
         [((UIButton *)self.cards[i]) setUserInteractionEnabled:TRUE];
-        ((UIButton *)self.cards[i]).alpha =  0.6;
+        ((UIButton *)self.cards[i]).alpha =  0.8;
 
         [((UIButton *)self.cards[i]) setTitle:@""
                                      forState:UIControlStateNormal];
@@ -514,9 +514,9 @@
     [UIView setAnimationDidStopSelector:@selector(showHideDidStop:finished:context:)];
     
     // Make the animatable changes.
-    card.alpha = 0.4;
-    left.alpha = 0.4;
-    right.alpha = 0.4;
+    card.alpha = 0.8;
+    left.alpha = 0.8;
+    right.alpha = 0.8;
     //[card setBackgroundImage:nil forState:UIControlStateNormal];
     
     // Commit the changes and perform the animation.
@@ -540,7 +540,7 @@
     UIButton *card = (__bridge UIButton *)context;
     
     // Make the animatable changes.
-    card.alpha = 0.4;
+    card.alpha = 0.8;
     
     //[card setBackgroundImage:[UIImage imageNamed:@"num-1.png"]
     //                forState:UIControlStateNormal];
