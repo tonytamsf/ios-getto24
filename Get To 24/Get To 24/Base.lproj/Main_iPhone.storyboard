@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="XeZ-j1-bed">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" variant="6xAndEarlier" propertyAccessControl="none" useAutolayout="YES" initialViewController="XeZ-j1-bed">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -15,7 +15,7 @@
                         <viewControllerLayoutGuide type="bottom" id="hmI-Ts-KBv"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="l3K-qt-liN">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -33,7 +33,7 @@
                         <viewControllerLayoutGuide type="bottom" id="XTM-ZA-O5p"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1lO-Mv-bMn">
@@ -274,7 +274,7 @@
                                 <color key="textColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="(select cards)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="320" translatesAutoresizingMaskIntoConstraints="NO" id="KPZ-nb-rup">
+                            <label opaque="NO" clipsSubviews="YES" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="(select cards)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="320" translatesAutoresizingMaskIntoConstraints="NO" id="KPZ-nb-rup">
                                 <rect key="frame" x="0.0" y="3" width="320" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.1680738101" green="0.30842190990000001" blue="0.37066915760000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -394,18 +394,23 @@
                                 <color key="textColor" red="0.98968339019999996" green="0.99284903250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="7uo-ze-2Np">
-                                <rect key="frame" x="55" y="350" width="211" height="29"/>
+                            <segmentedControl opaque="NO" alpha="0.5" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="7uo-ze-2Np">
+                                <rect key="frame" x="55" y="350" width="211" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="28" id="2X3-8u-haq"/>
+                                    <constraint firstAttribute="height" constant="26" id="2X3-8u-haq"/>
                                     <constraint firstAttribute="width" constant="211" id="9aJ-9c-DWA"/>
                                 </constraints>
                                 <segments>
                                     <segment title="Easy"/>
-                                    <segment title="Medium"/>
+                                    <segment title="Med"/>
                                     <segment title="Hard"/>
                                 </segments>
+                                <color key="tintColor" red="0.1680738101" green="0.30842190990000001" blue="0.37066915760000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="segmentLevelsTouched:" destination="vXZ-lx-hvc" eventType="valueChanged" id="b4s-9W-SUQ"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -413,6 +418,7 @@
                             <constraint firstItem="t7Q-lA-MNK" firstAttribute="top" secondItem="cP7-ao-yCE" secondAttribute="bottom" constant="-28" id="0b7-PG-fF3"/>
                             <constraint firstItem="t7Q-lA-MNK" firstAttribute="leading" secondItem="cP7-ao-yCE" secondAttribute="trailing" constant="-49" id="4qS-vc-oxo"/>
                             <constraint firstItem="5Eg-ML-33t" firstAttribute="top" secondItem="RIg-9k-ApW" secondAttribute="bottom" id="4zc-7c-VzZ"/>
+                            <constraint firstItem="KPZ-nb-rup" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailing" id="620-QW-KLR"/>
                             <constraint firstItem="YfI-WP-Roz" firstAttribute="top" secondItem="fQy-hJ-z2h" secondAttribute="bottom" constant="20" id="6gM-dC-K59"/>
                             <constraint firstItem="hWc-AJ-plG" firstAttribute="leading" secondItem="nXR-lJ-TYZ" secondAttribute="leading" id="7PZ-2S-yZQ"/>
                             <constraint firstItem="RIg-9k-ApW" firstAttribute="top" secondItem="KPZ-nb-rup" secondAttribute="bottom" id="7sk-IB-F1J"/>
@@ -421,7 +427,7 @@
                             <constraint firstItem="53k-en-hR1" firstAttribute="bottom" secondItem="KPZ-nb-rup" secondAttribute="bottom" id="Dud-zx-Gx9"/>
                             <constraint firstItem="t7Q-lA-MNK" firstAttribute="centerY" secondItem="yTo-QE-Ru8" secondAttribute="centerY" id="GGe-Ma-BV2"/>
                             <constraint firstItem="fQy-hJ-z2h" firstAttribute="centerX" secondItem="YfI-WP-Roz" secondAttribute="centerX" id="HQR-uC-XEA"/>
-                            <constraint firstItem="5Eg-ML-33t" firstAttribute="top" secondItem="7uo-ze-2Np" secondAttribute="bottom" constant="5" id="Hjd-wh-QPg"/>
+                            <constraint firstItem="5Eg-ML-33t" firstAttribute="top" secondItem="7uo-ze-2Np" secondAttribute="bottom" constant="2" id="Hjd-wh-QPg"/>
                             <constraint firstItem="kSc-2s-X1a" firstAttribute="centerY" secondItem="wV1-EI-ceN" secondAttribute="centerY" id="Ifv-WJ-0LU"/>
                             <constraint firstItem="zgk-Aw-bmH" firstAttribute="centerY" secondItem="uux-az-efu" secondAttribute="centerY" id="J8b-bV-fpM"/>
                             <constraint firstItem="Gj5-hm-bcg" firstAttribute="leading" secondItem="zci-AR-q5d" secondAttribute="trailing" constant="-45" id="KL5-dm-TbJ"/>
@@ -461,7 +467,7 @@
                             <constraint firstItem="MOk-DM-pwU" firstAttribute="leading" secondItem="Gj5-hm-bcg" secondAttribute="trailing" constant="5" id="wzs-uR-W9P"/>
                             <constraint firstItem="53k-en-hR1" firstAttribute="centerY" secondItem="KPZ-nb-rup" secondAttribute="centerY" id="zFq-rA-mGC"/>
                             <constraint firstItem="m4s-Sl-Q1R" firstAttribute="top" secondItem="NSd-Hb-EZb" secondAttribute="bottom" priority="500" constant="-3" id="zcO-Mz-acE"/>
-                            <constraint firstItem="Q7m-3b-OYd" firstAttribute="top" secondItem="e15-do-E3F" secondAttribute="bottom" constant="5" id="zzT-Wl-W3s"/>
+                            <constraint firstItem="Q7m-3b-OYd" firstAttribute="top" secondItem="e15-do-E3F" secondAttribute="bottom" id="zzT-Wl-W3s"/>
                             <constraint firstItem="zgk-Aw-bmH" firstAttribute="centerX" secondItem="yTo-QE-Ru8" secondAttribute="centerX" id="zzv-F6-JBG"/>
                         </constraints>
                     </view>
@@ -537,6 +543,6 @@
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
 </document>

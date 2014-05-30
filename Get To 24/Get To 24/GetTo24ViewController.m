@@ -16,6 +16,7 @@
 #import "GetTo24ViewController.h"
 
 #import "PlayingCardDeckNoFace.h"
+#import "PlayingCardDeckMedium24.h"
 #import "PlayingCardDeckEasy24.h"
 #import "Deck.h"
 #import "Debug.h"
@@ -102,8 +103,11 @@
                          withOperatorChars:(NSArray *)currentOperatorChars;
 
 
-@property PlayingCardDeckNoFace *_cardDeck;
+@property PlayingCardDeckNoFace *_hardDeck;
 @property PlayingCardDeckEasy24 *_easyDeck;
+@property PlayingCardDeckMedium24 *_mediumDeck;
+
+@property PlayingCardDeck *currentDeck;
 
 @property NSArray *cards;
 
@@ -181,7 +185,7 @@
         }
     }
     
-    self.labelMiddleInfo.hidden = TRUE;
+    self.segmentLevels.hidden = show;
     
     // Show the area where the answers are shown
     self.labelAnswer.hidden = !show;
@@ -299,7 +303,7 @@
 //
 - (void) startGame
 {
-    self.currentGameTime = 20;
+    self.currentGameTime = 600;
     // Update both timers
     self.labelTime.text = [NSString stringWithFormat:@"%d", self.currentGameTime];
     self.labelTime1.text = [NSString stringWithFormat:@"%d", self.currentGameTime];
@@ -351,13 +355,19 @@
                             ];
     
     // Deal a new deck of cards
-    if (! self._cardDeck) {
-        self._cardDeck = [[PlayingCardDeckNoFace alloc] init];
+    
+    if (! self._hardDeck) {
+        self._hardDeck = [[PlayingCardDeckNoFace alloc] init];
     }
     
     if (! self._easyDeck) {
         self._easyDeck = [[PlayingCardDeckEasy24 alloc] init];
     }
+    
+    if (! self._mediumDeck) {
+        self._mediumDeck = [[PlayingCardDeckMedium24 alloc] init];
+    }
+    self.currentDeck = self._easyDeck;
     
     // Keep track of the labels used to display the status/answers to both players
     self.labelAnswers = [[NSArray alloc] initWithObjects:self.labelAnswer, self.labelAnswer2, nil];
@@ -404,9 +414,7 @@
 - (void) putInDeck:(NSArray *) cards
 {
     for (CardHand *card in cards ) {
-        //[self._cardDeck addCard:card.card];
-        [self._easyDeck addCard:card.card];
-
+        [self.currentDeck addCard:card.card];
     }
 }
 
@@ -418,7 +426,7 @@
     self.answerPlayer = -1;
     
     [self showAnswerControllers:FALSE];
-    
+
     // TODO what if we run out of cards, time to call a winner
     //self.currentGameTime = 300;
     
@@ -426,6 +434,7 @@
     [self putInDeck:self.hand];
     [self.hand removeAllObjects];
     
+    self.labelMiddleInfo.hidden = TRUE;
     // clear the hand
     [self.answerArray removeAllObjects];
     [self.answerCardArray removeAllObjects];
@@ -436,8 +445,7 @@
     
     // deal 4 cards
     for (int i = 0; i < [self.cards count]; i++) {
-        //PlayingCard *newCard = (PlayingCard *)[self._cardDeck drawRandomCard];
-        PlayingCard *newCard = (PlayingCard *)[self._easyDeck drawRandomCard];
+        PlayingCard *newCard = (PlayingCard *)[self.currentDeck drawRandomCard];
 
         CardHand *singleDeal = [[CardHand alloc] init];
         
@@ -558,10 +566,11 @@
     [self.timer invalidate];
     self.labelMiddleInfo.hidden = FALSE;
     self.labelMiddleInfo.text = @"Game Over";
+    
     [self showAnswerControllers:FALSE];
     self.player1Button.hidden = TRUE;
     self.player2Button.hidden = TRUE;
-    NSLog(@"timesup");
+    DLog(@"timesup");
 }
 
 //
@@ -662,6 +671,8 @@
     [self.labelAnswer2 setTag:101];
     
     [self.labelMiddleInfo setTag:200];
+    
+    [self.segmentLevels setTag:300];
     
     // Swipe
     self.swipeGesture.direction = UISwipeGestureRecognizerDirectionRight | UISwipeGestureRecognizerDirectionLeft;
@@ -1123,6 +1134,29 @@
             [self dealHand];
         }
     }
+    
+
+}
+- (IBAction)segmentLevelsTouched:(id)sender {
+    self.segmentLevels.alpha = 0.5;
+    DLog(@"Level %ld", (long)self.segmentLevels.selectedSegmentIndex);
+    [self putInDeck:self.hand];
+    [self.hand removeAllObjects];
+
+    if (self.segmentLevels.selectedSegmentIndex == 0) {
+        self.currentDeck = self._easyDeck;
+        [self dealHand];
+    }
+    if (self.segmentLevels.selectedSegmentIndex == 1) {
+        self.currentDeck = self._mediumDeck;
+        [self dealHand];
+
+    }
+    if (self.segmentLevels.selectedSegmentIndex == 2) {
+        self.currentDeck = self._hardDeck;
+        [self dealHand];
+
+    }
 }
 
 // An operator is touched, enable the cards, disable the operators
@@ -1214,6 +1248,8 @@
         
         if (self.answerPlayer == 0) {
             [self.labelMiddleInfo setTransform:CGAffineTransformMakeRotation(-M_PI)];
+        } else {
+            [self.labelMiddleInfo setTransform:CGAffineTransformMakeRotation(0)];
         }
         self.labelMiddleInfo.text = finalText;
         self.labelMiddleInfo.hidden = FALSE;
