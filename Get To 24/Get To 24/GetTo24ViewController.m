@@ -1138,7 +1138,7 @@
 
 }
 - (IBAction)segmentLevelsTouched:(id)sender {
-    self.segmentLevels.alpha = 0.5;
+    self.segmentLevels.alpha = 0.8;
     DLog(@"Level %ld", (long)self.segmentLevels.selectedSegmentIndex);
     [self putInDeck:self.hand];
     [self.hand removeAllObjects];

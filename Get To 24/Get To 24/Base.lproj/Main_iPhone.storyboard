@@ -394,13 +394,12 @@
                                 <color key="textColor" red="0.98968339019999996" green="0.99284903250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <segmentedControl opaque="NO" alpha="0.5" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="7uo-ze-2Np">
-                                <rect key="frame" x="55" y="350" width="211" height="30"/>
+                            <segmentedControl opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="7uo-ze-2Np">
+                                <rect key="frame" x="55" y="350" width="211" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="26" id="2X3-8u-haq"/>
-                                    <constraint firstAttribute="width" constant="211" id="9aJ-9c-DWA"/>
+                                    <constraint firstAttribute="height" constant="28" id="2X3-8u-haq"/>
                                 </constraints>
                                 <segments>
                                     <segment title="Easy"/>
