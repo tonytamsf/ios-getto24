@@ -6,12 +6,7 @@
 //  Created by Tony Tam on 1/4/14.
 //  Copyright (c) 2014 Yama Llama. All rights reserved.
 //
-// TODO: local leader board
-// TODO: swipe away the answer use has to change it
-// TODO: wrong answer
-//2014-05-25 22:30:45.419 Math 24[1298:60b] answer ((8 + 7) - 1) + 10
-// 2014-05-25 22:31:11.298 Math 24[1298:60b] answer ((10 * 8) * 7) + 1
-// 2014-05-25 22:31:11.298 Math 24[1298:60b] Player got it right: ((10 * 8) * 7) + 1
+
 
 #import "GetTo24ViewController.h"
 
@@ -1240,7 +1235,6 @@
                                   (int)cardHand.card.rank];
     }
     
-    // TODO: add or remove points
     // We have 4 cards and 3 operators, we are done
     if ([self.answerArray count] == 7) {
         NSString * finalText = [[NSString alloc] init];
