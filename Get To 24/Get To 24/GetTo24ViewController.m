@@ -177,7 +177,7 @@
         [((UIButton *)self.cards[i]) setUserInteractionEnabled:show];
         ((UIButton *)self.cards[i]).alpha = show ? 1 : 0.2;
 
-        ((UIButton *)self.operatorLabels2[i]).alpha = show ? 1 : .2;
+        ((UIButton *)self.operatorLabels2[i]).alpha = show ? 1 : 0.2;
         
         if (show == FALSE) {
             [((UIButton *)self.cards[i]) setTitle:@""
@@ -279,7 +279,7 @@
     // the cards and the operatdors
     for (int i = 0; i < 4; i++ ){
         [((UIButton *)self.cards[i]) setUserInteractionEnabled:TRUE];
-        ((UIButton *)self.cards[i]).alpha =  0.8;
+        ((UIButton *)self.cards[i]).alpha =  1.0;
 
         [((UIButton *)self.cards[i]) setTitle:@""
                                      forState:UIControlStateNormal];
@@ -380,8 +380,6 @@
     // Deal a fresh hand
     self.hand = [[NSMutableArray alloc] init];
     [self dealHand];
-    
-    
 
     [AudioUtil playSound:@"opening" :@"wav"];
 }
@@ -514,9 +512,9 @@
     [UIView setAnimationDidStopSelector:@selector(showHideDidStop:finished:context:)];
     
     // Make the animatable changes.
-    card.alpha = 0.8;
-    left.alpha = 0.8;
-    right.alpha = 0.8;
+    card.alpha = 0.6;
+    left.alpha = 0.6;
+    right.alpha = 0.6;
     //[card setBackgroundImage:nil forState:UIControlStateNormal];
     
     // Commit the changes and perform the animation.
@@ -540,7 +538,7 @@
     UIButton *card = (__bridge UIButton *)context;
     
     // Make the animatable changes.
-    card.alpha = 0.8;
+    card.alpha = 0.6;
     
     //[card setBackgroundImage:[UIImage imageNamed:@"num-1.png"]
     //                forState:UIControlStateNormal];
@@ -673,6 +671,12 @@
     [self.labelMiddleInfo setTag:200];
     
     [self.segmentLevels setTag:300];
+    
+    [self.cardNE setTag:400];
+    [self.cardNW setTag:401];
+    [self.cardSE setTag:402];
+    [self.cardSW setTag:403];
+
     
     // Swipe
     self.swipeGesture.direction = UISwipeGestureRecognizerDirectionRight | UISwipeGestureRecognizerDirectionLeft;
@@ -1133,9 +1137,18 @@
         } else {
             [self dealHand];
         }
+        return;
     }
     
-
+    if (!self.player1Button.hidden) {
+        NSLog(@"%f", [touch locationInView:self.imageViewCenter].y);
+        NSLog(@"%f", self.imageViewCenter.bounds.size.height);
+        if ([touch locationInView:self.imageViewCenter].y > (self.imageViewCenter.bounds.size.height / 2 )) {
+            [self player2Pressed:nil];
+        } else {
+            [self player1Pressed:nil];
+        }
+    }
 }
 - (IBAction)segmentLevelsTouched:(id)sender {
     self.segmentLevels.alpha = 0.8;
@@ -1283,7 +1296,7 @@
             card.alpha = bDisabled ? 0.2 : 1;
 
         } else {
-            card.alpha = bDisabled ? 0.5 : 1;
+            card.alpha = bDisabled ? 0.6 : 1;
         }
     }
 }
