@@ -25,3 +25,12 @@ A fun math game to make 4 playing cards come out to 24 using **addition**, **sub
 ### Author
    * Tony Tam - engineer
    * Cate Tam - designer, product manager
+
+### TODO
+- local and or leader board
+- Credits, feedback
+- Sound
+- Preferences to store not showing the splash screen
+- auto move from easy, medium, hard
+- Share the app?
+
