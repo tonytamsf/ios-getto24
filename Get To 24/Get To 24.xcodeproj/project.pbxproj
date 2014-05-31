@@ -44,6 +44,7 @@
 		D868E2481919C3EE00324698 /* playing.background.png in Resources */ = {isa = PBXBuildFile; fileRef = D868E2471919C3EE00324698 /* playing.background.png */; };
 		D87D283A191B3F160019B493 /* relaxing.wav in Resources */ = {isa = PBXBuildFile; fileRef = D87D2839191B3F160019B493 /* relaxing.wav */; };
 		D87D283C191B415B0019B493 /* relaxing-short.wav in Resources */ = {isa = PBXBuildFile; fileRef = D87D283B191B415B0019B493 /* relaxing-short.wav */; };
+		D89C4D3C19396C83003209D4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D89C4D3B19396C83003209D4 /* Default-568h@2x.png */; };
 		D8B75D6C1922791A00991892 /* PlayingCardDeckNoFace.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B75D6B1922791A00991892 /* PlayingCardDeckNoFace.m */; };
 		D8B83A1D19382CDF002A317D /* PlayingCardDeckMedium24.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B83A1C19382CDF002A317D /* PlayingCardDeckMedium24.m */; };
 		D8B83A2019382CF4002A317D /* PlayingCardMedium24.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B83A1F19382CF4002A317D /* PlayingCardMedium24.m */; };
@@ -131,6 +132,7 @@
 		D868E2471919C3EE00324698 /* playing.background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playing.background.png; sourceTree = "<group>"; };
 		D87D2839191B3F160019B493 /* relaxing.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = relaxing.wav; sourceTree = "<group>"; };
 		D87D283B191B415B0019B493 /* relaxing-short.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "relaxing-short.wav"; sourceTree = "<group>"; };
+		D89C4D3B19396C83003209D4 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		D8B75D6A1922791A00991892 /* PlayingCardDeckNoFace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayingCardDeckNoFace.h; sourceTree = "<group>"; };
 		D8B75D6B1922791A00991892 /* PlayingCardDeckNoFace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingCardDeckNoFace.m; sourceTree = "<group>"; };
 		D8B83A1B19382CDF002A317D /* PlayingCardDeckMedium24.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayingCardDeckMedium24.h; sourceTree = "<group>"; };
@@ -371,6 +373,7 @@
 				D8C09C621915A0510057DDEB /* ios-libs */,
 				D8C112CA19158A6F00864A23 /* sounds */,
 				D8E4985C187B2157005A32D6 /* Default.png */,
+				D89C4D3B19396C83003209D4 /* Default-568h@2x.png */,
 				D8599D3F187B1ACB0033E51C /* images */,
 				D8D36997187933400092E0F4 /* Get To 24 */,
 				D8D369B9187933400092E0F4 /* Get To 24Tests */,
@@ -567,6 +570,7 @@
 				D81CFC16193434B0005AB7D7 /* num-7.png in Resources */,
 				D8D369A8187933400092E0F4 /* Main_iPad.storyboard in Resources */,
 				D81CFC17193434B0005AB7D7 /* num-8.png in Resources */,
+				D89C4D3C19396C83003209D4 /* Default-568h@2x.png in Resources */,
 				D81CFC1B193434B0005AB7D7 /* num-3.png in Resources */,
 				D81CFC3019344663005AB7D7 /* num-2.png in Resources */,
 				D8C09C7B1915A0510057DDEB /* README.md in Resources */,
