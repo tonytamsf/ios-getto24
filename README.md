@@ -27,6 +27,7 @@ A fun math game to make 4 playing cards come out to 24 using **addition**, **sub
    * Cate Tam - designer, product manager
 
 ### TODO
+- localization
 - local and or leader board
 - Credits, feedback
 - Sound
