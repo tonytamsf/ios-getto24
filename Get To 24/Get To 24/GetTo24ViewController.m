@@ -81,7 +81,7 @@
 // the found operators and return the answer by applying the
 // operators in the order and precendence.  Don't care
 // yet about the right answer
-- (AnswerPackage *) calcuateSimple:(NSArray *)cards
+- (AnswerPackage *) calculateSimple:(NSArray *)cards
                     usingOperators:(SEL *)selectors
                  withOperatorChars:(NSArray *)currentOperatorChars;
 
@@ -94,6 +94,10 @@
                         withOperatorChars:(NSArray *)currentOperatorChars;
 
 - (AnswerPackage *) calcuateGroupingSecond:(NSArray *)cards
+                            usingOperators:(SEL *)selectors
+                         withOperatorChars:(NSArray *)currentOperatorChars;
+
+- (AnswerPackage *) calcuateNested:(NSArray *)cards
                             usingOperators:(SEL *)selectors
                          withOperatorChars:(NSArray *)currentOperatorChars;
 
@@ -256,7 +260,7 @@
                                   self.player2ScorePoints];
     }
     
-    [AudioUtil playSound:@"chimes" :@"wav"];
+    // [AudioUtil playSound:@"chimes" :@"wav"];
 }
 
 - (void) clearAnswer
@@ -760,7 +764,7 @@
                     break;
                 }
                 
-                storeAnswerPackage = [self calcuateSimple:cards
+                storeAnswerPackage = [self calculateSimple:cards
                                            usingOperators:currentOperators
                                         withOperatorChars:currentOperatorChars];
                 if ([storeAnswerPackage.answer compare:rightAnswer] == NSOrderedSame) {
@@ -788,6 +792,15 @@
                     break;
                 }
                 storeAnswerPackage = [self calcuateGroupingSecond:cards
+                                                   usingOperators:currentOperators
+                                                withOperatorChars:currentOperatorChars];
+                if ([storeAnswerPackage.answer compare:rightAnswer] == NSOrderedSame) {
+                    DLog(@"answer %@", storeAnswerPackage.stringAnswer);
+                    
+                    found = TRUE;
+                    break;
+                }
+                storeAnswerPackage = [self calculateNested:cards
                                                    usingOperators:currentOperators
                                                 withOperatorChars:currentOperatorChars];
                 if ([storeAnswerPackage.answer compare:rightAnswer] == NSOrderedSame) {
@@ -834,7 +847,7 @@
     BOOL found = false;
 
     
-    storeAnswerPackage = [self calcuateSimple:cards
+    storeAnswerPackage = [self calculateSimple:cards
                                usingOperators:selectors
                             withOperatorChars:currentOperatorChars];
 
@@ -872,12 +885,20 @@
         found = TRUE;
         return storeAnswerPackage;
     }
-    
+    storeAnswerPackage = [self calculateNested:cards
+                                       usingOperators:selectors
+                                    withOperatorChars:currentOperatorChars];
+    if ([storeAnswerPackage.answer compare:rightAnswer] == NSOrderedSame) {
+        DLog(@"answer %@", storeAnswerPackage.stringAnswer);
+        
+        found = TRUE;
+        return storeAnswerPackage;
+    }
     return nil;
 }
 
 // ((a op b) op c) op d
-- (AnswerPackage *) calcuateSimple:(NSArray *) cards
+- (AnswerPackage *) calculateSimple:(NSArray *) cards
                     usingOperators:(SEL [])selectors
                  withOperatorChars:(NSArray *)currentOperatorChars
 {
@@ -931,6 +952,64 @@
     
     return answer;
 }
+
+// a op ((b op c) op d)
+- (AnswerPackage *) calculateNested:(NSArray *) cards
+                    usingOperators:(SEL [])selectors
+                 withOperatorChars:(NSArray *)currentOperatorChars
+{
+    NSDecimalNumber *subtotal = [[NSDecimalNumber alloc] init];
+    AnswerPackage *answer = [[AnswerPackage alloc] init];
+    
+    SEL selector0 = selectors[0];
+    SEL selector1 = selectors[1];
+    SEL selector2 = selectors[2];
+    
+    PlayingCard *card0 = (PlayingCard *)((CardHand *)cards[0]).card;
+    PlayingCard *card1 = (PlayingCard *)((CardHand *)cards[1]).card;
+    PlayingCard *card2 = (PlayingCard *)((CardHand *)cards[2]).card;
+    PlayingCard *card3 = (PlayingCard *)((CardHand *)cards[3]).card;
+    
+    @try {
+        
+        subtotal = [[NSDecimalNumber numberWithInt:card1.rank]
+                    performSelector:selector1
+                    withObject:[NSDecimalNumber numberWithInt:card2.rank]];
+        
+        
+        subtotal = [subtotal
+                    performSelector:selector2
+                    withObject:[NSDecimalNumber numberWithInt:card3.rank]];
+        
+        subtotal = [[NSDecimalNumber numberWithInt:card0.rank]
+                    performSelector:selector0
+                    withObject:subtotal];
+    }
+    @catch (NSException *e) {
+        answer.answer = [NSDecimalNumber numberWithInt:-1];
+        
+        answer.stringAnswer = @"Divide by zero";
+        return answer;
+    }
+    
+    answer.answer = subtotal;
+    answer.stringFormat = @"((%d %@ %d) %@ %d) %@ %d";
+    answer.stringAnswer = [NSString stringWithFormat:answer.stringFormat,
+                           card0.rank,
+                           [currentOperatorChars objectAtIndex:0],
+                           card1.rank,
+                           [currentOperatorChars objectAtIndex:1],
+                           card2.rank,
+                           [currentOperatorChars objectAtIndex:2],
+                           card3.rank
+                           ];
+    answer.operators = [NSArray arrayWithArray:currentOperatorChars];
+    answer.cards = [NSArray arrayWithArray:cards];
+    
+    return answer;
+}
+
+
 
 // (a op b) op (c op d)
 - (AnswerPackage *) calcuateGrouping:(NSArray *) cards
@@ -1135,7 +1214,8 @@
         return;
     }
     
-    if (!self.player1Button.hidden) {
+    //  TODO This is too sensitive, disable
+    if (false && !self.player1Button.hidden) {
         NSLog(@"%f", [touch locationInView:self.imageViewCenter].y);
         NSLog(@"%f", self.imageViewCenter.bounds.size.height);
         if ([touch locationInView:self.imageViewCenter].y > (self.imageViewCenter.bounds.size.height / 2 )) {
