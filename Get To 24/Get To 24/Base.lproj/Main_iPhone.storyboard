@@ -395,16 +395,16 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" alpha="0.59999999999999998" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="7uo-ze-2Np">
-                                <rect key="frame" x="55" y="350" width="211" height="29"/>
+                                <rect key="frame" x="55" y="350" width="211" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="2X3-8u-haq"/>
                                 </constraints>
                                 <segments>
-                                    <segment title="Easy"/>
-                                    <segment title="Med"/>
-                                    <segment title="Hard"/>
+                                    <segment title="Easy (1)"/>
+                                    <segment title="Med (2)"/>
+                                    <segment title="Hard (3)"/>
                                 </segments>
                                 <color key="tintColor" red="0.1680738101" green="0.30842190990000001" blue="0.37066915760000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
