@@ -17,6 +17,18 @@
 
 @implementation SplashViewController
 
+- (BOOL) canPlayTransition
+{
+    NSArray *versionCompatibility = [[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."];
+    
+    /// Don't play intro vieo for iOS 6.0
+    if ( 7 <= [[versionCompatibility objectAtIndex:0] intValue] ||
+        (6 <= [[versionCompatibility objectAtIndex:0] intValue] &&
+         1 <= [[versionCompatibility objectAtIndex:1] intValue])) {
+            return TRUE;
+        }
+    return false;
+}
 
 - (void)viewDidLoad
 {
@@ -27,7 +39,7 @@
     NSArray *versionCompatibility = [[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."];
     NSLog(@"version %d", [[versionCompatibility objectAtIndex:0] intValue]);
     
-    if ( 7 > [[versionCompatibility objectAtIndex:0] intValue] ) { /// iOS5 is installed
+    if ( [self canPlayTransition] ) { /// iOS5 is installed
         [self transtionToPlayView];
     } else {
         
@@ -87,7 +99,10 @@
 {
     NSArray *versionCompatibility = [[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."];
 
-    if ( 7 <= [[versionCompatibility objectAtIndex:0] intValue] ) { /// iOS5 is installed
+    /// Don't play intro vieo for iOS 6.0
+    if ( 7 <= [[versionCompatibility objectAtIndex:0] intValue] ||
+         (6 <= [[versionCompatibility objectAtIndex:0] intValue] &&
+         1 <= [[versionCompatibility objectAtIndex:1] intValue])) {
 
         [self transtionToPlayView];
     }

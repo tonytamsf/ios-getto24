@@ -120,6 +120,8 @@
 
 @property int player2ScorePoints;
 
+@property int increment;
+
 @property NSMutableArray *hand;
 
 @property SEL plusSel, minusSel, mulSel, divSel;
@@ -229,12 +231,12 @@
 {
     if (playerNumber == 0) {
         
-        self.player1ScorePoints += 1;
+        self.player1ScorePoints += self.increment;
         self.player1Score.text = [NSString stringWithFormat:@"%d",
                                   self.player1ScorePoints];
     } else {
         
-        self.player2ScorePoints += 1;
+        self.player2ScorePoints += self.increment;
         self.player2Score.text = [NSString stringWithFormat:@"%d",
                                   self.player2ScorePoints];
     }
@@ -367,6 +369,7 @@
         self._mediumDeck = [[PlayingCardDeckMedium24 alloc] init];
     }
     self.currentDeck = self._easyDeck;
+    self.increment = (int) self.segmentLevels.selectedSegmentIndex + 1;
     
     // Keep track of the labels used to display the status/answers to both players
     self.labelAnswers = [[NSArray alloc] initWithObjects:self.labelAnswer, self.labelAnswer2, nil];
@@ -1233,17 +1236,20 @@
 
     if (self.segmentLevels.selectedSegmentIndex == 0) {
         self.currentDeck = self._easyDeck;
+        self.increment = 1;
+
         [self dealHand];
     }
     if (self.segmentLevels.selectedSegmentIndex == 1) {
         self.currentDeck = self._mediumDeck;
+        self.increment = 2;
         [self dealHand];
 
     }
     if (self.segmentLevels.selectedSegmentIndex == 2) {
         self.currentDeck = self._hardDeck;
+        self.increment = 3;
         [self dealHand];
-
     }
 }
 
