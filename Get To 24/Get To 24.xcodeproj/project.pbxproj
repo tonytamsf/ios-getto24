@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		109EB46442FA4E4F93E666D8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88695D9F7F664F069AE8C6B0 /* libPods.a */; };
 		D80C81D61926F481004D2BAD /* polish-button.png in Resources */ = {isa = PBXBuildFile; fileRef = D80C81D51926F481004D2BAD /* polish-button.png */; };
+		D814B7A61952974E0076EBE1 /* PlayingCardDeckDeterministic.m in Sources */ = {isa = PBXBuildFile; fileRef = D814B7A51952974E0076EBE1 /* PlayingCardDeckDeterministic.m */; };
 		D816ACBA1934FBF700C9D93B /* go-button.png in Resources */ = {isa = PBXBuildFile; fileRef = D816ACB91934FBF700C9D93B /* go-button.png */; };
 		D816ACBD1934FF9300C9D93B /* dad's app.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D816ACBC1934FF9300C9D93B /* dad's app.pdf */; };
 		D81CFC0419341B42005AB7D7 /* math-24-icon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D81CFC0319341B42005AB7D7 /* math-24-icon.pdf */; };
@@ -96,6 +97,8 @@
 		35D2D39FA0B94F0B8A6AF88C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		88695D9F7F664F069AE8C6B0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D80C81D51926F481004D2BAD /* polish-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "polish-button.png"; sourceTree = "<group>"; };
+		D814B7A41952974E0076EBE1 /* PlayingCardDeckDeterministic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayingCardDeckDeterministic.h; sourceTree = "<group>"; };
+		D814B7A51952974E0076EBE1 /* PlayingCardDeckDeterministic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingCardDeckDeterministic.m; sourceTree = "<group>"; };
 		D816ACB91934FBF700C9D93B /* go-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "go-button.png"; sourceTree = "<group>"; };
 		D816ACBC1934FF9300C9D93B /* dad's app.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "dad's app.pdf"; sourceTree = "<group>"; };
 		D81CFC0319341B42005AB7D7 /* math-24-icon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "math-24-icon.pdf"; sourceTree = "<group>"; };
@@ -333,6 +336,8 @@
 				D8B75D6B1922791A00991892 /* PlayingCardDeckNoFace.m */,
 				D8FC2C79193644F4009593AA /* PlayingCardDeckEasy24.h */,
 				D8FC2C7A193644F4009593AA /* PlayingCardDeckEasy24.m */,
+				D814B7A41952974E0076EBE1 /* PlayingCardDeckDeterministic.h */,
+				D814B7A51952974E0076EBE1 /* PlayingCardDeckDeterministic.m */,
 				D8B83A1B19382CDF002A317D /* PlayingCardDeckMedium24.h */,
 				D8B83A1C19382CDF002A317D /* PlayingCardDeckMedium24.m */,
 			);
@@ -642,6 +647,7 @@
 			files = (
 				D8C09C7D1915A0510057DDEB /* NSArrayUtil.m in Sources */,
 				D8C09C791915A0510057DDEB /* PlayingCard.m in Sources */,
+				D814B7A61952974E0076EBE1 /* PlayingCardDeckDeterministic.m in Sources */,
 				D8C09C781915A0510057DDEB /* Deck.m in Sources */,
 				D8B75D6C1922791A00991892 /* PlayingCardDeckNoFace.m in Sources */,
 				D8D369AB187933400092E0F4 /* GetTo24ViewController.m in Sources */,
