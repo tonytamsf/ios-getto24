@@ -993,7 +993,7 @@
     }
     
     answer.answer = subtotal;
-    answer.stringFormat = @"((%d %@ %d) %@ %d) %@ %d";
+    answer.stringFormat = @"%d %@ ((%d %@ %d) %@ %d)";
     answer.stringAnswer = [NSString stringWithFormat:answer.stringFormat,
                            card0.rank,
                            [currentOperatorChars objectAtIndex:0],
