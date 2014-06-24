@@ -13,6 +13,7 @@
 #import "PlayingCardDeckNoFace.h"
 #import "PlayingCardDeckMedium24.h"
 #import "PlayingCardDeckEasy24.h"
+#import "PlayingCardDeckDeterministic.h"
 #import "Deck.h"
 #import "Debug.h"
 #import "NSArrayUtil.h"
@@ -57,6 +58,12 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
 @property (nonatomic) int flipCount;
+
+- (IBAction)disableOperators:(BOOL) bDisabled;
+- (IBAction)disableCards:(BOOL) bDisabled;
+- (void)timesUp;
+- (IBAction)player1Pressed:(id)sender;
+- (IBAction)player2Pressed:(id)sender;
 
 // call this once when we are ready to start
 - (void) startGame;
@@ -140,7 +147,7 @@
 
 @property AnswerPackage *storeAnswerPackage;
 
-
+@property BOOL bSound;
 
 - (void) rightAnswer:(int) playerNumber;
 
@@ -241,7 +248,7 @@
                                   self.player2ScorePoints];
     }
 
-    [AudioUtil playSound:@"chimes" :@"wav"];
+    [self.util playSound:@"Correct_Sound" :@"mp3"];
 }
 
 //
@@ -262,7 +269,7 @@
                                   self.player2ScorePoints];
     }
     
-    // [AudioUtil playSound:@"chimes" :@"wav"];
+     [self.util  playSound:@"Wrong_Sound" :@"mp3"];
 }
 
 - (void) clearAnswer
@@ -296,7 +303,7 @@
 //
 - (IBAction)skip:(id)sender {
     [self dealHand];
-    [AudioUtil playSound:@"whoosh" :@"wav"];
+    [self.util  playSound:@"whoosh" :@"wav"];
 }
 
 //
@@ -368,7 +375,11 @@
     if (! self._mediumDeck) {
         self._mediumDeck = [[PlayingCardDeckMedium24 alloc] init];
     }
+    
     self.currentDeck = self._easyDeck;
+    // TODO for debugging
+    self.currentDeck = [[PlayingCardDeckDeterministic alloc] init];
+    
     self.increment = (int) self.segmentLevels.selectedSegmentIndex + 1;
     
     // Keep track of the labels used to display the status/answers to both players
@@ -383,7 +394,11 @@
     self.hand = [[NSMutableArray alloc] init];
     [self dealHand];
 
-    [AudioUtil playSound:@"opening" :@"wav"];
+    [self.backGround playSound:@"Game_song_2" :@"mp3"];
+    self.util.volume = 0.5;
+    [self.util playSound:@"Intro_for_game" :@"mp3"];
+    self.util.volume = 0.5;
+
 }
 
 //
@@ -395,7 +410,7 @@
     if (self.currentGameTime <= 0) {
         self.currentGameTime = 0;
     }
-    DLog("Countdown %d %f", self.currentGameTime, percent);
+    DLog("Countdown %d", self.currentGameTime);
 
     // Update both timers
     self.labelTime.text = [NSString stringWithFormat:@"%d", self.currentGameTime];
@@ -558,7 +573,7 @@
 // the player has to find the answer, skip or say there is no answer
 //
 - (void)timesUp {
-    [AudioUtil playSound:@"whoosh" :@"wav"];
+    [self.util  playSound:@"whoosh" :@"wav"];
     // Stop the previous timer
     
     // [AudioUtil playSound:@"ray" :@"wav"];
@@ -580,7 +595,7 @@
     [self dealHand];
     self.currentGameTime = self.currentGameTime - 10;
     
-    [AudioUtil playSound:@"whoosh" :@"wav"];
+    [self.util playSound:@"whoosh" :@"wav"];
 }
 
 
@@ -685,7 +700,16 @@
     self.swipeGesture1.direction = UISwipeGestureRecognizerDirectionRight | UISwipeGestureRecognizerDirectionLeft;
     self.swipeGestureGiveUp.direction = UISwipeGestureRecognizerDirectionRight | UISwipeGestureRecognizerDirectionLeft;
     
-
+    self.util = [[AudioUtil alloc] init];
+    self.util.volume = 0.5;
+    self.util.numberOfLoops = 0;
+    
+    self.backGround = [[AudioUtil alloc] init];
+    self.backGround.volume = 0.1;
+    self.backGround.numberOfLoops = -1;
+    
+    self.bSound = TRUE;
+    
     // Get started
     [self startGame];
     
@@ -763,75 +787,25 @@
                                                  [self.operatorChars objectAtIndex:k],
                                                  [self.operatorChars objectAtIndex:l],
                                                  nil];
-                if (found) {
-                    break;
-                }
                 
-                storeAnswerPackage = [self calculateSimple:cards
+                storeAnswerPackage = [self calculateHand:cards
                                            usingOperators:currentOperators
                                         withOperatorChars:currentOperatorChars];
                 if ([storeAnswerPackage.answer compare:rightAnswer] == NSOrderedSame) {
                     DLog(@"answer %@", storeAnswerPackage.stringAnswer);
                     
                     found = TRUE;
-                    break;
+                    return storeAnswerPackage;
                 }
-                storeAnswerPackage = [self calcuateGrouping:cards
-                                             usingOperators:currentOperators
-                                          withOperatorChars:currentOperatorChars];
-                if ([storeAnswerPackage.answer compare:rightAnswer] == NSOrderedSame) {
-                    DLog(@"answer %@", storeAnswerPackage.stringAnswer);
-                    
-                    found = TRUE;
-                    break;
-                }
-                storeAnswerPackage = [self calcuateGroupingOfTwo:cards
-                                                  usingOperators:currentOperators
-                                               withOperatorChars:currentOperatorChars];
-                if ([storeAnswerPackage.answer compare:rightAnswer] == NSOrderedSame) {
-                    DLog(@"answer %@", storeAnswerPackage.stringAnswer);
-                    
-                    found = TRUE;
-                    break;
-                }
-                storeAnswerPackage = [self calcuateGroupingSecond:cards
-                                                   usingOperators:currentOperators
-                                                withOperatorChars:currentOperatorChars];
-                if ([storeAnswerPackage.answer compare:rightAnswer] == NSOrderedSame) {
-                    DLog(@"answer %@", storeAnswerPackage.stringAnswer);
-                    
-                    found = TRUE;
-                    break;
-                }
-                storeAnswerPackage = [self calculateNested:cards
-                                                   usingOperators:currentOperators
-                                                withOperatorChars:currentOperatorChars];
-                if ([storeAnswerPackage.answer compare:rightAnswer] == NSOrderedSame) {
-                    DLog(@"answer %@", storeAnswerPackage.stringAnswer);
-                    
-                    found = TRUE;
-                    break;
-                }
-                DLog(@"--- try %d %s %d %s %d %s %d",
-                     card0.rank,
-                     selector0,
-                     card1.rank,
-                     selector1,
-                     card2.rank,
-                     selector2,
-                     card3.rank);
+               
+
             }
-            if (found) { break; };
         }
-        if (found) { break; };
     }
-    if (found) {
-        return storeAnswerPackage;
-    } else {
-        return nil;
-    }
+    return nil;
 }
 
+// TODO: refactor using this 
 // Using the cards in the given sequence and operators in the sequence
 // calculate whether there is an answer.  This can be used
 // to verify the human players answer
@@ -888,6 +862,17 @@
         found = TRUE;
         return storeAnswerPackage;
     }
+    
+    storeAnswerPackage = [self calcuateGroupingThree:cards
+                                       usingOperators:selectors
+                                    withOperatorChars:currentOperatorChars];
+    if ([storeAnswerPackage.answer compare:rightAnswer] == NSOrderedSame) {
+        DLog(@"answer %@", storeAnswerPackage.stringAnswer);
+        
+        found = TRUE;
+        return storeAnswerPackage;
+    }
+    
     storeAnswerPackage = [self calculateNested:cards
                                        usingOperators:selectors
                                     withOperatorChars:currentOperatorChars];
@@ -1075,6 +1060,66 @@
 }
 
 
+// a op (b op (c op d))
+- (AnswerPackage *) calcuateGroupingThree:(NSArray *) cards
+                      usingOperators:(SEL [])selectors
+                   withOperatorChars:(NSArray *)currentOperatorChars
+{
+    NSDecimalNumber *subtotal = [[NSDecimalNumber alloc] init];
+    AnswerPackage *answer = [[AnswerPackage alloc] init];
+    
+    SEL selector0 = selectors[0];
+    SEL selector1 = selectors[1];
+    SEL selector2 = selectors[2];
+    
+    PlayingCard *card0 = (PlayingCard *)((CardHand *)cards[0]).card;
+    PlayingCard *card1 = (PlayingCard *)((CardHand *)cards[1]).card;
+    PlayingCard *card2 = (PlayingCard *)((CardHand *)cards[2]).card;
+    PlayingCard *card3 = (PlayingCard *)((CardHand *)cards[3]).card;
+    
+    @try {
+        
+        subtotal = [[NSDecimalNumber numberWithInt:card2.rank]
+                    performSelector:selector2
+                    withObject:[NSDecimalNumber numberWithInt:card3.rank]];
+        
+        
+        subtotal = [[NSDecimalNumber numberWithInt:card1.rank]
+                     performSelector:selector1
+                     withObject:subtotal];
+        
+        
+        subtotal = [[NSDecimalNumber numberWithInt:card0.rank]
+                    performSelector:selector0
+                    withObject:subtotal];
+        
+    }
+    @catch (NSException *e) {
+        answer.answer = [NSDecimalNumber numberWithInt:-1];
+        
+        answer.stringAnswer = @"Divide by zero";
+        return answer;
+        
+    }
+    answer.answer = subtotal;
+    answer.stringFormat = @"%d %@ ((%d %@ (%d %@ %d))";
+    answer.stringAnswer = [NSString stringWithFormat:answer.stringFormat,
+                           card0.rank,
+                           [currentOperatorChars objectAtIndex:0],
+                           card1.rank,
+                           [currentOperatorChars objectAtIndex:1],
+                           card2.rank,
+                           [currentOperatorChars objectAtIndex:2],
+                           card3.rank
+                           ];
+    
+    answer.operators = [NSArray arrayWithArray:currentOperatorChars];
+    answer.cards = [NSArray arrayWithArray:cards];
+    
+    return answer;
+}
+
+
 // (a op b) op c op d
 - (AnswerPackage *)calcuateGroupingOfTwo:(NSArray *) cards
                           usingOperators:(SEL [])selectors
@@ -1217,10 +1262,9 @@
         return;
     }
     
-    //  TODO This is too sensitive, disable
-    if (false && !self.player1Button.hidden) {
-        NSLog(@"%f", [touch locationInView:self.imageViewCenter].y);
-        NSLog(@"%f", self.imageViewCenter.bounds.size.height);
+    if (!self.player1Button.hidden) {
+        DLog(@"%f", [touch locationInView:self.imageViewCenter].y);
+        DLog(@"%f", self.imageViewCenter.bounds.size.height);
         if ([touch locationInView:self.imageViewCenter].y > (self.imageViewCenter.bounds.size.height / 2 )) {
             [self player2Pressed:nil];
         } else {
@@ -1228,7 +1272,7 @@
         }
     }
 }
-- (IBAction)segmentLevelsTouched:(id)sender {
+- (IBAction) segmentLevelsTouched:(id) sender {
     self.segmentLevels.alpha = 0.8;
     DLog(@"Level %ld", (long)self.segmentLevels.selectedSegmentIndex);
     [self putInDeck:self.hand];
@@ -1251,6 +1295,8 @@
         self.increment = 3;
         [self dealHand];
     }
+
+    [self.util playSound:@"Intro_for_game" :@"mp3"];
 }
 
 // An operator is touched, enable the cards, disable the operators
@@ -1409,5 +1455,20 @@
     [self giveUp:sender];
 }
 
+- (IBAction)toggleSound:(id)sender {
+    self.bSound = !self.bSound;
+    if (self.bSound) {
+
+        [self.soundButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"sound.png"]] forState:UIControlStateNormal];
+        [self.backGround play];
+    } else {
+
+        [self.backGround pause];
+
+        DLog(@"sound off");
+        [self.soundButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"speaker_mute.png"]] forState:UIControlStateNormal];
+    }
+    
+}
 
 @end

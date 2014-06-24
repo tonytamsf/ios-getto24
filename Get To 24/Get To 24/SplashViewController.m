@@ -37,9 +37,9 @@
     DLog(@"SplashViewController.h");
     
     NSArray *versionCompatibility = [[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."];
-    NSLog(@"version %d", [[versionCompatibility objectAtIndex:0] intValue]);
+    DLog(@"version %d", [[versionCompatibility objectAtIndex:0] intValue]);
     
-    if ( [self canPlayTransition] ) { /// iOS5 is installed
+    if ( ! [self canPlayTransition] ) { /// iOS5 is installed
         [self transtionToPlayView];
     } else {
         
@@ -51,7 +51,6 @@
         NSString *path  = [[NSBundle mainBundle] pathForResource:@"24-video" ofType :@"mov"];
         
         if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
-            DLog(@"playing %@", fName);
             
             NSURL *pathURL = [NSURL fileURLWithPath:path];
             
@@ -100,10 +99,7 @@
     NSArray *versionCompatibility = [[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."];
 
     /// Don't play intro vieo for iOS 6.0
-    if ( 7 <= [[versionCompatibility objectAtIndex:0] intValue] ||
-         (6 <= [[versionCompatibility objectAtIndex:0] intValue] &&
-         1 <= [[versionCompatibility objectAtIndex:1] intValue])) {
-
+    if ( [self canPlayTransition] ) { /// iOS5 is installed
         [self transtionToPlayView];
     }
 }

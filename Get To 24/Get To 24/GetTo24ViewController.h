@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AudioUtil.h"
 
 @interface GetTo24ViewController : UIViewController
+
+@property (strong, nonatomic) AudioUtil *util;
+@property (strong, nonatomic) AudioUtil *backGround;
 
 @property (weak, nonatomic) IBOutlet UIButton *cardNE;
 @property (weak, nonatomic) IBOutlet UIButton *cardSW;
@@ -53,6 +57,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageViewCenter;
 
 @property (weak, nonatomic) IBOutlet UILabel *labelMiddleInfo;
+
+@property (weak, nonatomic) IBOutlet UIButton *soundButton;
 
 @property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeGesture;
 @end

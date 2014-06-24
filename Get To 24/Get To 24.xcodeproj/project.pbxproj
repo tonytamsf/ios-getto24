@@ -78,6 +78,14 @@
 		D8D369BE187933400092E0F4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8D369BC187933400092E0F4 /* InfoPlist.strings */; };
 		D8D369C0187933400092E0F4 /* Get_To_24Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D369BF187933400092E0F4 /* Get_To_24Tests.m */; };
 		D8E4985D187B2157005A32D6 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E4985C187B2157005A32D6 /* Default.png */; };
+		D8E6C69519591ACA0066D2B6 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E6C69419591ACA0066D2B6 /* AVFoundation.framework */; };
+		D8E6C698195923750066D2B6 /* Intro_for_game.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D8E6C697195923750066D2B6 /* Intro_for_game.mp3 */; };
+		D8E6C69B19592BD50066D2B6 /* sound.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E6C69919592BD50066D2B6 /* sound.png */; };
+		D8E6C69C19592BD50066D2B6 /* speaker_mute.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E6C69A19592BD50066D2B6 /* speaker_mute.png */; };
+		D8EFB1F01958F9F7004C212E /* Correct_Sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D8EFB1EC1958F9F7004C212E /* Correct_Sound.mp3 */; };
+		D8EFB1F11958F9F7004C212E /* Game_song_2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D8EFB1ED1958F9F7004C212E /* Game_song_2.mp3 */; };
+		D8EFB1F21958F9F7004C212E /* Intro_for_game.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D8EFB1EE1958F9F7004C212E /* Intro_for_game.mp3 */; };
+		D8EFB1F31958F9F7004C212E /* Wrong_Sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D8EFB1EF1958F9F7004C212E /* Wrong_Sound.mp3 */; };
 		D8FC2C78193641E0009593AA /* PlayingCardNoFace.m in Sources */ = {isa = PBXBuildFile; fileRef = D8FC2C77193641E0009593AA /* PlayingCardNoFace.m */; };
 		D8FC2C7B193644F4009593AA /* PlayingCardDeckEasy24.m in Sources */ = {isa = PBXBuildFile; fileRef = D8FC2C7A193644F4009593AA /* PlayingCardDeckEasy24.m */; };
 		D8FC2C7E1936450C009593AA /* PlayingCardEasy24.m in Sources */ = {isa = PBXBuildFile; fileRef = D8FC2C7D1936450C009593AA /* PlayingCardEasy24.m */; };
@@ -183,6 +191,15 @@
 		D8D369BD187933400092E0F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D8D369BF187933400092E0F4 /* Get_To_24Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Get_To_24Tests.m; sourceTree = "<group>"; };
 		D8E4985C187B2157005A32D6 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		D8E6C69419591ACA0066D2B6 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		D8E6C6961959225E0066D2B6 /* Intro_for_game.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Intro_for_game.m4a; sourceTree = "<group>"; };
+		D8E6C697195923750066D2B6 /* Intro_for_game.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Intro_for_game.mp3; sourceTree = "<group>"; };
+		D8E6C69919592BD50066D2B6 /* sound.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sound.png; sourceTree = "<group>"; };
+		D8E6C69A19592BD50066D2B6 /* speaker_mute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speaker_mute.png; sourceTree = "<group>"; };
+		D8EFB1EC1958F9F7004C212E /* Correct_Sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Correct_Sound.mp3; sourceTree = "<group>"; };
+		D8EFB1ED1958F9F7004C212E /* Game_song_2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Game_song_2.mp3; sourceTree = "<group>"; };
+		D8EFB1EE1958F9F7004C212E /* Intro_for_game.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Intro_for_game.mp3; sourceTree = "<group>"; };
+		D8EFB1EF1958F9F7004C212E /* Wrong_Sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Wrong_Sound.mp3; sourceTree = "<group>"; };
 		D8FC2C76193641E0009593AA /* PlayingCardNoFace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayingCardNoFace.h; sourceTree = "<group>"; };
 		D8FC2C77193641E0009593AA /* PlayingCardNoFace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingCardNoFace.m; sourceTree = "<group>"; };
 		D8FC2C79193644F4009593AA /* PlayingCardDeckEasy24.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayingCardDeckEasy24.h; sourceTree = "<group>"; };
@@ -197,6 +214,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8E6C69519591ACA0066D2B6 /* AVFoundation.framework in Frameworks */,
 				D8D36994187933400092E0F4 /* CoreGraphics.framework in Frameworks */,
 				D8D36996187933400092E0F4 /* UIKit.framework in Frameworks */,
 				D8D36992187933400092E0F4 /* Foundation.framework in Frameworks */,
@@ -358,6 +376,14 @@
 		D8C112CA19158A6F00864A23 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D8E6C69919592BD50066D2B6 /* sound.png */,
+				D8E6C69A19592BD50066D2B6 /* speaker_mute.png */,
+				D8E6C697195923750066D2B6 /* Intro_for_game.mp3 */,
+				D8E6C6961959225E0066D2B6 /* Intro_for_game.m4a */,
+				D8EFB1EC1958F9F7004C212E /* Correct_Sound.mp3 */,
+				D8EFB1ED1958F9F7004C212E /* Game_song_2.mp3 */,
+				D8EFB1EE1958F9F7004C212E /* Intro_for_game.mp3 */,
+				D8EFB1EF1958F9F7004C212E /* Wrong_Sound.mp3 */,
 				D87D283B191B415B0019B493 /* relaxing-short.wav */,
 				D87D2839191B3F160019B493 /* relaxing.wav */,
 				D8C09C5719159AA90057DDEB /* ray.wav */,
@@ -400,6 +426,7 @@
 		D8D36990187933400092E0F4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D8E6C69419591ACA0066D2B6 /* AVFoundation.framework */,
 				D8D36991187933400092E0F4 /* Foundation.framework */,
 				D8D36993187933400092E0F4 /* CoreGraphics.framework */,
 				D8D36995187933400092E0F4 /* UIKit.framework */,
@@ -556,6 +583,7 @@
 				D81CFC2C19344498005AB7D7 /* multiply.png in Resources */,
 				D816ACBA1934FBF700C9D93B /* go-button.png in Resources */,
 				D81CFC2E19344498005AB7D7 /* divide.png in Resources */,
+				D8E6C698195923750066D2B6 /* Intro_for_game.mp3 in Resources */,
 				D84AE510193593DF00513F84 /* 24-video.mov in Resources */,
 				D8599D45187B1AF00033E51C /* getto24-icon-58.png in Resources */,
 				D81CFC2D19344498005AB7D7 /* plus.png in Resources */,
@@ -564,12 +592,16 @@
 				D868E2481919C3EE00324698 /* playing.background.png in Resources */,
 				D81CFC1A193434B0005AB7D7 /* num-4.png in Resources */,
 				D81CFC3219344FCA005AB7D7 /* player-area.png in Resources */,
+				D8E6C69B19592BD50066D2B6 /* sound.png in Resources */,
 				D8C09C5A19159AF70057DDEB /* whoosh.wav in Resources */,
 				D8E4985D187B2157005A32D6 /* Default.png in Resources */,
 				D847ECE61920A8E5005F60CC /* star.background.png in Resources */,
 				D8C112D51915926700864A23 /* chimes.wav in Resources */,
 				D8C112D3191591B500864A23 /* opening.wav in Resources */,
+				D8EFB1F31958F9F7004C212E /* Wrong_Sound.mp3 in Resources */,
 				D8599D3E187B1A7B0033E51C /* Images.xcassets in Resources */,
+				D8EFB1F01958F9F7004C212E /* Correct_Sound.mp3 in Resources */,
+				D8EFB1F21958F9F7004C212E /* Intro_for_game.mp3 in Resources */,
 				D81CFC14193434B0005AB7D7 /* num-10.png in Resources */,
 				D847ECE0192099EB005F60CC /* felt.background.png in Resources */,
 				D81CFC16193434B0005AB7D7 /* num-7.png in Resources */,
@@ -577,12 +609,14 @@
 				D81CFC17193434B0005AB7D7 /* num-8.png in Resources */,
 				D89C4D3C19396C83003209D4 /* Default-568h@2x.png in Resources */,
 				D81CFC1B193434B0005AB7D7 /* num-3.png in Resources */,
+				D8E6C69C19592BD50066D2B6 /* speaker_mute.png in Resources */,
 				D81CFC3019344663005AB7D7 /* num-2.png in Resources */,
 				D8C09C7B1915A0510057DDEB /* README.md in Resources */,
 				D816ACBD1934FF9300C9D93B /* dad's app.pdf in Resources */,
 				D847ECE41920A105005F60CC /* noanswer.button.gif in Resources */,
 				D8D369A5187933400092E0F4 /* Main_iPhone.storyboard in Resources */,
 				D868E2461919C26E00324698 /* red.card.background.png in Resources */,
+				D8EFB1F11958F9F7004C212E /* Game_song_2.mp3 in Resources */,
 				D80C81D61926F481004D2BAD /* polish-button.png in Resources */,
 				D8599D41187B1AE30033E51C /* 24app.pdf in Resources */,
 				D87D283C191B415B0019B493 /* relaxing-short.wav in Resources */,
