@@ -217,11 +217,11 @@
     
     if (show) {
         if (self.answerPlayer == 0) {
-            self.labelAnswer.text = @"(select cards)";
+            self.labelAnswer.text = @"(How can you get to 24?)";
             self.labelAnswer2.text = @"";
         } else {
             self.labelAnswer.text = @"";
-            self.labelAnswer2.text = @"(select cards)";
+            self.labelAnswer2.text = @"(How can you get to 24?)";
         }
     }
     
@@ -393,11 +393,13 @@
     // Deal a fresh hand
     self.hand = [[NSMutableArray alloc] init];
     [self dealHand];
-
-    [self.backGround playSound:@"Game_song_2" :@"mp3"];
-    self.util.volume = 0.5;
-    [self.util playSound:@"Intro_for_game" :@"mp3"];
-    self.util.volume = 0.5;
+    
+    if (self.bSound) {
+        [self.backGround playSound:@"Game_song_2" :@"mp3"];
+        self.util.volume = 0.5;
+        [self.util playSound:@"Intro_for_game" :@"mp3"];
+        self.util.volume = 0.5;
+    }
 
 }
 
@@ -1317,7 +1319,7 @@
     for (int i = 0; i < 2; i++) {
         UILabel *labelAnswer = [self.labelAnswers objectAtIndex:i];
         
-        if ([labelAnswer.text compare:@"(select cards)"] == NSOrderedSame) {
+        if ([labelAnswer.text compare:@"(How can you get to 24?)"] == NSOrderedSame) {
             labelAnswer.text = @"";
         }
         
@@ -1359,7 +1361,7 @@
     // Keep the players informed about what has been selected, both players need to know
     for (int i = 0; i < 2; i++) {
         UILabel *labelAnswer = [self.labelAnswers objectAtIndex:i];
-        if ([labelAnswer.text compare:@"(select cards)"] == NSOrderedSame) {
+        if ([labelAnswer.text compare:@"(How can you get to 24?)"] == NSOrderedSame) {
             labelAnswer.text = @"";
         }
         labelAnswer.text = [NSString stringWithFormat:@"%@ %d",

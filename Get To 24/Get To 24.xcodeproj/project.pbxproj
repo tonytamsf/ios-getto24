@@ -30,10 +30,8 @@
 		D81CFC3219344FCA005AB7D7 /* player-area.png in Resources */ = {isa = PBXBuildFile; fileRef = D81CFC3119344FCA005AB7D7 /* player-area.png */; };
 		D81CFC3419345AD1005AB7D7 /* 24-got-it.png in Resources */ = {isa = PBXBuildFile; fileRef = D81CFC3319345AD1005AB7D7 /* 24-got-it.png */; };
 		D8265148192D0DAB00679910 /* card-front.png in Resources */ = {isa = PBXBuildFile; fileRef = D8265147192D0DAB00679910 /* card-front.png */; };
-		D847ECE0192099EB005F60CC /* felt.background.png in Resources */ = {isa = PBXBuildFile; fileRef = D847ECDF192099EB005F60CC /* felt.background.png */; };
 		D847ECE219209D5A005F60CC /* 24.button.png in Resources */ = {isa = PBXBuildFile; fileRef = D847ECE119209D5A005F60CC /* 24.button.png */; };
 		D847ECE41920A105005F60CC /* noanswer.button.gif in Resources */ = {isa = PBXBuildFile; fileRef = D847ECE31920A105005F60CC /* noanswer.button.gif */; };
-		D847ECE61920A8E5005F60CC /* star.background.png in Resources */ = {isa = PBXBuildFile; fileRef = D847ECE51920A8E5005F60CC /* star.background.png */; };
 		D84AE50E1935826300513F84 /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D84AE50D1935826300513F84 /* SplashViewController.m */; };
 		D84AE510193593DF00513F84 /* 24-video.mov in Resources */ = {isa = PBXBuildFile; fileRef = D84AE50F193593DF00513F84 /* 24-video.mov */; };
 		D8599D3E187B1A7B0033E51C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8599D3D187B1A7B0033E51C /* Images.xcassets */; };
@@ -42,9 +40,6 @@
 		D8599D46187B1AF00033E51C /* getto24-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D8599D43187B1AF00033E51C /* getto24-icon.png */; };
 		D8599D47187B1AF00033E51C /* getto24-icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = D8599D44187B1AF00033E51C /* getto24-icon-29.png */; };
 		D868E2461919C26E00324698 /* red.card.background.png in Resources */ = {isa = PBXBuildFile; fileRef = D868E2451919C26E00324698 /* red.card.background.png */; };
-		D868E2481919C3EE00324698 /* playing.background.png in Resources */ = {isa = PBXBuildFile; fileRef = D868E2471919C3EE00324698 /* playing.background.png */; };
-		D87D283A191B3F160019B493 /* relaxing.wav in Resources */ = {isa = PBXBuildFile; fileRef = D87D2839191B3F160019B493 /* relaxing.wav */; };
-		D87D283C191B415B0019B493 /* relaxing-short.wav in Resources */ = {isa = PBXBuildFile; fileRef = D87D283B191B415B0019B493 /* relaxing-short.wav */; };
 		D89C4D3C19396C83003209D4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D89C4D3B19396C83003209D4 /* Default-568h@2x.png */; };
 		D8B75D6C1922791A00991892 /* PlayingCardDeckNoFace.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B75D6B1922791A00991892 /* PlayingCardDeckNoFace.m */; };
 		D8B83A1D19382CDF002A317D /* PlayingCardDeckMedium24.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B83A1C19382CDF002A317D /* PlayingCardDeckMedium24.m */; };
@@ -60,8 +55,6 @@
 		D8C09C7C1915A0510057DDEB /* AudioUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C09C731915A0510057DDEB /* AudioUtil.m */; };
 		D8C09C7D1915A0510057DDEB /* NSArrayUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C09C751915A0510057DDEB /* NSArrayUtil.m */; };
 		D8C112CC19158BD600864A23 /* beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = D8C112CB19158BD600864A23 /* beep.wav */; };
-		D8C112CE19158F6E00864A23 /* tick.tock.wav in Resources */ = {isa = PBXBuildFile; fileRef = D8C112CD19158F6E00864A23 /* tick.tock.wav */; };
-		D8C112D3191591B500864A23 /* opening.wav in Resources */ = {isa = PBXBuildFile; fileRef = D8C112D2191591B500864A23 /* opening.wav */; };
 		D8C112D51915926700864A23 /* chimes.wav in Resources */ = {isa = PBXBuildFile; fileRef = D8C112D41915926700864A23 /* chimes.wav */; };
 		D8D36992187933400092E0F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D36991187933400092E0F4 /* Foundation.framework */; };
 		D8D36994187933400092E0F4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D36993187933400092E0F4 /* CoreGraphics.framework */; };
@@ -127,10 +120,8 @@
 		D81CFC3119344FCA005AB7D7 /* player-area.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "player-area.png"; sourceTree = "<group>"; };
 		D81CFC3319345AD1005AB7D7 /* 24-got-it.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "24-got-it.png"; sourceTree = "<group>"; };
 		D8265147192D0DAB00679910 /* card-front.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card-front.png"; sourceTree = "<group>"; };
-		D847ECDF192099EB005F60CC /* felt.background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = felt.background.png; sourceTree = "<group>"; };
 		D847ECE119209D5A005F60CC /* 24.button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 24.button.png; sourceTree = "<group>"; };
 		D847ECE31920A105005F60CC /* noanswer.button.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = noanswer.button.gif; sourceTree = "<group>"; };
-		D847ECE51920A8E5005F60CC /* star.background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.background.png; sourceTree = "<group>"; };
 		D84AE50C1935826300513F84 /* SplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashViewController.h; sourceTree = "<group>"; };
 		D84AE50D1935826300513F84 /* SplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashViewController.m; sourceTree = "<group>"; };
 		D84AE50F193593DF00513F84 /* 24-video.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "24-video.mov"; sourceTree = "<group>"; };
@@ -140,9 +131,6 @@
 		D8599D43187B1AF00033E51C /* getto24-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "getto24-icon.png"; sourceTree = "<group>"; };
 		D8599D44187B1AF00033E51C /* getto24-icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "getto24-icon-29.png"; sourceTree = "<group>"; };
 		D868E2451919C26E00324698 /* red.card.background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red.card.background.png; sourceTree = "<group>"; };
-		D868E2471919C3EE00324698 /* playing.background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playing.background.png; sourceTree = "<group>"; };
-		D87D2839191B3F160019B493 /* relaxing.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = relaxing.wav; sourceTree = "<group>"; };
-		D87D283B191B415B0019B493 /* relaxing-short.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "relaxing-short.wav"; sourceTree = "<group>"; };
 		D89C4D3B19396C83003209D4 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		D8B75D6A1922791A00991892 /* PlayingCardDeckNoFace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayingCardDeckNoFace.h; sourceTree = "<group>"; };
 		D8B75D6B1922791A00991892 /* PlayingCardDeckNoFace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingCardDeckNoFace.m; sourceTree = "<group>"; };
@@ -168,8 +156,6 @@
 		D8C09C741915A0510057DDEB /* NSArrayUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSArrayUtil.h; sourceTree = "<group>"; };
 		D8C09C751915A0510057DDEB /* NSArrayUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArrayUtil.m; sourceTree = "<group>"; };
 		D8C112CB19158BD600864A23 /* beep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = beep.wav; sourceTree = "<group>"; };
-		D8C112CD19158F6E00864A23 /* tick.tock.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = tick.tock.wav; sourceTree = "<group>"; };
-		D8C112D2191591B500864A23 /* opening.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = opening.wav; sourceTree = "<group>"; };
 		D8C112D41915926700864A23 /* chimes.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = chimes.wav; sourceTree = "<group>"; };
 		D8D3698E187933400092E0F4 /* Math Get To 24.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Math Get To 24.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8D36991187933400092E0F4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -276,11 +262,8 @@
 				D872BFD41929EBFB004DD108 /* ios */,
 				D872BFDF1929EBFB004DD108 /* ios7 */,
 				D80C81D51926F481004D2BAD /* polish-button.png */,
-				D847ECE51920A8E5005F60CC /* star.background.png */,
 				D847ECE31920A105005F60CC /* noanswer.button.gif */,
 				D847ECE119209D5A005F60CC /* 24.button.png */,
-				D847ECDF192099EB005F60CC /* felt.background.png */,
-				D868E2471919C3EE00324698 /* playing.background.png */,
 				D868E2451919C26E00324698 /* red.card.background.png */,
 				D8599D42187B1AF00033E51C /* getto24-icon-58.png */,
 				D8599D43187B1AF00033E51C /* getto24-icon.png */,
@@ -384,13 +367,9 @@
 				D8EFB1ED1958F9F7004C212E /* Game_song_2.mp3 */,
 				D8EFB1EE1958F9F7004C212E /* Intro_for_game.mp3 */,
 				D8EFB1EF1958F9F7004C212E /* Wrong_Sound.mp3 */,
-				D87D283B191B415B0019B493 /* relaxing-short.wav */,
-				D87D2839191B3F160019B493 /* relaxing.wav */,
 				D8C09C5719159AA90057DDEB /* ray.wav */,
 				D8C09C5919159AF70057DDEB /* whoosh.wav */,
 				D8C112D41915926700864A23 /* chimes.wav */,
-				D8C112D2191591B500864A23 /* opening.wav */,
-				D8C112CD19158F6E00864A23 /* tick.tock.wav */,
 				D8C112CB19158BD600864A23 /* beep.wav */,
 			);
 			name = sounds;
@@ -589,21 +568,17 @@
 				D81CFC2D19344498005AB7D7 /* plus.png in Resources */,
 				D8599D46187B1AF00033E51C /* getto24-icon.png in Resources */,
 				D8C09C5819159AA90057DDEB /* ray.wav in Resources */,
-				D868E2481919C3EE00324698 /* playing.background.png in Resources */,
 				D81CFC1A193434B0005AB7D7 /* num-4.png in Resources */,
 				D81CFC3219344FCA005AB7D7 /* player-area.png in Resources */,
 				D8E6C69B19592BD50066D2B6 /* sound.png in Resources */,
 				D8C09C5A19159AF70057DDEB /* whoosh.wav in Resources */,
 				D8E4985D187B2157005A32D6 /* Default.png in Resources */,
-				D847ECE61920A8E5005F60CC /* star.background.png in Resources */,
 				D8C112D51915926700864A23 /* chimes.wav in Resources */,
-				D8C112D3191591B500864A23 /* opening.wav in Resources */,
 				D8EFB1F31958F9F7004C212E /* Wrong_Sound.mp3 in Resources */,
 				D8599D3E187B1A7B0033E51C /* Images.xcassets in Resources */,
 				D8EFB1F01958F9F7004C212E /* Correct_Sound.mp3 in Resources */,
 				D8EFB1F21958F9F7004C212E /* Intro_for_game.mp3 in Resources */,
 				D81CFC14193434B0005AB7D7 /* num-10.png in Resources */,
-				D847ECE0192099EB005F60CC /* felt.background.png in Resources */,
 				D81CFC16193434B0005AB7D7 /* num-7.png in Resources */,
 				D8D369A8187933400092E0F4 /* Main_iPad.storyboard in Resources */,
 				D81CFC17193434B0005AB7D7 /* num-8.png in Resources */,
@@ -619,14 +594,11 @@
 				D8EFB1F11958F9F7004C212E /* Game_song_2.mp3 in Resources */,
 				D80C81D61926F481004D2BAD /* polish-button.png in Resources */,
 				D8599D41187B1AE30033E51C /* 24app.pdf in Resources */,
-				D87D283C191B415B0019B493 /* relaxing-short.wav in Resources */,
 				D847ECE219209D5A005F60CC /* 24.button.png in Resources */,
 				D81CFC18193434B0005AB7D7 /* num-6.png in Resources */,
-				D8C112CE19158F6E00864A23 /* tick.tock.wav in Resources */,
 				D81CFC3419345AD1005AB7D7 /* 24-got-it.png in Resources */,
 				D81CFC0419341B42005AB7D7 /* math-24-icon.pdf in Resources */,
 				D8D3699C187933400092E0F4 /* InfoPlist.strings in Resources */,
-				D87D283A191B3F160019B493 /* relaxing.wav in Resources */,
 				D8599D47187B1AF00033E51C /* getto24-icon-29.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
