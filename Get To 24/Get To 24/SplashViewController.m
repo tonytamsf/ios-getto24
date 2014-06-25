@@ -96,8 +96,6 @@
 
 - (void)videoPlayerPlaybackDidEnd:(PBJVideoPlayerController *)videoPlayer
 {
-    NSArray *versionCompatibility = [[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."];
-
     /// Don't play intro vieo for iOS 6.0
     if ( [self canPlayTransition] ) { /// iOS5 is installed
         [self transtionToPlayView];

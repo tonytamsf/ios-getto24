@@ -378,7 +378,7 @@
     
     self.currentDeck = self._easyDeck;
     // TODO for debugging
-    self.currentDeck = [[PlayingCardDeckDeterministic alloc] init];
+    //self.currentDeck = [[PlayingCardDeckDeterministic alloc] init];
     
     self.increment = (int) self.segmentLevels.selectedSegmentIndex + 1;
     
@@ -528,7 +528,7 @@
     [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
     [UIView setAnimationDuration:0.4];
     [UIView setAnimationDelegate:self];
-    [UIView setAnimationDidStopSelector:@selector(showHideDidStop:finished:context:)];
+    //[UIView setAnimationDidStopSelector:@selector(showHideDidStop:finished:context:)];
     
     // Make the animatable changes.
     card.alpha = 0.6;
@@ -740,17 +740,22 @@
         NSArray *tryHand = allHands[i];
         
         DLog(@"==================================================");
-        DLog(@" %d %@", i, tryHand);
+        DLog(@" %d Hand: %@ %@ %@ %@", i,
+             [((CardHand *)tryHand[0]).card contents],
+             [((CardHand *)tryHand[1]).card contents],
+             [((CardHand *)tryHand[2]).card contents],
+             [((CardHand *)tryHand[3]).card contents]);
         DLog(@"==================================================");
         @try {
             self.storeAnswerPackage = [self calculateHand:tryHand];
             if (nil != self.storeAnswerPackage) {
+                DLog(@"%@", self.storeAnswerPackage);
                 return self.storeAnswerPackage;
             }
         }
         @catch (NSException *e) {
             // Just catch division by zero, ignore
-            //DLog(@"%@", e);
+            DLog(@"Exception %@", e);
         }
     }
     return nil;
@@ -793,8 +798,9 @@
                 storeAnswerPackage = [self calculateHand:cards
                                            usingOperators:currentOperators
                                         withOperatorChars:currentOperatorChars];
-                if ([storeAnswerPackage.answer compare:rightAnswer] == NSOrderedSame) {
-                    DLog(@"answer %@", storeAnswerPackage.stringAnswer);
+                if (storeAnswerPackage &&
+                    [storeAnswerPackage.answer compare:rightAnswer] == NSOrderedSame) {
+                    DLog(@"calculateHand answer %@ %@", storeAnswerPackage.answer,  storeAnswerPackage.stringAnswer);
                     
                     found = TRUE;
                     return storeAnswerPackage;

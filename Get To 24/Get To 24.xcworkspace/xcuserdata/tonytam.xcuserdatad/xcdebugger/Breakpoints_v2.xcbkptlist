@@ -15,7 +15,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1142"
             endingLineNumber = "1142"
-            landmarkName = "-calcuateGroupingSecond:usingOperators:withOperatorChars:"
+            landmarkName = "-calcuateGroupingOfTwo:usingOperators:withOperatorChars:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -80,6 +80,22 @@
             startingLineNumber = "41"
             endingLineNumber = "41"
             landmarkName = "-playSound::"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Get To 24/GetTo24ViewController.m"
+            timestampString = "425352805.36347"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "744"
+            endingLineNumber = "744"
+            landmarkName = "-calcuateAnswer"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
