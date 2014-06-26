@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/tonytamsf/android-HowToTip.svg?branch=master)](https://travis-ci.org/tonytamsf/android-HowToTip)
+[![Build Status](https://travis-ci.org/tonytamsf/ios-getto24.svg?branch=master)](https://travis-ci.org/tonytamsf/ios-getto24)
 
 Get to 24
 ===========
