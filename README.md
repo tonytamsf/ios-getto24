@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/tonytamsf/ios-getto24.svg?branch=master)](https://travis-ci.org/tonytamsf/ios-getto24)
+
 Get to 24
 ===========
 A fun math game to make 4 playing cards come out to 24 using **addition**, **subtraction**, **multiplication** and **division**
@@ -29,6 +31,7 @@ A fun math game to make 4 playing cards come out to 24 using **addition**, **sub
 ### Author
    * Tony Tam - engineer
    * Cate Tam - designer, product manager
+   * Will - securitycamel on youtube.com
 
 ### TODO
 1. localization. Chinese, French, German
@@ -39,3 +42,13 @@ A fun math game to make 4 playing cards come out to 24 using **addition**, **sub
 1. Preferences to store not showing the splash screen
 1. auto move from easy, medium, hard as you get more points
 1. Share the app?
+- fix 6 and 9
+- there may be more than one way to get to 24 and the game can tell how many ways. This will require some ability to memorize from the players as well
+- could we play with others instead of playing on one phone – something similar to quizup?
+- localization
+- local and or leader board
+- Credits, feedback
+- Sound
+- Preferences to store not showing the splash screen
+- auto move from easy, medium, hard
+- Share the app?
