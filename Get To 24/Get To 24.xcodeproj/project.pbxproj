@@ -44,6 +44,7 @@
 		D8B75D6C1922791A00991892 /* PlayingCardDeckNoFace.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B75D6B1922791A00991892 /* PlayingCardDeckNoFace.m */; };
 		D8B83A1D19382CDF002A317D /* PlayingCardDeckMedium24.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B83A1C19382CDF002A317D /* PlayingCardDeckMedium24.m */; };
 		D8B83A2019382CF4002A317D /* PlayingCardMedium24.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B83A1F19382CF4002A317D /* PlayingCardMedium24.m */; };
+		D8B9584D196AFB2600904F57 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D8B9584C196AFB2600904F57 /* README.md */; };
 		D8C09C5819159AA90057DDEB /* ray.wav in Resources */ = {isa = PBXBuildFile; fileRef = D8C09C5719159AA90057DDEB /* ray.wav */; };
 		D8C09C5A19159AF70057DDEB /* whoosh.wav in Resources */ = {isa = PBXBuildFile; fileRef = D8C09C5919159AF70057DDEB /* whoosh.wav */; };
 		D8C09C761915A0510057DDEB /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D8C09C631915A0510057DDEB /* .gitignore */; };
@@ -138,6 +139,7 @@
 		D8B83A1C19382CDF002A317D /* PlayingCardDeckMedium24.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingCardDeckMedium24.m; sourceTree = "<group>"; };
 		D8B83A1E19382CF4002A317D /* PlayingCardMedium24.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayingCardMedium24.h; sourceTree = "<group>"; };
 		D8B83A1F19382CF4002A317D /* PlayingCardMedium24.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingCardMedium24.m; sourceTree = "<group>"; };
+		D8B9584C196AFB2600904F57 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
 		D8C09C5719159AA90057DDEB /* ray.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ray.wav; sourceTree = "<group>"; };
 		D8C09C5919159AF70057DDEB /* whoosh.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = whoosh.wav; sourceTree = "<group>"; };
 		D8C09C631915A0510057DDEB /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -418,6 +420,7 @@
 		D8D36997187933400092E0F4 /* Get To 24 */ = {
 			isa = PBXGroup;
 			children = (
+				D8B9584C196AFB2600904F57 /* README.md */,
 				D84AE50C1935826300513F84 /* SplashViewController.h */,
 				D84AE50D1935826300513F84 /* SplashViewController.m */,
 				D8FCE17B193302A4001D3EB1 /* Get To 24.entitlements */,
@@ -569,6 +572,7 @@
 				D8599D46187B1AF00033E51C /* getto24-icon.png in Resources */,
 				D8C09C5819159AA90057DDEB /* ray.wav in Resources */,
 				D81CFC1A193434B0005AB7D7 /* num-4.png in Resources */,
+				D8B9584D196AFB2600904F57 /* README.md in Resources */,
 				D81CFC3219344FCA005AB7D7 /* player-area.png in Resources */,
 				D8E6C69B19592BD50066D2B6 /* sound.png in Resources */,
 				D8C09C5A19159AF70057DDEB /* whoosh.wav in Resources */,

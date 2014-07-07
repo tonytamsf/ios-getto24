@@ -4,6 +4,10 @@ A fun math game to make 4 playing cards come out to 24 using **addition**, **sub
 
 ![Fresh UI](https://cloud.githubusercontent.com/assets/149837/3094971/03e4b3d6-e5c2-11e3-9c56-0452c3ce2765.png)
 
+### CHANGELOG
+- Version 1.5.1
+* Fix bug to keep timer running while someone is answering question
+
 ### Online versions
    * http://www.coolmath-games.com/0-make24/index.html
 
