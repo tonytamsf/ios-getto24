@@ -27,11 +27,11 @@ A fun math game to make 4 playing cards come out to 24 using **addition**, **sub
    * Cate Tam - designer, product manager
 
 ### TODO
-- localization
-- local and or leader board
-- Credits, feedback
-- Sound
-- Preferences to store not showing the splash screen
-- auto move from easy, medium, hard
-- Share the app?
-
+1. localization. Chinese, French, German
+1. Game cloud save
+1. local and or leader board
+1. Credits, feedback
+1. DONE Sound - version 1.5
+1. Preferences to store not showing the splash screen
+1. auto move from easy, medium, hard as you get more points
+1. Share the app?

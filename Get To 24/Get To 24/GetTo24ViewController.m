@@ -170,7 +170,7 @@
 - (void) verifyAnswer
 {
     [self showAnswerControllers:TRUE];
-    [self.timer invalidate];
+    //[self.timer invalidate];
 }
 
 //
@@ -497,6 +497,7 @@
         [self dealHand];
         return;
     }
+    
     if (![self.timer isValid]) {
         // Start the countdown
         self.timer = [NSTimer scheduledTimerWithTimeInterval:1
@@ -1384,7 +1385,7 @@
                                withOperatorChars:self.operatorStrings];
         if (answer != nil && [answer.answer compare:rightAnswer] == NSOrderedSame) {
             
-            // Internationalize these strings
+            // TODO: Internationalize these strings
             DLog(@"Player got it right: %@", answer.stringAnswer);
             finalText = [NSString stringWithFormat:@"Yay, You Got 24!!\n %@", answer.stringAnswer];
             [self rightAnswer:self.answerPlayer];
